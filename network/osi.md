@@ -44,6 +44,7 @@ The recommendation X.200 describes seven layers, labeled 1 to 7. Layer 1 is the 
 
 | OSI Model |
 | Layer                  | Data unit       | Function[3]                                                                                                                                          | Examples                           |
+|------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
 | 7\. [Application][13]  | Data            | High-level [APIs][15], including resource sharing, remote file access, [directory services][16] and [virtual terminals][17]                          | HTTP, FTP, SMTP                    |
 | 6\. [Presentation][21] | Data            | Translation of data between a networking service and an application;[character encoding][22], [data compression][23] and [encryption/decryption][24]
 | 5\. [Session][25]      | Data            | Managing communication i.e. continuous exchange of information in the form of multiple back-and-forth transmissions between two nodes                | RPC, PAP                           |
@@ -214,11 +215,6 @@ The presumably strict layering of the OSI model as it is usually described does 
 the hierarchy implied in a layered model. Such examples exist in some routing protocols (e.g., OSPF), or in the description of [tunneling protocols][111], which provide a
 link layer for an application, although the tunnel host protocol might well be a transport or even an application-layer protocol in its own right.[[_citation needed][8]_]
 
-## See also[[edit][156]]
-
-## References[[edit][157]]
-
-## External links[[edit][158]]
 
 | ----- |
 | ![][159] |  Wikimedia Commons has media related to [_**OSI model][160]**_. |
