@@ -43,8 +43,9 @@ for the OSI model were available from ISO, but only some of them without fees.[2
 The recommendation X.200 describes seven layers, labeled 1 to 7. Layer 1 is the lowest layer in this model.
 
 | OSI Model |
+
 | Layer                  | Data unit       | Function[3]                                                                                                                                          | Examples                           |
-|------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
+| ------ | ---- | ---------- | ------ |
 | 7\. [Application][13]  | Data            | High-level [APIs][15], including resource sharing, remote file access, [directory services][16] and [virtual terminals][17]                          | HTTP, FTP, SMTP                    |
 | 6\. [Presentation][21] | Data            | Translation of data between a networking service and an application;[character encoding][22], [data compression][23] and [encryption/decryption][24]
 | 5\. [Session][25]      | Data            | Managing communication i.e. continuous exchange of information in the form of multiple back-and-forth transmissions between two nodes                | RPC, PAP                           |
@@ -122,8 +123,8 @@ OSI defines five classes of connection-mode transport protocols ranging from cla
 Class 0 contains no error recovery, and was designed for use on network layers that provide error-free connections. Class 4 is closest to TCP, although TCP contains functions, such as the graceful close, which OSI assigns to the
 session layer. Also, all OSI TP connection-mode [protocol][109] classes provide expedited data and preservation of record boundaries. Detailed characteristics of TP0-4 classes are shown in the following table:[6]
 
-| ----- |
 | Feature name                                                     | TP0 | TP1 | TP2 | TP3 | TP4 |
+| ----- | ----- | ----- | ----- | ----- | ----- |
 | Connection-oriented network                                      | Yes | Yes | Yes | Yes | Yes |
 | Connectionless network                                           | No  | No  | No  | No  | Yes |
 | Concatenation and separation                                     | No  | Yes | Yes | Yes | Yes |
@@ -216,10 +217,7 @@ the hierarchy implied in a layered model. Such examples exist in some routing pr
 link layer for an application, although the tunnel host protocol might well be a transport or even an application-layer protocol in its own right.[[_citation needed][8]_]
 
 
-| ----- |
-| ![][159] |  Wikimedia Commons has media related to [_**OSI model][160]**_. |
 
-![][161]
 
 [1]: /wiki/Conceptual_model "Conceptual model"
 [2]: /wiki/Communication_system "Communication system"
