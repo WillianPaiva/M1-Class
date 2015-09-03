@@ -16,7 +16,7 @@ The model is a product of the [Open Systems Interconnection][4] project at the [
 
 Communication in the OSI-Model (example with layers 3 to 5)
 
-## History[[edit][7]]
+## History 
 
 In the late 1970s, two projects began independently, with the same goal: to define a unifying standard for the architecture of networking systems.[[_citation needed][8]_] One was administered by the International Organization for
 Standardization (ISO), while the other was undertaken by the International Telegraph and Telephone Consultative Committee, or CCITT (the abbreviation is from the French version of the name). These two international standards bodies
@@ -38,7 +38,7 @@ one of the seven layers of protocols operating in the local host.
 The OSI standards documents are available from the ITU-T as the X.200-series of recommendations.[1] Some of the protocol specifications were also available as part of the ITU-T X series. The equivalent ISO and ISO/IEC standards
 for the OSI model were available from ISO, but only some of them without fees.[2]
 
-## Description of OSI layers[[edit][12]]
+## Description of OSI layers 
 
 The recommendation X.200 describes seven layers, labeled 1 to 7. Layer 1 is the lowest layer in this model.
 
@@ -70,7 +70,7 @@ Some orthogonal aspects, such as management and [security][58], involve all of t
  [integrity][62], and [availability][63] \- of the transmitted data. In practice, the availability of a communication service is determined by the interaction between [network design][64] and [network management][65] protocols.
  Appropriate choices for both of these are needed to protect against [denial of service][66].[[_citation needed][8]_]
 
-### Layer 1: Physical Layer[[edit][67]]
+### Layer 1: Physical Layer 
 
 The [physical layer][52] has the following major functions:
 
@@ -85,7 +85,7 @@ includes the layout of [pins][71], [voltages][72], line [impedance][73], [cable]
 The physical layer of [Parallel SCSI][87] operates in this layer, as do the physical layers of [Ethernet][88] and other local-area networks, such as [Token Ring][89], [FDDI][90], [ITU-T G.hn][91], and [IEEE 802.11][92] (Wi-Fi), as
 well as personal area networks such as [Bluetooth][93] and [IEEE 802.15.4][94].
 
-### Layer 2: Data Link Layer[[edit][95]]
+### Layer 2: Data Link Layer 
 
 The [data link layer][46] provides [node-to-node data transfer][96] \-- a [reliable][97] link between two directly connected nodes, by detecting and possibly correcting errors that may occur in the physical layer. The data link
 layer is divided into two sublayers:
@@ -97,7 +97,7 @@ The [Point-to-Point Protocol][49] (PPP) is an example of a data link layer in th
 The [ITU-T][59] [G.hn][91] standard, which provides high-speed local area networking over existing wires (power lines, phone lines and coaxial cables), includes a complete [data link layer][46] that provides both
 [error correction][101] and [flow control][82] by means of a [selective-repeat][102] [sliding-window protocol][103].
 
-### Layer 3: Network Layer[[edit][104]]
+### Layer 3: Network Layer 
 
 The [network layer][35] provides the functional and procedural means of transferring variable length [data][105] sequences (called [datagrams][106]) from one node to another connected to the same _network._ It translates logical
 network address into physical machine address. A network is a medium to which many nodes can be connected, on which every node has an _address_ and which permits nodes connected to it to transfer messages to other nodes connected
@@ -109,7 +109,7 @@ Datagram delivery at the network layer is _not_ guaranteed to be _reliable_.
 A number of layer-management protocols, a function defined in the _management annex_, ISO 7498/4, belong to the network layer. These include routing protocols, multicast group management, network-layer information and error, and
 network-layer address assignment. It is the function of the payload that makes these belong to the network layer, not the protocol that carries them.[5]
 
-### Layer 4: Transport Layer[[edit][107]]
+### Layer 4: Transport Layer 
 
 The [transport layer][29] provides the functional and procedural means of transferring variable-length data sequences from a source to a destination host via one or more networks, while maintaining the quality of service functions.
 
@@ -146,14 +146,14 @@ network-layer protocol, if the encapsulation of the payload takes place only at 
 Although not developed under the OSI Reference Model and not strictly conforming to the OSI definition of the transport layer, the [Transmission Control Protocol][33] (TCP) and the [User Datagram Protocol][34] (UDP) of the Internet
 Protocol Suite are commonly categorized as layer-4 protocols within OSI.
 
-### Layer 5: Session Layer[[edit][118]]
+### Layer 5: Session Layer 
 
 The [session layer][25] controls the dialogues (connections) between computers. It establishes, manages and terminates the connections between the local and remote application. It provides for [full-duplex][119], [half-duplex][120],
     or [simplex][121] operation, and establishes checkpointing, adjournment, termination, and restart procedures. The OSI model made this layer responsible for graceful close of sessions, which is a property of the [Transmission
     Control Protocol][33], and also for session checkpointing and recovery, which is not usually used in the Internet Protocol Suite. The session layer is commonly implemented explicitly in application environments that use [remote
     procedure calls][122].
 
-### Layer 6: Presentation Layer[[edit][123]]
+### Layer 6: Presentation Layer 
 
 The [presentation layer][21] establishes context between application-layer entities, in which the application-layer entities may use different syntax and semantics if the presentation service provides
 a big mapping between them. If a mapping is available, presentation service data units are encapsulated into session protocol data units, and passed down the protocol stack.
@@ -164,7 +164,7 @@ that the application accepts. This layer formats and encrypts data to be sent ac
 The original presentation structure used the [Basic Encoding Rules][124] of [Abstract Syntax Notation One][125] (ASN.1), with capabilities such as converting an [EBCDIC][126]-coded text
 [file][127] to an [ASCII][128]-coded file, or [serialization][129] of [objects][130] and other [data structures][131] from and to [XML][132].
 
-### Layer 7: Application Layer[[edit][133]]
+### Layer 7: Application Layer 
 
 The [application layer][13] is the OSI layer closest to the end user, which means both the OSI application layer and the user interact directly with the software application.
 This layer interacts with software applications that implement a communicating component. Such application programs fall outside the scope of the OSI model.
@@ -173,7 +173,7 @@ When identifying communication partners, the application layer determines the id
 When determining resource availability, the application layer must decide whether sufficient network or the requested communication exists.
 In synchronizing communication, all communication between applications requires cooperation that is managed by the application layer.
 
-## Cross-layer functions[[edit][134]]
+## Cross-layer functions 
 
 There are some functions or services that are not tied to a given layer, but they can affect more than one layer. Examples include the following:
 
@@ -185,7 +185,7 @@ There are some functions or services that are not tied to a given layer, but the
     [datagram][37]-based service model. It can be used to carry many different kinds of traffic, including IP packets, as well as native ATM, SONET, and Ethernet frames.
 * [ARP][138] is used to translate IPv4 addresses (OSI layer 3) into Ethernet MAC addresses (OSI layer 2).
 
-## Interfaces[[edit][139]]
+## Interfaces 
 
 Neither the OSI Reference Model nor OSI protocols specify any programming interfaces, other than deliberately abstract service specifications.
 Protocol specifications precisely define the interfaces between different computers, but the software interfaces inside computers, known as [network sockets][140] are implementation-specific.
@@ -195,9 +195,9 @@ nterfaces between applications (layer 5 and above) and the transport (layer 4). 
 
 Interface standards, except for the physical layer to media, are approximate implementations of OSI service specifications.
 
-## Examples[[edit][149]]
+## Examples 
 
-## Comparison with TCP/IP model[[edit][150]]
+## Comparison with TCP/IP model 
 
 The design of protocols in the [TCP/IP model][151] of the Internet does not concern itself with strict hierarchical encapsulation and layering.[13][RFC 3439][152] contains a section entitled
 "Layering [considered harmful][153]".[14] TCP/IP does recognize four broad layers of functionality which are derived from the operating scope of their contained protocols: the scope
@@ -379,5 +379,4 @@ link layer for an application, although the tunnel host protocol might well be a
 [158]: /w/index.php?title=OSI_model&action=edit§ion=16 "Edit section: External links"
 [159]: https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png
 [160]: //commons.wikimedia.org/wiki/Category:OSI_model "commons:Category:OSI model"
-[161]: //en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1 ""
   
