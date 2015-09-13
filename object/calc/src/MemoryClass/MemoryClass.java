@@ -9,6 +9,7 @@ public class MemoryClass
     public MemoryClass() 
     { 
 		this.mem = 0;
+        System.
     }
 
 
