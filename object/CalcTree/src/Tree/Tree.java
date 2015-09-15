@@ -23,7 +23,7 @@ public class Tree
         while(!tokens.isEmpty()){
             if(isNumeric(tokens.get(0)))
             {
-                temp = new TreeNode(true,'\0',Double.parseDouble(tokens.get(0)));
+                temp = new Leaf(Double.parseDouble(tokens.get(0)));
                 tokens.remove(0);
                 operands.push(temp);
             }
@@ -82,16 +82,13 @@ public class Tree
 
     private void NodeCreate(char op)
     {
-        TreeNode p = new TreeNode(false,op,0.0);
-        p.setRight(operands.pop());
+        TreeNode tempRight = operands.pop();
+        TreeNode tempLeft = null;
         if(!operands.empty())
         {
-            p.setLeft(operands.pop());
+            tempLeft = operands.pop();
         }
-        //else
-        //{
-            //p.setLeft(new TreeNode(true,'\0',0.0));
-        //}
+        TreeNode p = new Node(tempLeft,op,tempRight);
         operands.push(p);
     }
     

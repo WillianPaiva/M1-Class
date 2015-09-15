@@ -1,0 +1,45 @@
+package Tree;
+
+public class Node implements TreeNode
+{
+    private char op;
+    private TreeNode left;
+    private TreeNode right;
+
+    public Node(TreeNode left, char op, TreeNode right) {
+        this.op = op;
+        this.left = left;
+        this.right = right;
+    }
+
+    public double solve()
+    {
+        double r = 0;
+        double l = 0;
+        if(this.left != null){l = this.left.solve();}
+        if(this.right != null){r = this.right.solve();}
+        switch (this.op)
+        {
+            case '+': return  l+r;
+            case '-': return  l-r;
+            case '*': return  l*r;
+            case '/': return  l/r;
+            default: return 0;
+        }
+    }
+    public String toString()
+    {
+        String temp = "(";
+        if(this.left != null)
+        {
+            temp =    temp + this.left.toString() + " ";
+        }
+        temp = temp + this.op +" ";
+        if(this.right != null)
+        {
+            temp =    temp + this.right.toString();
+        }
+        return temp+")";
+    }
+
+}
