@@ -1,8 +1,4 @@
-import java.io.filereader;
-import java_cup.runtime.symbol;
-
 public class Main {
-
     public static void main(String[] args)
     {
         try
