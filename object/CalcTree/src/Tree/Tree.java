@@ -4,24 +4,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class Tree 
-{
+/**
+ *
+ *
+ * @author
+ */
+public class Tree {
     private TreeNode root;
     private ArrayList<String> tokens;
     Stack<Character> operators;
     Stack<TreeNode> operands;
-    public Tree(String expression)
-    { 
+
+    /**
+     *
+     *
+     * @param expression
+     */
+    public Tree(final String expression){ 
         this.operators = new Stack<Character>();
         this.operands = new Stack<TreeNode>();
         String[] result = expression.split("(?<=[-+*/()])|(?=[-+*/()])");
         this.tokens = new ArrayList<String>(Arrays.asList(result));
         this.root = build();
     }
+
+    /**
+     *
+     *
+     * @return
+     */
     private TreeNode build(){
         TreeNode temp;
-        while(!tokens.isEmpty()){
-            if(isNumeric(tokens.get(0)))
+        while (!tokens.isEmpty()) {
+            if(iassNumeric(tokens.get(0)))
             {
                 temp = new Leaf(Double.parseDouble(tokens.get(0)));
                 tokens.remove(0);
@@ -39,11 +54,9 @@ public class Tree
                     case '/':
                         ProcessOperator(token);
                         break;
-
                     case ')':
                         ProcessRightP();
                         break;
-
                     case '(':
                         operators.push(token);
                         break;
@@ -61,6 +74,11 @@ public class Tree
         return operands.pop();
     }
 
+    /**
+     *
+     *
+     * @param op
+     */
     private void ProcessOperator(char op)
     {
         int opPrecendence = precedence(op);
@@ -71,6 +89,10 @@ public class Tree
         operators.push(op);
     }
 
+    /**
+     *
+     *
+     */
     private void ProcessRightP()
     {
         while(!operators.empty() && operators.peek() != '(')
@@ -80,6 +102,11 @@ public class Tree
         operators.pop();
     }
 
+    /**
+     *
+     *
+     * @param op
+     */
     private void NodeCreate(char op)
     {
         TreeNode tempRight = operands.pop();
@@ -92,13 +119,21 @@ public class Tree
         operands.push(p);
     }
     
+    /**
+     *
+     *
+     * @return
+     */
     public double solve(){
         return this.root.solve();
     }
 
-
-
-
+    /**
+     *
+     *
+     * @param op
+     * @return
+     */
     private int precedence(char op)
     {
         switch (op)
@@ -112,13 +147,24 @@ public class Tree
             default:
                 return 0;          
         }    
-
     } 
 
+    /**
+     *
+     *
+     * @param str
+     * @return
+     */
     private boolean isNumeric(String str)
     {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see Object#toString()
+     */
     public String toString()
     {
         return this.root.toString();
