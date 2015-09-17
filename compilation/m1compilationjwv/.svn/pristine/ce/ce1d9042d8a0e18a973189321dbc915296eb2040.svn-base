@@ -1,12 +1,9 @@
-import java.io.filereader;
-import java_cup.runtime.symbol;
-
 public class Main {
-
     public static void main(String[] args)
     {
         try
         {
+            //test
             FileReader fr = new FileReader (args[0]);
             CompLexer lex = new CompLexer(fr);
             CompParser parser = new CompParser(lex);
