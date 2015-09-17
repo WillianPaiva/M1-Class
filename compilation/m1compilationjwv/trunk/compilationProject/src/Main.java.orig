@@ -1,0 +1,31 @@
+import java.io.filereader;
+import java_cup.runtime.symbol;
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+        try
+        {
+<<<<<<< HEAD
+=======
+            //test
+>>>>>>> 594067fc89fb9ad47253a2c7647a0b8b85d654d6
+            FileReader fr = new FileReader (args[0]);
+            CompLexer lex = new CompLexer(fr);
+            CompParser parser = new CompParser(lex);
+            try
+            {
+                parser.parse();
+            }
+            catch (Exception e)
+            {
+                System.out.println("parser error " + e);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("invalid file" + e);
+        }
+    }
+}   
