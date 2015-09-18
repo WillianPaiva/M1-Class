@@ -7,11 +7,12 @@ public class NodeDivide  extends NodeOp
         super(left,op,right);
     }
 
+    @Override
     public double solve() {
         double r = 0;
         double l = 0;
-        if(this.left != null){l = this.left.solve();}
-        if(this.right != null){r = this.right.solve();}
+        if(super.getLeft() != null){l = super.getLeft().solve();}
+        if(super.getRight() != null){r = super.getRight().solve();}
         return  l/r;
     }
 }

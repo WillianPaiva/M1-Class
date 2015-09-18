@@ -45,6 +45,20 @@ public class Tree {
             else
             {
                 char token =tokens.get(0).charAt(0) ;
+                if(tokens.get(0).length() > 1){
+                    switch (tokens.get(0))
+                    {
+                        case "sqrt" : token = 's'; break;
+                        case "inv"  : token = 'i'; break;
+                        case "MR"   : token = 'r'; break;
+                        case "MS"   : token = 't'; break;
+                        case "MC"   : token = 'c'; break;
+                        case "MP"   : token = 'p'; break;
+                        case "MM"   : token = 'm'; break;
+                    }
+                }else{
+                    token =tokens.get(0).charAt(0) ;
+                }
                 tokens.remove(0);
                 switch (token)
                 {
@@ -54,6 +68,15 @@ public class Tree {
                     case '/':
                     case '^':
                         ProcessOperator(token);
+                        break;
+                    case 's':
+                    case 'i':
+                    case 'r':
+                    case 't':
+                    case 'c':
+                    case 'p':
+                    case 'm':
+                        operators.push(token);
                         break;
                     case ')':
                         ProcessRightP();
@@ -110,24 +133,34 @@ public class Tree {
      */
     private void NodeCreate(char op)
     {
-        TreeNode tempRight = operands.pop();
-        TreeNode tempLeft = null;
-        if(!operands.empty())
-        {
-            tempLeft = operands.pop();
-        }
         TreeNode p = null;
+        TreeNode tempRight = pop();
         switch (op)
         {
-            case '+': p = new NodePlus(tempLeft,op,tempRight);break;
-            case '-': p = new NodeMinus(tempLeft,op,tempRight);break;
-            case '*': p = new NodeTimes(tempLeft,op,tempRight);break;
-            case '/': p = new NodeDivide(tempLeft,op,tempRight);break;
-            case '^': p = new NodePow(tempLeft,op,tempRight);break;
+            case '+': p = new NodePlus(pop(),op,tempRight);break;
+            case '-': p = new NodeMinus(pop(),op,tempRight);break;
+            case '*': p = new NodeTimes(pop(),op,tempRight);break;
+            case '/': p = new NodeDivide(pop(),op,tempRight);break;
+            case '^': p = new NodePow(pop(),op,tempRight);break;
+            case 's': p = new NodeSqrt(op,tempRight); break;
+            case 'i': p = new NodeInv(op,tempRight); break;
+            case 'r':
+            case 't':
+            case 'c':
+            case 'p':
+            case 'm':
         }
         operands.push(p);
     }
-    
+
+    private TreeNode pop(){
+        if(!operands.empty())
+        {
+           return  operands.pop();
+        }
+       return null; 
+    }
+
     /**
      *
      *
@@ -152,8 +185,16 @@ public class Tree {
                 return 1;
             case '/':
             case '*':
-            case '^':
+            case 's':
+            case 'i':
+            case 'r':
+            case 't':
+            case 'c':
+            case 'p':
+            case 'm':
                 return 2;
+            case '^':
+                return 3;
             default:
                 return 0;          
         }    

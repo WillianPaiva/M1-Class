@@ -1,17 +1,19 @@
 package Tree;
 
-public class NodeOp implements TreeNode {
+class NodeOp implements TreeNode {
     private char op;
     private TreeNode left;
     private TreeNode right;
 
-    public NodeOp(final TreeNode left, final char op, final TreeNode right) {
+    NodeOp(final TreeNode left, final char op, final TreeNode right) {
         this.op = op;
         this.left = left;
         this.right = right;
     }
 
-    public abstract double solve();
+    public double solve(){
+        return 0;
+    };
 
     public String toString()
     {
@@ -26,6 +28,27 @@ public class NodeOp implements TreeNode {
             temp =    temp + this.right.toString();
         }
         return temp + ")";
+    }
+
+    /**
+     * @return the op
+     */
+    public char getOp() {
+        return op;
+    }
+
+    /**
+     * @return the left
+     */
+    public TreeNode getLeft() {
+        return left;
+    }
+
+    /**
+     * @return the right
+     */
+    public TreeNode getRight() {
+        return right;
     }
 
 }

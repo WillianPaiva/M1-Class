@@ -7,8 +7,9 @@ public class Main {
     {
         System.out.println("test"); 
         Memory mem = new Memory();
-        mem.MS(new Tree("5^2+5*3").solve());
-        mem.Mplus(new Tree("2/3*9").solve());
+        Tree t = new Tree("3*2^2");
+        mem.MS(t.solve());
+        System.out.println(t.toString());
         System.out.println(mem.MR());
     }
 }

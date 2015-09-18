@@ -1,37 +1,35 @@
 package Tree;
 
-public class NodeMinus implements TreeNode {
-    private char op;
-    private TreeNode left;
-    private TreeNode right;
+public class NodeMinus extends NodeOp {
 
     public NodeMinus(final TreeNode left, final char op, final TreeNode right) {
-        this.op = op;
-        this.left = left;
-        this.right = right;
+        super(left,op,right);
     }
 
+    @Override
     public double solve() {
         double r = 0;
         double l = 0;
-        if(this.left != null){l = this.left.solve();}
-        if(this.right != null){r = this.right.solve();}
+        if(super.getLeft() != null){l = super.getLeft().solve();}
+        if(super.getRight() != null){r = super.getRight().solve();}
         return  l-r;
     }
 
+
+
+    @Override
     public String toString()
     {
-        String temp = "(";
-        if(this.left != null)
+        String temp = "";
+        if(super.getLeft() != null)
         {
-            temp =  temp + this.left.toString() + " ";
+            temp =  temp + super.getLeft().toString() + " ";
         }
-        temp = temp + this.op +" ";
-        if(this.right != null)
+        temp = temp + super.getOp() +" ";
+        if(super.getRight() != null)
         {
-            temp =    temp + this.right.toString();
+            temp =    temp + super.getRight().toString();
         }
-        return temp + ")";
+        return temp + "";
     }
-
 }
