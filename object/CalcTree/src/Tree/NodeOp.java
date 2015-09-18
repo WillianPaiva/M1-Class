@@ -1,0 +1,31 @@
+package Tree;
+
+public class NodeOp implements TreeNode {
+    private char op;
+    private TreeNode left;
+    private TreeNode right;
+
+    public NodeOp(final TreeNode left, final char op, final TreeNode right) {
+        this.op = op;
+        this.left = left;
+        this.right = right;
+    }
+
+    public abstract double solve();
+
+    public String toString()
+    {
+        String temp = "(";
+        if(this.left != null)
+        {
+            temp =  temp + this.left.toString() + " ";
+        }
+        temp = temp + this.op +" ";
+        if(this.right != null)
+        {
+            temp =    temp + this.right.toString();
+        }
+        return temp + ")";
+    }
+
+}

@@ -1,16 +1,16 @@
-package MemoryClass;
+package Tree;
 
 
-public class MemoryClass 
+public class MemoryNode implements TreeNode
 {
 
 	private double mem;
 
-    public MemoryClass() 
+    public MemoryNode() 
     { 
 		this.mem = 0;
     }
-
+    
 
     public void MS(double a)
     {
@@ -24,7 +24,7 @@ public class MemoryClass
     {
         this.mem = this.mem - a;
     }
-    public double MR()
+    public double solve()
     {
         return this.mem;
     }
@@ -32,4 +32,7 @@ public class MemoryClass
     {
         this.mem = 0;
     }
-}
+    public String toString(){
+        return " "+this.mem;
+    } 
+}   

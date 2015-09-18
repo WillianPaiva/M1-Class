@@ -23,7 +23,7 @@ public class Tree {
     public Tree(final String expression){ 
         this.operators = new Stack<Character>();
         this.operands = new Stack<TreeNode>();
-        String[] result = expression.split("(?<=[-+*/()])|(?=[-+*/()])");
+        String[] result = expression.split("(?<=[-+*/^()])|(?=[-+*/^()])");
         this.tokens = new ArrayList<String>(Arrays.asList(result));
         this.root = build();
     }
@@ -36,7 +36,7 @@ public class Tree {
     private TreeNode build(){
         TreeNode temp;
         while (!tokens.isEmpty()) {
-            if(iassNumeric(tokens.get(0)))
+            if(isNumeric(tokens.get(0)))
             {
                 temp = new Leaf(Double.parseDouble(tokens.get(0)));
                 tokens.remove(0);
@@ -52,6 +52,7 @@ public class Tree {
                     case '-':
                     case '*':
                     case '/':
+                    case '^':
                         ProcessOperator(token);
                         break;
                     case ')':
@@ -115,7 +116,15 @@ public class Tree {
         {
             tempLeft = operands.pop();
         }
-        TreeNode p = new Node(tempLeft,op,tempRight);
+        TreeNode p = null;
+        switch (op)
+        {
+            case '+': p = new NodePlus(tempLeft,op,tempRight);break;
+            case '-': p = new NodeMinus(tempLeft,op,tempRight);break;
+            case '*': p = new NodeTimes(tempLeft,op,tempRight);break;
+            case '/': p = new NodeDivide(tempLeft,op,tempRight);break;
+            case '^': p = new NodePow(tempLeft,op,tempRight);break;
+        }
         operands.push(p);
     }
     
@@ -143,6 +152,7 @@ public class Tree {
                 return 1;
             case '/':
             case '*':
+            case '^':
                 return 2;
             default:
                 return 0;          

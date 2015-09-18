@@ -1,12 +1,11 @@
-package MemoryClass;
+package Memory;
 
-
-public class MemoryClass 
+public class Memory 
 {
 
 	private double mem;
 
-    public MemoryClass() 
+    public Memory() 
     { 
 		this.mem = 0;
     }

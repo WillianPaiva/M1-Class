@@ -3,34 +3,16 @@ package MemoryClass;
 public class OperationClass 
 {
 
-	private float a;
-	private char op;
-	private float b;
-
-    public OperationClass(float a,char op, float b) 
-    { 
-		this.a = a;
-		this.op = op;
-		this.b = b;
-    }
-
-    public float result()
+    public double solve(double a, char op, double b)
     {
-        switch (this.op)
+        switch (op)
         {
-            case '+': return this.a+this.b; 
-            case '-': return this.a-this.b; 
-            case '*': return this.a*this.b; 
-            case '/': return this.a/this.b; 
+            case '+': return a+b; 
+            case '-': return a-b; 
+            case '*': return a*b; 
+            case '/': return a/b; 
             default: return 0;
             
         }
-    }
-
-    public void setOp(float a, char op, float b)
-    {
-		this.a = a;
-		this.op = op;
-		this.b = b;
     }
 }

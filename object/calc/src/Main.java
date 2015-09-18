@@ -7,12 +7,9 @@ public class Main {
     {
         System.out.println("test"); 
         MemoryClass men = new MemoryClass();
-        men.MS(new OperationClass(6,'+',5).result());
-        men.Mplus(new OperationClass(7,'/',2).result());
+        OperationClass op = new OperationClass();
+        men.MS(op.solve(6,'+',5));
+        men.Mplus(op.solve(7,'/',2));
         System.out.println(men.MR());
-        //String myString= "125.05+25-98*7/3";
-        //String[] result = myString.split("(?<=[-+*/])|(?=[-+*/])");
-        //System.out.println(Arrays.toString(result));
-        System.
     }
 }
