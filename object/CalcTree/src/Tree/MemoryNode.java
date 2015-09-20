@@ -1,26 +1,35 @@
 package Tree;
+import Memory.Memory;
 
 class MemoryNode implements TreeNode {
     private char op;
+    private double result;
     private TreeNode right;
 
     MemoryNode(final char op, final TreeNode right) {
         this.op = op;
         this.right = right;
+        this.result = right.solve();
+        memExec();
     }
 
     public double solve(){
-        return 0;
+        return result;
     };
-
+    private void memExec(){
+        switch (op)
+        {
+            case 't' : Memory.MS(result);break; 
+            case 'p' : Memory.Mplus(result); break; 
+            case 'm' : Memory.Mminus(result); break;
+            case 'c' : result = 0;  Memory.MC() ; break; 
+            case 'r' : result = Memory.MR();break; 
+        }
+    }
     public String toString()
     {
-        String temp = "(";
-        if(this.left != null)
-        {
-            temp =  temp + this.left.toString() + " ";
-        }
-        temp = temp + this.op +" ";
+        String temp = "M";
+        temp = temp + this.op +"(";
         if(this.right != null)
         {
             temp =    temp + this.right.toString();
@@ -28,12 +37,6 @@ class MemoryNode implements TreeNode {
         return temp + ")";
     }
 
-    /**
-     * @return the left
-     */
-    public TreeNode getLeft() {
-        return left;
-    }
 
     /**
      * @return the right

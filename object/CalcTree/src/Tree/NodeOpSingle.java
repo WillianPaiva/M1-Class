@@ -15,8 +15,8 @@ class NodeOpSingle implements TreeNode {
 
     public String toString()
     {
-        String temp = "(";
-        temp = temp + this.op +" ";
+        String temp = "";
+        temp = temp + this.op +"(";
         if(this.right != null)
         {
             temp =    temp + this.right.toString();

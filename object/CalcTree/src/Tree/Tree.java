@@ -48,10 +48,10 @@ public class Tree {
                 if(tokens.get(0).length() > 1){
                     switch (tokens.get(0))
                     {
-                        case "sqrt" : token = 's'; break;
+                        case "sqrt" : token = '√'; break;
                         case "inv"  : token = 'i'; break;
                         case "MR"   : token = 'r'; break;
-                        case "MS"   : token = 't'; break;
+                        case "MS"   : token = 's'; break;
                         case "MC"   : token = 'c'; break;
                         case "MP"   : token = 'p'; break;
                         case "MM"   : token = 'm'; break;
@@ -69,10 +69,10 @@ public class Tree {
                     case '^':
                         ProcessOperator(token);
                         break;
-                    case 's':
+                    case '√':
                     case 'i':
                     case 'r':
-                    case 't':
+                    case 's':
                     case 'c':
                     case 'p':
                     case 'm':
@@ -142,13 +142,14 @@ public class Tree {
             case '*': p = new NodeTimes(pop(),op,tempRight);break;
             case '/': p = new NodeDivide(pop(),op,tempRight);break;
             case '^': p = new NodePow(pop(),op,tempRight);break;
-            case 's': p = new NodeSqrt(op,tempRight); break;
+            case '√': p = new NodeSqrt(op,tempRight); break;
             case 'i': p = new NodeInv(op,tempRight); break;
             case 'r':
-            case 't':
+            case 's':
             case 'c':
             case 'p':
             case 'm':
+                      p = new MemoryNode(op,tempRight);break;
         }
         operands.push(p);
     }
@@ -185,14 +186,14 @@ public class Tree {
                 return 1;
             case '/':
             case '*':
-            case 's':
             case 'i':
             case 'r':
-            case 't':
+            case 's':
             case 'c':
             case 'p':
             case 'm':
                 return 2;
+            case '√':
             case '^':
                 return 3;
             default:

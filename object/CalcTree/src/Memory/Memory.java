@@ -3,32 +3,32 @@ package Memory;
 public class Memory 
 {
 
-	private double mem;
+	private static double mem;
 
     public Memory() 
     { 
-		this.mem = 0;
+		Memory.mem = 0;
     }
 
 
-    public void MS(double a)
+    public static void MS(double a)
     {
-        this.mem = a;
+        Memory.mem = a;
     }
-    public void Mplus(double a)
+    public static void Mplus(double a)
     {
-        this.mem = this.mem + a;
+        Memory.mem = Memory.mem + a;
     }
-    public void Mminus(double a)
+    public static void Mminus(double a)
     {
-        this.mem = this.mem - a;
+        Memory.mem = Memory.mem - a;
     }
-    public double MR()
+    public static double MR()
     {
-        return this.mem;
+        return Memory.mem;
     }
-    public void MC()
+    public static void MC()
     {
-        this.mem = 0;
+        Memory.mem = 0;
     }
 }
