@@ -1,0 +1,79 @@
+// CUP specification for a simple expression evaluator (w/ actions)
+
+import java_cup.runtime.*;
+import java.util.Vector;
+import java.io.*;
+
+
+terminal PROC, MAIN, INT, CHAR, FLOAT, BOOL, STR, LIST, POINTER;
+terminal CLASS, TYPE, TRUE, FALSE, NULL, ID, NB, STRING, LPAR;
+terminal MULT, MOD, MIN, DIV, SEMIC, NEWBLOCK, ENDBLOCK, INF, SUP;
+terminal NOT, AND, STRUCT, RPAR, PLUS;
+
+/* The grammar */
+non terminal expr, term, factor;
+non terminal axiom, axioms, keyword, typekeyword, complextype;
+
+start with axioms;
+
+axioms ::=	axiom:t1 axioms:t2
+       		{}
+       		| axiom:t
+            {}
+            ;
+
+axiom ::=       expr:t SEMIC
+                {: System.out.println("Reduction axiom -> expr SEMIC"); :}
+		| keyword:t SEMIC
+		{: System.out.println("Reduction axiom -> keyword SEMIC"); :}
+		| typekeyword:t SEMIC
+		{: System.out.println("Reduction axiom -> typekeyword SEMIC"); :}
+		| complextype:t SEMIC
+		{: System.out.println("Reduction axiom -> complextype SEMIC"); :}
+                ;
+
+expr ::=        expr:t1 PLUS term:t2
+                {: System.out.println("Reduction expr -> expr + term"); :}    
+                | term:t
+                {: System.out.println("Reduction expr -> term"); :}     
+                ;
+
+term ::=        term:t1 MULT  factor:t2
+                {: System.out.println("Reduction terme -> terme MULT facteur"); :}
+                | factor:t
+                {: System.out.println("Reduction terme -> facteur"); :} 
+                ;
+
+factor ::=      LPAR expr:t  RPAR
+                {: System.out.println("Reduction factor -> LPAR expr RPAR"); :} 
+                | ID:t
+                {: System.out.println("Reduction factor -> ID"); :} 
+                ;
+
+keyword ::=	PROC:t
+		{: System.out.println("Reduction keyword -> procedure"); :}
+		| MAIN:t
+		{: System.out.println("Reduction keyword -> main"); :}
+		;
+
+typekeyword ::=	INT:t
+     		{: System.out.println("Reduction typekeyword -> integer"); :}
+		| CHAR:t
+     		{: System.out.println("Reduction typekeyword -> character"); :}
+		| FLOAT:t
+     		{: System.out.println("Reduction typekeyword -> float"); :}
+		| BOOL:t
+     		{: System.out.println("Reduction typekeyword -> boolean"); :}
+		| STR:t
+     		{: System.out.println("Reduction typekeyword -> string"); :}
+		;
+
+complextype ::=		| CLASS:t
+     			{: System.out.println("Reduction complextype -> class"); :}
+			| LIST:t
+			{: System.out.println("Reduction complextype -> list of"); :}
+			| POINTER:t
+			{: System.out.println("Reduction complextype -> ^"); :}
+			| STRUCT:t
+			{: System.out.println("Reduction complextype -> structure"); :}
+			;

@@ -55,11 +55,6 @@ NB        = 0|[1-9][0-9]*
     \"          {str= new StringBuilder();
                          str.append('"');
                          yybegin(STRING);}
-
-    "=="         {return symbol(CompSymbol.EQUALS);}
-    "!="         {return symbol(CompSymbol.DIFF);}
-    "<="         {return symbol(CompSymbol.LEQL);}
-    ">="         {return symbol(CompSymbol.GEQL);}
     "procedure" {return symbol(CompSymbol.PROC);}
     "main"      {return symbol(CompSymbol.MAIN);}
     "integer"   {return symbol(CompSymbol.INT);}
@@ -102,9 +97,6 @@ NB        = 0|[1-9][0-9]*
     ">"         {return symbol(CompSymbol.SUP);}
     "!"         {return symbol(CompSymbol.NOT);}
     "&"         {return symbol(CompSymbol.AND);}
-    "|"         {return symbol(CompSymbol.OR);}
-    "="         {return symbol(CompSymbol.EQ);}
-
 }
  /* -------------------------------------------------
         Caracteres non pris en compte

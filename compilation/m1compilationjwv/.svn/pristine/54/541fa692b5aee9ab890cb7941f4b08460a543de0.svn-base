@@ -8,7 +8,7 @@ import java.io.*;
 -                                types                                -
 -----------------------------------------------------------------------
 */
-terminal PROC,STRUCT, MAIN, INT, CHAR, FLOAT,STR , BOOL, LIST, POINTER, CLASS;
+terminal PROC,STRUCT, MAIN, INT, CHAR, FLOAT,STRING, BOOL, LIST, POINTER, CLASS;
 /*
 -----------------------------------------------------------------------
 -                             opareators                              -
@@ -28,7 +28,7 @@ terminal IF, ELSE, WHILE, EXIT, RETURN;
 -                              specials                               -
 -----------------------------------------------------------------------
 */
-terminal String STRING; 
+terminal String STR; 
 terminal String ID;
 terminal Integer NB;
 
@@ -36,8 +36,8 @@ terminal Integer NB;
 
 /* The grammar */
 non terminal expr, term, factor;
-non terminal axiom, axioms, keyword, type, complextype, program;
-non terminal declaration, function, codeblock,value, parameters;
+non terminal axiom, axioms, keyword, type, complextype;
+
 precedence left OR,AND;
 precedence left PLUS, MIN;
 precedence left MULT, DIV, MOD;
@@ -46,44 +46,8 @@ precedence nonassoc EQUALS, DIFF, LEQL , GEQL , INF , SUP ,NOT;
 
 
 
-start with program;
+start with axioms;
 
-
-program::= declaration program
-    | 
-    ;
-
-declaration::= type:t ID:id SEMIC {: System.out.println("dec -> dec not init");:}
-    |type:t ID:id EQ value SEMIC  {: System.out.println("dec -> dec init");:}
-    |function
-    ;
-
-function::= type:t ID:id LPAR parameters RPAR codeblock 
-            {: System.out.println("function");:};
-
-codeblock::= NEWBLOCK program ENDBLOCK {:System.out.println("codeblock"); :};
-
-parameters::= type:t ID:id {: System.out.println("parameter");:}
-    |type:t ID:id COMMA parameters {: System.out.println("mult parameters");:}
-    |
-    ;
-
-value ::= ID:t                      {: System.out.println(t);:}
-    | STRING:t                      {: System.out.println(t);:}
-    | NB:t                          {: System.out.println(t);:}
-    ;
-
-
-
-
-/*
------------------------------------------------------------------------
-- i left your code here commented but have a look on what i did that
-- is just the start as we can recoginize a function and simple declaration s
-----------------------------------------------------------------------
-*/
-
-/*
 axioms ::=	axiom:t1 axioms:t2 {}
     | axiom:t {}
     ;
@@ -109,7 +73,6 @@ factor ::= LPAR expr:t  RPAR     {: System.out.println("factor -> LPAR expr RPAR
 keyword ::=	PROC:t               {: System.out.println("keyword -> procedure"); :}
 		| MAIN:t                 {: System.out.println("keyword -> main"); :}
 		;
-        */
 /*
 -----------------------------------------------------------------------
 -                           possible types                            -

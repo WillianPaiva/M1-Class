@@ -55,11 +55,6 @@ NB        = 0|[1-9][0-9]*
     \"          {str= new StringBuilder();
                          str.append('"');
                          yybegin(STRING);}
-
-    "=="         {return symbol(CompSymbol.EQUALS);}
-    "!="         {return symbol(CompSymbol.DIFF);}
-    "<="         {return symbol(CompSymbol.LEQL);}
-    ">="         {return symbol(CompSymbol.GEQL);}
     "procedure" {return symbol(CompSymbol.PROC);}
     "main"      {return symbol(CompSymbol.MAIN);}
     "integer"   {return symbol(CompSymbol.INT);}
@@ -71,16 +66,10 @@ NB        = 0|[1-9][0-9]*
     "^"         {return symbol(CompSymbol.POINTER);}
     "structure" {return symbol(CompSymbol.STRUCT);}
     "class"     {return symbol(CompSymbol.CLASS);}
+    "type"      {return symbol(CompSymbol.TYPE);}
     "true"      {return symbol(CompSymbol.TRUE);}
     "false"     {return symbol(CompSymbol.FALSE);}
     "null"      {return symbol(CompSymbol.NULL);}
-
-    "if"        {return symbol(CompSymbol.IF);}
-    "else"      {return symbol(CompSymbol.ELSE);}
-    "while"     {return symbol(CompSymbol.WHILE);}
-    "exit"      {return symbol(CompSymbol.EXIT);}
-    "return"    {return symbol(CompSymbol.RETURN);}
-
     {ID}        {return symbol(CompSymbol.ID, new String(yytext()));}
     {NB}        {return symbol(CompSymbol.NB, new Integer(yytext()));}
     /* -------------------------------------------------
@@ -102,9 +91,6 @@ NB        = 0|[1-9][0-9]*
     ">"         {return symbol(CompSymbol.SUP);}
     "!"         {return symbol(CompSymbol.NOT);}
     "&"         {return symbol(CompSymbol.AND);}
-    "|"         {return symbol(CompSymbol.OR);}
-    "="         {return symbol(CompSymbol.EQ);}
-
 }
  /* -------------------------------------------------
         Caracteres non pris en compte
