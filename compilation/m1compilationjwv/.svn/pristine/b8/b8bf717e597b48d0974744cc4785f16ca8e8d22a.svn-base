@@ -12,24 +12,24 @@ terminal NOT, AND, STRUCT, RPAR, PLUS;
 
 /* The grammar */
 non terminal expr, term, factor;
-non terminal axiom, axioms, keyword, typekeyword, complextype;
+non terminal axiom, axioms, keyword, typeKeyword, complexType;
 
 start with axioms;
 
 axioms ::=	axiom:t1 axioms:t2
        		{}
        		| axiom:t
-            {}
-            ;
+		{}
+		;
 
 axiom ::=       expr:t SEMIC
                 {: System.out.println("Reduction axiom -> expr SEMIC"); :}
 		| keyword:t SEMIC
 		{: System.out.println("Reduction axiom -> keyword SEMIC"); :}
-		| typekeyword:t SEMIC
-		{: System.out.println("Reduction axiom -> typekeyword SEMIC"); :}
-		| complextype:t SEMIC
-		{: System.out.println("Reduction axiom -> complextype SEMIC"); :}
+		| typeKeyword:t SEMIC
+		{: System.out.println("Reduction axiom -> typeKeyword SEMIC"); :}
+		| complexType:t SEMIC
+		{: System.out.println("Reduction axiom -> complexType SEMIC"); :}
                 ;
 
 expr ::=        expr:t1 PLUS term:t2
@@ -56,24 +56,24 @@ keyword ::=	PROC:t
 		{: System.out.println("Reduction keyword -> main"); :}
 		;
 
-typekeyword ::=	INT:t
-     		{: System.out.println("Reduction typekeyword -> integer"); :}
+typeKeyword ::=	INT:t
+     		{: System.out.println("Reduction typeKeyword -> integer"); :}
 		| CHAR:t
-     		{: System.out.println("Reduction typekeyword -> character"); :}
+     		{: System.out.println("Reduction typeKeyword -> character"); :}
 		| FLOAT:t
-     		{: System.out.println("Reduction typekeyword -> float"); :}
+     		{: System.out.println("Reduction typeKeyword -> float"); :}
 		| BOOL:t
-     		{: System.out.println("Reduction typekeyword -> boolean"); :}
+     		{: System.out.println("Reduction typeKeyword -> boolean"); :}
 		| STR:t
-     		{: System.out.println("Reduction typekeyword -> string"); :}
+     		{: System.out.println("Reduction typeKeyword -> string"); :}
 		;
 
-complextype ::=		| CLASS:t
-     			{: System.out.println("Reduction complextype -> class"); :}
+complexType ::=		| CLASS:t
+     			{: System.out.println("Reduction complexType -> class"); :}
 			| LIST:t
-			{: System.out.println("Reduction complextype -> list of"); :}
+			{: System.out.println("Reduction complexType -> list of"); :}
 			| POINTER:t
-			{: System.out.println("Reduction complextype -> ^"); :}
+			{: System.out.println("Reduction complexType -> ^"); :}
 			| STRUCT:t
-			{: System.out.println("Reduction complextype -> structure"); :}
+			{: System.out.println("Reduction complexType -> structure"); :}
 			;

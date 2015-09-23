@@ -1,5 +1,5 @@
-import java.io.filereader;
-import java_cup.runtime.symbol;
+import java.io.*;
+import java_cup.*;
 
 public class Main {
 

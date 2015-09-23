@@ -41,7 +41,7 @@ float   = nb.nb
 "float"            { return symbol(CompSymbol.FLOAT);   }
 "boolean"          { return symbol(CompSymbol.BOOL);    }
 "string"           { return symbol(CompSymbol.STR);     }
-"listof"          { return symbol(CompSymbol.LIST);    }
+"list of"          { return symbol(CompSymbol.LIST);    }
 "^"                { return symbol(CompSymbol.POINTER); }
 "structure"        { return symbol(CompSymbol.STRUCT);  }
 "class"            { return symbol(CompSymbol.CLASS);   }

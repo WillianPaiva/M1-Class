@@ -16,7 +16,7 @@ private Symbol symbol (int type, Object value) {
         return new Symbol (type, yyline, yycolumn, value);
 }
 %}
-%state COMMENT COMMENT_LINE
+%x COMMENT COMMENT_LINE
 
 id      = [a-zA-Z][a-zA-Z0-9_]*
 nb      = 0|[1-9][0-9]*
@@ -27,12 +27,12 @@ float   = nb.nb
 		Mots reserves
    ------------------------------------------------- */
 //multiline comments
-"/*"               { yybegin(COMMENT);                    }
-<COMMENT>"*/"      { yybegin(YYINITIAL);                    }
+"/*"               { BEGIN(COMMENT);                    }
+<COMMENT>"*/"      { BEGIN(INITIAL);                    }
 <COMMENT>.         {                                    }
 //single line comments  
-"//"               { yybegin(COMMENT_LINE);               }
-<COMMENT_LINE>"\n" { yybegin(YYINITIAL);                    }
+"//"               { BEGIN(COMMENT_LINE);               }
+<COMMENT_LINE>"\n" { BEGIN(INITIAL);                    }
 <COMMENT_LINE>.    {                                    }
 "procedure"        { return symbol(CompSymbol.PROC);    }
 "main"             { return symbol(CompSymbol.MAIN);    }
@@ -41,7 +41,7 @@ float   = nb.nb
 "float"            { return symbol(CompSymbol.FLOAT);   }
 "boolean"          { return symbol(CompSymbol.BOOL);    }
 "string"           { return symbol(CompSymbol.STR);     }
-"listof"          { return symbol(CompSymbol.LIST);    }
+"list of"          { return symbol(CompSymbol.LIST);    }
 "^"                { return symbol(CompSymbol.POINTER); }
 "structure"        { return symbol(CompSymbol.STRUCT);  }
 "class"            { return symbol(CompSymbol.CLASS);   }

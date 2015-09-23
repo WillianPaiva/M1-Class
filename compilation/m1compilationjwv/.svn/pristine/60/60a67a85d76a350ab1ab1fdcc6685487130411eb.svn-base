@@ -1,5 +1,5 @@
-import java.io.filereader;
-import java_cup.runtime.symbol;
+import java.io.*;
+import java_cup.*;
 
 public class Main {
 
@@ -7,10 +7,6 @@ public class Main {
     {
         try
         {
-<<<<<<< HEAD
-=======
-            //test
->>>>>>> 594067fc89fb9ad47253a2c7647a0b8b85d654d6
             FileReader fr = new FileReader (args[0]);
             CompLexer lex = new CompLexer(fr);
             CompParser parser = new CompParser(lex);
