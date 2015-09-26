@@ -1,6 +1,6 @@
 package Tree;
 
-class NodeOpSingle implements TreeNode {
+abstract class NodeOpSingle implements TreeNode {
     private char op;
     private TreeNode right;
 
@@ -9,9 +9,7 @@ class NodeOpSingle implements TreeNode {
         this.right = right;
     }
 
-    public double solve(){
-        return 0;
-    };
+    public abstract double solve();
 
     public String toString()
     {

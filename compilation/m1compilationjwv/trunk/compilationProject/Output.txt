@@ -3,16 +3,6 @@ type -> integer
 type -> string
 parameter
 mult parameters
-type -> string
-dec -> dec not init
-type -> string
-93
-dec -> dec init
-type -> integer
-0
-dec -> dec init
-type -> integer
-"fasdfasdfasdf"
-dec -> dec init
-codeblock
-function
+Syntax error at character 5 on line 6
+Couldn't repair and continue parse at character 5 on line 6
+parser error java.lang.Exception: Can't recover from previous error(s)

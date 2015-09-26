@@ -7,14 +7,4 @@ integer test(argc integer , argg string){
     test2 : integer;
     test3 : string = "hello";
     test4 : string;
-
-}
-
-
-
-procedure ttt(){
-
-}
-procedure main(){
-
 }
