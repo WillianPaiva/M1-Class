@@ -13,6 +13,11 @@ abstract  class  NodeOp implements TreeNode {
 
     public abstract double solve();
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see TreeNode#toString()
+     */
     public String toString()
     {
         String temp = "(";

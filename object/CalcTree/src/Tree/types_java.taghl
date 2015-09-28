@@ -1,0 +1,6 @@
+syn keyword CTagsPackage Tree
+syn keyword CTagsInterface TreeNode
+syn keyword CTagsField op tokens operands root right value result left operators
+syn keyword CTagsMethod NodeOpSingle getOp precedence NodeSqrt NodeTimes NodeDivide getLeft Tree MemoryNode Leaf NodeOp build NodeMinus ProcessOperator getRight ProcessRightP memExec NodePow toString isNumeric NodeCreate NodePlus solve NodeInv pop
+syn keyword CTagsClass NodePlus NodeOpSingle Tree MemoryNode NodePow Leaf NodeOp NodeSqrt NodeInv NodeMinus NodeTimes NodeDivide
+

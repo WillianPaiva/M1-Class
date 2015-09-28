@@ -1,0 +1,91 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Leaf	Leaf.java	/^public class Leaf implements TreeNode $/;"	c
+Leaf	Leaf.java	/^    public Leaf(double value){$/;"	m	class:Leaf
+MemoryNode	MemoryNode.java	/^class MemoryNode implements TreeNode {$/;"	c
+MemoryNode	MemoryNode.java	/^    MemoryNode(final char op, final TreeNode right) {$/;"	m	class:MemoryNode
+NodeCreate	Tree.java	/^    private void NodeCreate(char op)$/;"	m	class:Tree	file:
+NodeDivide	NodeDivide.java	/^public class NodeDivide  extends NodeOp$/;"	c
+NodeDivide	NodeDivide.java	/^    public NodeDivide(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodeDivide
+NodeInv	NodeInv.java	/^public class NodeInv extends NodeOpSingle{$/;"	c
+NodeInv	NodeInv.java	/^    public NodeInv(final char op, final TreeNode right) {$/;"	m	class:NodeInv
+NodeMinus	NodeMinus.java	/^public class NodeMinus extends NodeOp {$/;"	c
+NodeMinus	NodeMinus.java	/^    public NodeMinus(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodeMinus
+NodeOpSingle	NodeOpSingle.java	/^abstract class NodeOpSingle implements TreeNode {$/;"	c
+NodeOpSingle	NodeOpSingle.java	/^    NodeOpSingle( final char op, final TreeNode right) {$/;"	m	class:NodeOpSingle
+NodeOp	NodeOp.java	/^abstract  class  NodeOp implements TreeNode {$/;"	c
+NodeOp	NodeOp.java	/^    NodeOp(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodeOp
+NodePlus	NodePlus.java	/^public class NodePlus extends NodeOp{$/;"	c
+NodePlus	NodePlus.java	/^    public NodePlus(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodePlus
+NodePow	NodePow.java	/^public class NodePow extends NodeOp{$/;"	c
+NodePow	NodePow.java	/^    public NodePow(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodePow
+NodeSqrt	NodeSqrt.java	/^public class NodeSqrt extends NodeOpSingle{$/;"	c
+NodeSqrt	NodeSqrt.java	/^    public NodeSqrt(final char op, final TreeNode right) {$/;"	m	class:NodeSqrt
+NodeTimes	NodeTimes.java	/^public class NodeTimes extends NodeOp{$/;"	c
+NodeTimes	NodeTimes.java	/^    public NodeTimes(final TreeNode left, final char op, final TreeNode right) {$/;"	m	class:NodeTimes
+ProcessOperator	Tree.java	/^    private void ProcessOperator(char op)$/;"	m	class:Tree	file:
+ProcessRightP	Tree.java	/^    private void ProcessRightP()$/;"	m	class:Tree	file:
+TreeNode	TreeNode.java	/^public interface TreeNode{$/;"	i
+Tree	Tree.java	/^public class Tree {$/;"	c
+Tree	Tree.java	/^    public Tree(final String expression){ $/;"	m	class:Tree
+Tree	Leaf.java	/^package Tree;$/;"	p
+Tree	MemoryNode.java	/^package Tree;$/;"	p
+Tree	NodeDivide.java	/^package Tree;$/;"	p
+Tree	NodeInv.java	/^package Tree;$/;"	p
+Tree	NodeMinus.java	/^package Tree;$/;"	p
+Tree	NodeOp.java	/^package Tree;$/;"	p
+Tree	NodeOpSingle.java	/^package Tree;$/;"	p
+Tree	NodePlus.java	/^package Tree;$/;"	p
+Tree	NodePow.java	/^package Tree;$/;"	p
+Tree	NodeSqrt.java	/^package Tree;$/;"	p
+Tree	NodeTimes.java	/^package Tree;$/;"	p
+Tree	Tree.java	/^package Tree;$/;"	p
+Tree	TreeNode.java	/^package Tree;$/;"	p
+build	Tree.java	/^    private TreeNode build(){$/;"	m	class:Tree	file:
+getLeft	NodeOp.java	/^    public TreeNode getLeft() {$/;"	m	class:NodeOp
+getOp	NodeOp.java	/^    public char getOp() {$/;"	m	class:NodeOp
+getRight	MemoryNode.java	/^    public TreeNode getRight() {$/;"	m	class:MemoryNode
+getRight	NodeOp.java	/^    public TreeNode getRight() {$/;"	m	class:NodeOp
+getRight	NodeOpSingle.java	/^    public TreeNode getRight() {$/;"	m	class:NodeOpSingle
+isNumeric	Tree.java	/^    private boolean isNumeric(String str)$/;"	m	class:Tree	file:
+left	NodeOp.java	/^    private TreeNode left;$/;"	f	class:NodeOp	file:
+memExec	MemoryNode.java	/^    private void memExec(){$/;"	m	class:MemoryNode	file:
+operands	Tree.java	/^    Stack<TreeNode> operands;$/;"	f	class:Tree
+operators	Tree.java	/^    Stack<Character> operators;$/;"	f	class:Tree
+op	MemoryNode.java	/^    private char op;$/;"	f	class:MemoryNode	file:
+op	NodeOp.java	/^    private char op;$/;"	f	class:NodeOp	file:
+op	NodeOpSingle.java	/^    private char op;$/;"	f	class:NodeOpSingle	file:
+pop	Tree.java	/^    private TreeNode pop(){$/;"	m	class:Tree	file:
+precedence	Tree.java	/^    private int precedence(char op)$/;"	m	class:Tree	file:
+result	MemoryNode.java	/^    private double result;$/;"	f	class:MemoryNode	file:
+right	MemoryNode.java	/^    private TreeNode right;$/;"	f	class:MemoryNode	file:
+right	NodeOp.java	/^    private TreeNode right;$/;"	f	class:NodeOp	file:
+right	NodeOpSingle.java	/^    private TreeNode right;$/;"	f	class:NodeOpSingle	file:
+root	Tree.java	/^    private TreeNode root;$/;"	f	class:Tree	file:
+solve	Leaf.java	/^    public double solve()$/;"	m	class:Leaf
+solve	MemoryNode.java	/^    public double solve(){$/;"	m	class:MemoryNode
+solve	NodeDivide.java	/^    public double solve() {$/;"	m	class:NodeDivide
+solve	NodeInv.java	/^    public double solve() {$/;"	m	class:NodeInv
+solve	NodeMinus.java	/^    public double solve() {$/;"	m	class:NodeMinus
+solve	NodeOp.java	/^    public abstract double solve();$/;"	m	class:NodeOp
+solve	NodeOpSingle.java	/^    public abstract double solve();$/;"	m	class:NodeOpSingle
+solve	NodePlus.java	/^    public double solve() {$/;"	m	class:NodePlus
+solve	NodePow.java	/^    public double solve() {$/;"	m	class:NodePow
+solve	NodeSqrt.java	/^    public double solve() {$/;"	m	class:NodeSqrt
+solve	NodeTimes.java	/^    public double solve() {$/;"	m	class:NodeTimes
+solve	Tree.java	/^    public double solve(){$/;"	m	class:Tree
+solve	TreeNode.java	/^    public  double solve();$/;"	m	interface:TreeNode
+toString	Leaf.java	/^    public String toString()$/;"	m	class:Leaf
+toString	MemoryNode.java	/^    public String toString()$/;"	m	class:MemoryNode
+toString	NodeMinus.java	/^    public String toString()$/;"	m	class:NodeMinus
+toString	NodeOp.java	/^    public String toString()$/;"	m	class:NodeOp
+toString	NodeOpSingle.java	/^    public String toString()$/;"	m	class:NodeOpSingle
+toString	NodePlus.java	/^    public String toString()$/;"	m	class:NodePlus
+toString	Tree.java	/^    public String toString()$/;"	m	class:Tree
+toString	TreeNode.java	/^    public  String toString();$/;"	m	interface:TreeNode
+tokens	Tree.java	/^    private ArrayList<String> tokens;$/;"	f	class:Tree	file:
+value	Leaf.java	/^    double value;$/;"	f	class:Leaf
