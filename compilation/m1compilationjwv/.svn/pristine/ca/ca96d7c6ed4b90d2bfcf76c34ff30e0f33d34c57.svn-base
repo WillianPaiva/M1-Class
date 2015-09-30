@@ -57,13 +57,13 @@ terminal Integer NB;
 
 
 /* The grammar */
-non terminal type, complextype, program,parameterscall;
-non terminal declaration, function, codeblock,parameters, instruction, main, class;
+non terminal type, complextype, program;
+non terminal declaration, function, codeblock,parameters, instruction, main;
 
 precedence left OR,AND;
 precedence left PLUS, MIN;
 precedence left MULT, DIV, MOD, LPAR;
-precedence nonassoc EQUALS, DIFF, LEQL , GEQL , INF , SUP ,NOT,RETURN,COMMA;
+precedence nonassoc EQUALS, DIFF, LEQL , GEQL , INF , SUP ,NOT,RETURN;
 precedence left INCR,DECR;
 
 
@@ -108,8 +108,8 @@ declaration::= ID:id COLON type:t1                   {: System.out.println("dec 
     | STRING:t1                                                  {: System.out.println("string -->"+t1);:}
     | NULL                                                       {: System.out.println("NULL");:}
     | ID:id                                                      {: System.out.println("id -->"+id);:}
-    | ID:id LPAR parameterscall:t1 RPAR                          {: System.out.println("id"+id+"("+t1+")");:}
-    | ID:id EQ declaration:t1                                    {: System.out.println("id"+id+"="+t1);:}
+    | ID:id LPAR declaration:t1 RPAR                             {: System.out.println("id"+id+"("+t1+")");:}
+    | ID:id EQ declaration:t1                               {: System.out.println("id"+id+"="+t1);:}
     | IF LPAR declaration:t1 RPAR codeblock:t2                   {: System.out.println("if("+t1+")"+t2);:}
     | IF LPAR declaration:t1 RPAR codeblock:t2 ELSE codeblock:t3 {: System.out.println("if("+t1+")"+t2+"else"+t3);:}
     | WHILE LPAR declaration:t1 RPAR codeblock:t2                {: System.out.println("while("+t1+")"+t2);:}
@@ -118,17 +118,12 @@ declaration::= ID:id COLON type:t1                   {: System.out.println("dec 
     | RETURN  declaration:t1                                     {: System.out.println("return"+t1);:}
     | EXIT                                                       {: System.out.println("exit");:}
     |function:t1
-    | class:t1                                                   {: System.out.println("class");:} 
     ;
-parameterscall::= declaration:t1
-    |parameterscall:t1 COMMA parameterscall:t2
-    |
-    ;
+
 main::= MAIN LPAR parameters RPAR codeblock {: System.out.println("main declaration");:}
     ;
 
-class::= CLASS ID:id codeblock:t1                               {: System.out.println("class");:}
-    ;
+
 //the basis os a function declaration
 function::= type:t ID:id LPAR parameters RPAR codeblock 
             {: System.out.println("function");:}
@@ -155,3 +150,61 @@ complextype ::= CLASS:t1 codeblock {: System.out.println("complextype -> class")
 | POINTER:t1 type:t2           {: System.out.println("complextype -> ^"); :}
 | STRUCT:t1 codeblock :t2      {: System.out.println("complextype -> structure"); :}
 ;
+
+/*program structure
+//a basic recuperation of the value and type
+value ::= ID:t {: System.out.println(t);:}
+    | STRING:t {: System.out.println(t);:}
+    | NB:t     {: System.out.println(t);:}
+    ;
+
+
+program::= instruction
+	   {: System.out.println("instruction") :}
+	   |program instruction
+	   {: System.out.println("instruction") :}
+	   ;
+
+//instruction structure
+instruction::=
+*/
+
+/*
+-----------------------------------------------------------------------
+- i left your code here commented but have a look on what i did that
+- is just the start as we can recoginize a function and simple declaration s
+----------------------------------------------------------------------
+*/
+
+/*
+axioms ::=	axiom:t1 axioms:t2 {}
+    | axiom:t {}
+    ;
+
+axiom ::= expr:t SEMIC           {: System.out.println("axiom -> expr SEMIC"); :}
+	| keyword:t SEMIC            {: System.out.println("axiom -> keyword SEMIC"); :}
+	| type:t SEMIC               {: System.out.println("axiom -> type SEMIC"); :}
+	| complextype:t SEMIC        {: System.out.println("axiom -> complextype SEMIC"); :}
+    ;
+
+expr ::= expr:t1 PLUS term:t2    {: System.out.println("expr -> expr + term"); :}
+    | term:t                     {: System.out.println("expr -> term"); :}
+    ;
+
+term ::= term:t1 MULT  factor:t2 {: System.out.println("terme -> terme MULT facteur"); :}
+    | factor:t                   {: System.out.println("terme -> facteur"); :}
+    ;
+
+factor ::= LPAR expr:t  RPAR     {: System.out.println("factor -> LPAR expr RPAR"); :}
+    | ID:t                       {: System.out.println("factor -> ID"); :}
+    ;
+
+keyword ::=	PROC:t               {: System.out.println("keyword -> procedure"); :}
+		| MAIN:t                 {: System.out.println("keyword -> main"); :}
+		;
+        */
+/*
+-----------------------------------------------------------------------
+-                           possible types                            -
+-----------------------------------------------------------------------
+*/
