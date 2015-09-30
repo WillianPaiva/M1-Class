@@ -1,6 +1,6 @@
 package ecomerce.procducts;
 
-public class Product {
+public class Product implements Comparable<Product>{
     
     private String title;
     private String descrption;
@@ -13,7 +13,9 @@ public class Product {
             this.type = type;
             this.price = price;
     }
-
+    public String toString(){
+        return title +"  "+ descrption +"  "+type +"  "+price;
+    }
     /**
      * @return the title
      */
@@ -68,6 +70,12 @@ public class Product {
      */
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        // TODO Auto-generated method stub
+        return (this.title).compareTo(o.getTitle());
     }
 
 }
