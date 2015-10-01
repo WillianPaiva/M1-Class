@@ -16,9 +16,16 @@ public class Catalogue {
         this.catalogue = a;
     }
     public TreeSet<Product> getList() {
-        return this.catalogue;
+        return (TreeSet)this.catalogue.clone();
     }
 
+    public void removeProduct(Product o){
+        this.catalogue.remove(o);
+    }
+
+    public void removeProductByTitle(String s){
+        removeProduct(findProduct(s));
+    }
     public Product findProduct(String title) {
         Iterator e = this.catalogue.iterator();
         while(e.hasNext()){

@@ -1,17 +1,17 @@
 package ecomerce.procducts;
 
 public class Product implements Comparable<Product>{
-    
+
     private String title;
     private String descrption;
     private int type;
     private double price;
 
-        public Product(String title, String descrption,int type, double price) { 
-            this.title = title;
-            this.descrption = descrption;
-            this.type = type;
-            this.price = price;
+    public Product(String title, String descrption,int type, double price) { 
+        this.title = title;
+        this.descrption = descrption;
+        this.type = type;
+        this.price = price;
     }
     public String toString(){
         return title +"  "+ descrption +"  "+type +"  "+price;
@@ -71,11 +71,19 @@ public class Product implements Comparable<Product>{
     public void setPrice(double price) {
         this.price = price;
     }
-
+    @Override
+    public int hashCode(){
+        int hash = 32;
+        hash = hash * 31 + Double.valueOf(this.price).hashCode();
+        hash = hash * 31 + Integer.valueOf(this.type).hashCode();
+        hash = hash * 31 + this.title.hashCode();
+        hash = hash * 31 + this.descrption.hashCode();
+        return hash;
+    }
     @Override
     public int compareTo(Product o) {
         // TODO Auto-generated method stub
-        return (this.title).compareTo(o.getTitle());
+        return Integer.compare(this.hashCode(),o.hashCode());
     }
 
 }

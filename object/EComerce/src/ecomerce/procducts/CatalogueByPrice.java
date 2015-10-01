@@ -1,11 +1,16 @@
 package ecomerce.procducts;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 public class CatalogueByPrice extends Catalogue{
 
     public CatalogueByPrice() {
-        super.setCatalogue(new TreeSet<Product>(new ProdCompPrice()));    
+        super();    
+    }
+    @Override
+    public TreeSet<Product> getList(){
+        TreeSet<Product> ts = new TreeSet<Product>(new ProdCompPrice()) ;
+        ts.addAll(super.getList());
+        return ts;
     }
 
 }
