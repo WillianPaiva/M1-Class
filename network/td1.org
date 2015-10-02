@@ -175,26 +175,52 @@
   Théorème de Shannon : Soit un canal de transmission de bande passante H.
   Soient S l’énergie du signal
   et N l’énergie du bruit. La capacité maximale de transmission, en bit/s est
-  de : C = H log2  (1 + S/N)
+  de :
+#+begin_src
+  C = H log2  (1 + S/N)
+#+end_src
 
 ** 1.
-
    Une ligne téléphonique a une bande passante de 3100Hz et un rapport
+
+#+BEGIN_SRC
    signal/bruit de 30 dB ( S/N =  xdB <=> x = 10 log10 S/N).
+#+END_SRC
    Quel est le débit maximal théorique ?
 
+#+BEGIN_SRC
+   30db = 10*log10(x)
+   3=log10(x);
+   x = pow(10,3) = 1000
+   x = 1000;
+   H = 3100mhz
+   C = 3100*log2(1001)
+   C = 3100*10 = 31000
+   aproximation 31kbits;
+#+END_SRC
 ** 2.
    
    Pourquoi les connexions ADSL (Asymetric Digital Subscriber Line)
    utilisant pourtant les lignes téléphoniques
    atteignent des débits de plusieurs Méga ?
+   
+   because we dont use the telefone line but a numerique line and the
+   telefone works as VOIP (voice over IP);
+#+BEGIN_SRC
+#+END_SRC
 
 ** 3.
 
    Quel dispositif permet d’utiliser simultanément son accès internet
    et son téléphone fixe ?
-
+      
 ** 4.
 
    Pourquoi le débit n’est pas le même suivant la position
    géographique de l’abonné ?
+   the debit goes down after 5 kilometres
+* exo 8
+  10GO 
+  (10000000000*8)/2000000 = 40000 
+  (40000/60)/60 = 11.111111
+  

@@ -1,10 +1,12 @@
 package ecomerce.procducts;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Catalogue {
 
-    private TreeSet<Product> catalogue;
+    private SortedSet<Product> catalogue;
 
     public Catalogue() {
         this.catalogue = new TreeSet<Product>();
@@ -12,11 +14,11 @@ public class Catalogue {
     public void addItem(Product t) {
         this.catalogue.add(t);
     }
-    protected void setCatalogue(TreeSet a){
+    protected void setCatalogue(SortedSet<Product> a){
         this.catalogue = a;
     }
-    public TreeSet<Product> getList() {
-        return (TreeSet)this.catalogue.clone();
+    public SortedSet<Product> getList() {
+        return Collections.unmodifiableSortedSet(catalogue);
     }
 
     public void removeProduct(Product o){

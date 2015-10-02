@@ -1,0 +1,57 @@
+* code postale 
+
+** 1 
+   the code starts always with a bar.
+
+** 2
+(Valeur, Codage) :
+(0, ..||||), (1, .|.|||),
+(2, .||.||), (3, .|||.|),
+(4, |..|||), (5, |.|.||),
+(6, |.||.|), (7, ||..||),
+(8, ||.|.|), (9, |||..|).
+
+[......|.|.||..|||||..|||.|||.|.|||.|.........]
+   33405
+
+** 3
+
+   (10*9)/2 = 45
+   distance minimal = 2 
+** 4
+   errors = distance minimal -1
+   so 1
+
+** 5
+   (d-1)/2
+   = 0 
+
+* CRC (Cyclic Redundancy Check)
+** 1. Quelle est la clé associée au mot 110111, si on considère le polynôme générateur
+#+begin_src
+     
+     G(x) = x^2 + x + 1.
+     k = 2
+     B(X)*x^2
+     --------
+     G(x)
+
+      = x+1 = 11
+      
+#+end_src
+** 2
+      k
+
+* code hamming
+  https://en.wikipedia.org/wiki/Hamming_code
+
+** 1 
+   1 2 and 8;
+** 2
+   5 , 7 
+
+** 3
+   [1101011]
+    a a a a 
+     cc  cc
+       xxxx
