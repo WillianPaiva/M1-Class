@@ -1,9 +1,0 @@
-main;
-procedure;
-procedure main( argn : integer , argc : listof string )
-{
-    aux : integer ;
-    aux=x ;
-    x=y ;
-    y=aux ; 
-}

@@ -1,25 +1,4 @@
 class test{
-
-    ttt : integer = 10;
-    procedure test(argn: integer, argc: string)
-    {
-    abc : string = "sdfsdfsdf";
-        while(true){
-            abc = 32;    
-        }
-        if(true){
-            abc = 25;
-        }else{
-            abc = 32*(25+36)/25;
-        }
-        for(ttt = 0; ttt < 20 ;ttt++){
-            abc = "test";
-        }
-        ad : listof string;
-        integer functest(){}
-        functest();
-        functest(ttt,abc);
-    }
 }
 
     ttt : integer = 10;

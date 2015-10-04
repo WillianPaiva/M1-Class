@@ -1,6 +1,0 @@
-integer test(integer par, string parr){
-    string sdf;
-    string sdff = 93;
-    integer test = 0;
-    integer tt = "fasdfasdfasdf";
-}

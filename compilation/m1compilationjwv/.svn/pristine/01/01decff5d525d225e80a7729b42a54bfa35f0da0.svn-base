@@ -1,6 +1,0 @@
-integer test(argc integer , argg string){
-    test1 : integer = 10;
-    test2 : integer;
-    test3 : string = "hello";
-    test4 : string;
-}
