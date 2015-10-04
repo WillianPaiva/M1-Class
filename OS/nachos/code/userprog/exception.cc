@@ -97,6 +97,13 @@ ExceptionHandler (ExceptionType which)
                             synchconsole->SynchPutString(temp);
                             break;
                         }
+                        /************************************************************
+                         *  when the user program finish it launchs a syscall EXIT  *
+                         ************************************************************/
+                    case SC_Exit:
+                        {
+                            Exit(machine->ReadRegister(4));
+                        }
 #endif
                     default:
                         {

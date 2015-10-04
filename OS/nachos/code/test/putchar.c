@@ -40,7 +40,7 @@ int main()
 {
     print('a',4);
     printString("asdfasdfasdfasdfasdfasdfasdf");
-    Halt();
+    return 5;
 }
 
 
