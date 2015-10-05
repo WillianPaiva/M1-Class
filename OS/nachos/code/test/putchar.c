@@ -36,10 +36,19 @@ void printString(char* c)
     }
 #endif
 }
+char getchar()
+{
+#if 1
+    {
+        GetChar();
+    }
+#endif
+}
 int main()
 {
     print('a',4);
-    printString("asdfasdfasdfasdfasdfasdfasdf");
+    printString("01234567890123456789");
+    print(getchar(),1);
     return 5;
 }
 

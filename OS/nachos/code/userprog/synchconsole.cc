@@ -34,7 +34,6 @@ int SynchConsole::SynchGetChar()
 void SynchConsole::SynchPutString(const char s[])
 {
     DEBUG('s',"inside SynchPutString\n");
-    DEBUG('s',s);
     for (int i = 0; s[i] != '\0'; ++i) {
         console->PutChar(s[i]);
         writeDone->P();
@@ -42,6 +41,11 @@ void SynchConsole::SynchPutString(const char s[])
 }
 void SynchConsole::SynchGetString(char *s, int n)
 {
-    
+    for(int i =0;i<n;i++){
+      s[i] = (char) SynchGetChar(); 
+      if(s[i] == '\n'){
+          break;
+      }
+    }
 }
 #endif // CHANGED

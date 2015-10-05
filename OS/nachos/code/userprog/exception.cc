@@ -24,7 +24,8 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
-#define MAXI_SIZE 1000
+#define BUFFER_SIZE 12
+#define MAXI_SIZE 1000*BUFFER_SIZE
 //----------------------------------------------------------------------
 // UpdatePC : Increments the Program Counter register in order to resume
 // the user program immediately after the "syscall" instruction.
@@ -87,14 +88,34 @@ ExceptionHandler (ExceptionType which)
                             synchconsole->SynchPutChar(machine->ReadRegister (4));
                             break;
                         }
-
+                    case SC_GetChar:
+                        {
+                            DEBUG('s',"getchar syscall \n");
+                            int temp = synchconsole->SynchGetChar();
+                            machine->WriteRegister(2,temp);
+                            break;
+                        }
+                    case SC_GetString:
+                        {
+                            break;
+                        }
                     case SC_PutString:
                         {
                             DEBUG ('s', "PutString SysCall.\n");              
-                            char temp[MAXI_SIZE];
-                            copyStringFromMachine(machine->ReadRegister(4),temp,MAXI_SIZE);
-                            DEBUG('k',temp);
-                            synchconsole->SynchPutString(temp);
+                            char temp[BUFFER_SIZE];
+                            int x = 0;
+                            bool t = true;
+                            while(t){
+                                int y = copyStringFromMachine(machine->ReadRegister(4)+(x*sizeof(char)),temp,BUFFER_SIZE);
+                                x+=BUFFER_SIZE-1;
+                                synchconsole->SynchPutString(temp);
+                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                    t = true;
+                                }else{
+                                    t = false;
+                                }
+
+                            }
                             break;
                         }
                         /************************************************************
@@ -102,7 +123,9 @@ ExceptionHandler (ExceptionType which)
                          ************************************************************/
                     case SC_Exit:
                         {
-                            Exit(machine->ReadRegister(4));
+                            DEBUG ('s', "exit return --> %d \n", machine->ReadRegister(4));              
+                            interrupt->Halt();
+                            break;
                         }
 #endif
                     default:
