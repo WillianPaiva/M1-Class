@@ -34,7 +34,7 @@
 #define   SC_Yield       10
 #define   SC_PutString   12
 #define   SC_GetChar     13
-#define   SC_GetString   13
+#define   SC_GetString   14
 
 #ifdef IN_USER_MODE
 
@@ -101,7 +101,7 @@ typedef int OpenFileId;
 
 void PutChar(char c);
 void PutString(char *c);
-void GetString();
+void GetString(char *c);
 char GetChar();
 /* Create a Nachos file, with "name" */
 void Create (const char *name);

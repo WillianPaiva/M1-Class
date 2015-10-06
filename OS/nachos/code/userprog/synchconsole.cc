@@ -41,11 +41,11 @@ void SynchConsole::SynchPutString(const char s[])
 }
 void SynchConsole::SynchGetString(char *s, int n)
 {
-    for(int i =0;i<n;i++){
-      s[i] = (char) SynchGetChar(); 
-      if(s[i] == '\n'){
-          break;
-      }
+    int i = 0;
+    DEBUG('s',"inside SynchGetString\n ")
+    for(;n>0;n--){
+      readAvail->p();
+      s[i++]=console->GetChar();
     }
 }
 #endif // CHANGED

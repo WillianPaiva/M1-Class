@@ -234,3 +234,15 @@ int copyStringFromMachine(int from, char *to, unsigned size){
     to[i]='\0';
     return i;
 } 
+int copyStringToMachine(int to, char *from, unsigned size){
+   int i;
+   int temp;
+   for (i = 0; i < size; ++i) {
+       temp = from[i];
+       if((char)temp == EOF || (char)temp == '\0' || (char)temp == '\n'){
+           return i;
+       }
+      machine->WriteMem(to + (i*sizeof(char)),sizeof(char),temp);
+   }
+   return i;
+} 

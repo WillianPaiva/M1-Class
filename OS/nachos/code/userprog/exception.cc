@@ -97,6 +97,23 @@ ExceptionHandler (ExceptionType which)
                         }
                     case SC_GetString:
                         {
+
+                            DEBUG ('s', "GetString SysCall.\n");              
+                            int arg1 = machine->ReadRegister(4);
+                            int x = 0;
+                            bool t = true;
+                            char temp[BUFFER_SIZE];
+                            while(t){
+                                synchconsole->SynchGetString(temp,BUFFER_SIZE);
+                                int y = copyStringToMachine(arg1+(x*sizeof(char)),temp,BUFFER_SIZE);
+                                x+=BUFFER_SIZE;
+                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                    t = true;
+                                }else{
+                                    t = false;
+                                }
+
+                            }
                             break;
                         }
                     case SC_PutString:
