@@ -16,6 +16,12 @@
 \usepackage{listings} % Required for insertion of code
 \usepackage{courier} % Required for the courier font
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{verbatim}
+
+
 
 % Margins
 \topmargin=-0.45in
@@ -92,7 +98,7 @@
 \newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
 \newcommand{\hmwkClass}{J1IN7M13} % Course/class
 \newcommand{\hmwkClassInstructor}{CLEMENT Lionel} % Teacher/lecturer
-\newcommand{\hmwkAuthorName}{VER VALEM Willian , \ldots , \ldots} % Your name
+\newcommand{\hmwkAuthorName}{VER VALEM Willian , BAYOL Elmer , YOGA Josue , BOULMEDAIS Zaid} % Your name
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -131,9 +137,66 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
+\begin{homeworkProblem}[Introduction]
+  Le sujet de ce premier devoir est de créer un analyseur syntaxique et lexical afin de lire le langage que nous avons décidé d'utiliser. Cette première partie ne prend pas en considération les questions de correction du code, dans le sens où ce qui est écrit n'est pas important, il faut juste que le code soit correct syntaxiquement.\newline Nous avons décidé de suivre au plus près le langage spécifié dans le sujet du premier devoir. Nous avons donc précisé les points ambigus de ce sujet tout en respectant au plus près ce qui nous était fourni.\newline Dans ce rapport, nous allons tout d'abord expliquer l'avancement des spécifications du langage auxquelles nous sommes parvenus et ensuite préciser les points délicats que nous avons rencontré lors de l'écriture du lexer puis du parser.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[Langage]
+  \begin{homeworkSection}{Introduction} Dans cette partie, nous allons spécifier le langage que nous avons choisi d'imlplémenter, pour résumer, ce langage se rapproche beaucoup de celui qui nous a été proposé dans le sujet.
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Commentaires} Les commentaires sont les mêmes que pour le Java, tout ce qui est en commentaire n'est en fait pas lu par le lexer.
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Programme main} Le main est une procédure, il est donc précédé du mot-clef procédure, cette procédure ne retourne rien.
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Procédures et fonctions}Les fonctions et procédures sont définies par un bloc dans lequel est contenu une suite d'instrucitions précédées de déclarations de variables locales à ce bloc. 
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Déclarations de variables} Toute variable est assosciée à un type et peut être initialisée lors de sa déclaration. \newline Exemple: \begin{verbatim} i:integer; \end{verbatim}
+    \begin{verbatim} i:integer = 42; \end{verbatim}
+  \end{homeworkSection}\newpage
+
+  \begin{homeworkSection}{Types simples et complexes} Voici la liste des types que nous avons implémentés: \newline
+    \begin{itemize}
+    \item integer
+    \item character
+    \item float
+    \item boolean
+    \item string
+    \item float
+    \item list of <type>
+    \item \^{}<type> (pointeur)
+    \item structure
+    \item class
+    \end{itemize}
+    
+  \end{homeworkSection}
+
+  
+ \begin{homeworkSection}{Expressions} Voici la liste des opérandes que nous avons implémentés: \newline
+    \begin{itemize}
+    \item variable désignée par un identificateur
+    \item constantes true, false et null
+    \item nombre
+    \item chaine de caractère entre deux ``
+    \end{itemize}
+    Voici la liste des opérateurs que nous avons implémentés: \newline
+    \begin{itemize}
+    \item Tous les opérateurs arithmétiques
+    \item les opérateurs d'affectation
+    \item les opérateurs relationnels de comparaison
+    \item les opérateurs logiques
+    \item appel de procédures et fonctions
+    \end{itemize}
+    Nous avons implémenté le for, le while, le if et le if then else à l'image de ceux existant en langage C.\newline Nous avons implémenté la définition des classes en leur attribuant un nom puis en les définissant à l'aide d'un bloc.
+    
+  \end{homeworkSection}
+\end{homeworkProblem}
+
 \begin{homeworkProblem}[Lexer]
-
-
+  Le lexer est tout à fait classique, il n'y a pas grand chose à en dire et nous n'avons pas rencontré de difficultés particulières en le codant.
 \end{homeworkProblem}
 \clearpage
 
@@ -142,10 +205,126 @@
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}[Parser]
+  Nous allons ici préciser la signification de chaque règle non-terminale
 
+  \begin{homeworkSection}{Regle program}
+    Le program est une suite d'instructions ou bien une suite d'instructions comportant exactement un main
+  \end{homeworkSection}
 
+  \begin{homeworkSection}{Regle instruction et declaration}
+    Une instruction est constituée d'une suite de déclarations pouvant se terminer par un point virgule.\newline
+    Les déclarations sont le coeur du programme, chaque portion code se réduit à une déclaration.
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Règle parameterscall et parameters}
+    Cette règle est utilisée afin de déclarer les paramètres lors de l'appel ou de la déclaration d'une fonction.
+  \end{homeworkSection}
+
+  \begin{homeworkSection}{Règle codeblock}
+    Cette règle est utilisée pour définir un block de code encadré par des accolades.
+  \end{homeworkSection}
+
+    \begin{homeworkSection}{Règle type et complextype}
+    Ces règles définissent les différents types que nous avaons autorisés.
+  \end{homeworkSection}
+  
 \end{homeworkProblem}
 \clearpage
+\begin{homeworkProblem}[Fichier Test]
+
+    \begin{homeworkSection}{Input}
+        \begin{verbatim}
+
+procedure main(argn: integer, argc: string)
+{
+abc : string = "sdfsdfsdf";
+      while(true){
+          abc = 32;    
+      }
+      if(true){
+          abc = 25;
+      }else{
+          abc = 32*(25+36)/25;
+      }
+      for(ttt = 0; ttt < 20 ;ttt++){
+          abc = "test";
+      }
+ad : listof string;
+     integer functest(){}
+     functest();
+     functest(ttt,abc);
+}
+class test{
+    ttt : integer = 10;
+}
+\end{verbatim}
+  \end{homeworkSection}
+    \begin{homeworkSection}{Output}
+
+        \begin{verbatim}
+
+type -> integer
+type -> string
+parameter
+mult parameters
+type -> string
+string -->"sdfsdfsdf"
+dec -->abctype -->nullvalue -->null
+true
+number -->32
+idabc=null
+codeblock
+while(null)null
+true
+number -->25
+idabc=null
+codeblock
+number -->32
+number -->25
+number -->36
+nullPLUSnull
+(null)
+nullMULTnull
+number -->25
+nullDIVnull
+idabc=null
+codeblock
+if(null)nullelsenull
+number -->0
+idttt=null
+id -->ttt
+number -->20
+nullINFnull
+id -->ttt
+INCRnull
+string -->"test"
+idabc=null
+codeblock
+FOR(null;null;null)null
+type -> string
+complextype -> list of
+dec -->adctype -->null
+type -> integer
+0 params
+codeblock
+function
+idfunctest(null)
+id -->ttt
+id -->abc
+idfunctest(null)
+codeblock
+main declaration
+type -> integer
+number -->10
+dec -->ttttype -->nullvalue -->null
+codeblock
+class
+class
+inst main main
+\end{verbatim}
+  \end{homeworkSection}
+
+\end{homeworkProblem}
 %----------------------------------------------------------------------------------------
 
 \end{document}

@@ -90,7 +90,7 @@ NB        = 0|[1-9][0-9]*
     "/"                        { return symbol(CompSymbol.DIV);}
     ","                        { return symbol(CompSymbol.COMMA);}
     ";"                        { return symbol(CompSymbol.SEMIC);}
-    "{"                        {return symbol(CompSymbol.NEWBLOCK); 	}
+    "{"                        { return symbol(CompSymbol.NEWBLOCK); 	}
     "}"                        { return symbol(CompSymbol.ENDBLOCK);	}
     "<"                        { return symbol(CompSymbol.INF);}
     ">"                        { return symbol(CompSymbol.SUP);}
