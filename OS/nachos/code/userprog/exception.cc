@@ -24,7 +24,8 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
-#define MAXI_SIZE 1000
+#define BUFFER_SIZE 12
+#define MAXI_SIZE 1000*BUFFER_SIZE
 //----------------------------------------------------------------------
 // UpdatePC : Increments the Program Counter register in order to resume
 // the user program immediately after the "syscall" instruction.
@@ -87,14 +88,60 @@ ExceptionHandler (ExceptionType which)
                             synchconsole->SynchPutChar(machine->ReadRegister (4));
                             break;
                         }
+                    case SC_GetChar:
+                        {
+                            DEBUG('s',"getchar syscall \n");
+                            int temp = synchconsole->SynchGetChar();
+                            machine->WriteRegister(2,temp);
+                            break;
+                        }
+                    case SC_GetString:
+                        {
 
+                            DEBUG ('s', "GetString SysCall.\n");              
+                            int arg1 = machine->ReadRegister(4);
+                            int x = 0;
+                            bool t = true;
+                            char temp[BUFFER_SIZE];
+                            while(t){
+                                synchconsole->SynchGetString(temp,BUFFER_SIZE);
+                                int y = copyStringToMachine(arg1+(x*sizeof(char)),temp,BUFFER_SIZE);
+                                x+=BUFFER_SIZE;
+                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                    t = true;
+                                }else{
+                                    t = false;
+                                }
+
+                            }
+                            break;
+                        }
                     case SC_PutString:
                         {
                             DEBUG ('s', "PutString SysCall.\n");              
-                            char temp[MAXI_SIZE];
-                            copyStringFromMachine(machine->ReadRegister(4),temp,MAXI_SIZE);
-                            DEBUG('k',temp);
-                            synchconsole->SynchPutString(temp);
+                            char temp[BUFFER_SIZE];
+                            int x = 0;
+                            bool t = true;
+                            while(t){
+                                int y = copyStringFromMachine(machine->ReadRegister(4)+(x*sizeof(char)),temp,BUFFER_SIZE);
+                                x+=BUFFER_SIZE-1;
+                                synchconsole->SynchPutString(temp);
+                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                    t = true;
+                                }else{
+                                    t = false;
+                                }
+
+                            }
+                            break;
+                        }
+                        /************************************************************
+                         *  when the user program finish it launchs a syscall EXIT  *
+                         ************************************************************/
+                    case SC_Exit:
+                        {
+                            DEBUG ('s', "exit return --> %d \n", machine->ReadRegister(4));              
+                            interrupt->Halt();
                             break;
                         }
 #endif

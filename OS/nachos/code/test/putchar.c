@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 
- #include "syscall.h"
+#include "syscall.h"
 
 void print(char c, int n)
 {
@@ -36,11 +36,32 @@ void printString(char* c)
     }
 #endif
 }
+char getchar()
+{
+#if 1
+    {
+        GetChar();
+    }
+#endif
+}
+char getstring(char *x)
+{
+#if 1
+    {
+        GetString(x);
+    }
+#endif
+}
 int main()
 {
+    char temp[250];
     print('a',4);
-    printString("asdfasdfasdfasdfasdfasdfasdf");
-    Halt();
+    printString("01234567890123456789\n");
+    /*print(getchar(),1);*/
+
+    getstring(temp);
+    printString(temp);
+    return 5;
 }
 
 

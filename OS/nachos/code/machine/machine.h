@@ -214,4 +214,5 @@ unsigned short ShortToHost(unsigned short shortword);
 unsigned int WordToMachine(unsigned int word);
 unsigned short ShortToMachine(unsigned short shortword);
 int copyStringFromMachine(int from, char *to, unsigned size);
+int copyStringToMachine(int to, char *from, unsigned size);
 #endif // MACHINE_H

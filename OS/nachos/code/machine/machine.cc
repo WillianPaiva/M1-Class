@@ -223,14 +223,26 @@ void Machine::WriteRegister(int num, int value)
 int copyStringFromMachine(int from, char *to, unsigned size){
     int i; 
     int temp;
-    for(i =0 ; i < size ; i=i+sizeof(char)){
-        machine->ReadMem(from+i,sizeof(char),&temp);
-        DEBUG('k',"char %d ---> %c\n",i,(char)temp) ;
+    for(i =0 ; i < size-1 ; i++){
+        machine->ReadMem(from+(i*sizeof(char)),sizeof(char),&temp);
         to[i] = temp;
         if((char)temp == '\0'){
             return i;
         }
     }
+    i++;
     to[i]='\0';
     return i;
+} 
+int copyStringToMachine(int to, char *from, unsigned size){
+   int i;
+   int temp;
+   for (i = 0; i < size; ++i) {
+       temp = from[i];
+       if((char)temp == EOF || (char)temp == '\0' || (char)temp == '\n'){
+           return i;
+       }
+      machine->WriteMem(to + (i*sizeof(char)),sizeof(char),temp);
+   }
+   return i;
 } 
