@@ -106,8 +106,8 @@ ExceptionHandler (ExceptionType which)
                             while(t){
                                 synchconsole->SynchGetString(temp,BUFFER_SIZE);
                                 int y = copyStringToMachine(arg1+(x*sizeof(char)),temp,BUFFER_SIZE);
-                                x+=BUFFER_SIZE;
-                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                x+=BUFFER_SIZE -1;
+                                if(y == 0 && x<MAXI_SIZE-1){
                                     t = true;
                                 }else{
                                     t = false;
@@ -126,7 +126,7 @@ ExceptionHandler (ExceptionType which)
                                 int y = copyStringFromMachine(machine->ReadRegister(4)+(x*sizeof(char)),temp,BUFFER_SIZE);
                                 x+=BUFFER_SIZE-1;
                                 synchconsole->SynchPutString(temp);
-                                if(y == BUFFER_SIZE && x<MAXI_SIZE){
+                                if(y == 0 && x<MAXI_SIZE){
                                     t = true;
                                 }else{
                                     t = false;

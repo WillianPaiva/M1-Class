@@ -227,22 +227,23 @@ int copyStringFromMachine(int from, char *to, unsigned size){
         machine->ReadMem(from+(i*sizeof(char)),sizeof(char),&temp);
         to[i] = temp;
         if((char)temp == '\0'){
-            return i;
+            return 1;
         }
     }
     i++;
     to[i]='\0';
-    return i;
+    return 0;
 } 
 int copyStringToMachine(int to, char *from, unsigned size){
    int i;
    int temp;
    for (i = 0; i < size; ++i) {
        temp = from[i];
+       machine->WriteMem(to + (i*sizeof(char)),sizeof(char),temp);
        if((char)temp == EOF || (char)temp == '\0' || (char)temp == '\n'){
-           return i;
+           machine->WriteMem(to + ((i+1)*sizeof(char)),sizeof(char),'\0');
+           return 1;
        }
-      machine->WriteMem(to + (i*sizeof(char)),sizeof(char),temp);
    }
-   return i;
+   return 0;
 } 

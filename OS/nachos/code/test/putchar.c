@@ -1,4 +1,5 @@
 /*
+    for(;;){
  * =====================================================================================
  *
  *       Filename:  putchar.c
@@ -54,13 +55,14 @@ char getstring(char *x)
 }
 int main()
 {
-    char temp[250];
+    char temp[1000];
     print('a',4);
     printString("01234567890123456789\n");
     /*print(getchar(),1);*/
-
+    for(;;){
     getstring(temp);
     printString(temp);
+    }
     return 5;
 }
 
