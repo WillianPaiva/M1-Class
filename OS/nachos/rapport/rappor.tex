@@ -1,0 +1,239 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{verbatim}
+
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak\nobreak\extramarks{#1}{}\nobreak}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}
+{\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{NachOS project} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
+\newcommand{\hmwkClass}{J1INAW11} % Course/class
+\newcommand{\hmwkClassInstructor}{NAMYST Raymond} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{VER VALEM Willian} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\begin{homeworkProblem}[Introduction]
+\end{homeworkProblem}
+\begin{homeworkProblem}[Points délicats]
+    \begin{homeworkSection}{Entrée-sorties synchrones}
+        the mistake done in this part of the project was to not include a break in case of end of file, end of string or new line
+        on the function SynchGetString witch caused the program to leak the previus string into the new one.
+        
+        that was fixed by including the lines 4 to 6:
+        \begin{lstlisting}[label={list:first},caption=SynchGetString.]
+            for(int i = 0;i<n;i++){
+                readAvail->P();
+                s[i]=console->GetChar();
+                if(s[i] == EOF || s[i]=='\0' || s[i] == '\n'){
+                    break;
+                }
+            }
+        \end{lstlisting}
+    \end{homeworkSection}
+    \begin{homeworkSection}{Appel système Putchar}
+        following the steps given by the exercise description was enought to implement these syscall    
+    \end{homeworkSection}
+    \begin{homeworkSection}{Appel système PutString}
+        for this exercise witch was the most complicated on my humble opinion 
+        i got really stuck on the part to manipulate strings via a small buffer witch caused some problems.
+        for the solution of this problem i declared 2 constants BUFFER\_SIZE and MAXI\_SIZE. \newline
+
+        then reading a sequence of charateres of BUFFER\_SIZE or until we find a '\textbackslash0' 
+        and if a BUFFER\_SIZE was readed but no '\textbackslash0' was readed we repeat the process until a it finds a '\textbackslash0'
+        or a MAXI\_SIZE was reached in case a MAXI\_SIZE is reached with no '\textbackslash0' the '\textbackslash0' is added to the and of the string. \newline
+
+        for the function copyStringFromMachine i decided to place it at the file machine.h e implement in machine.c as the use of this function looks really tight to the other functions form machine
+    \end{homeworkSection}
+    \begin{homeworkSection}{Appel système Exit}
+        for this syscall to implement the asked on the exercise was necessaire to move the machine halt to the syscall EXIT
+        witch works well in case of a unic process. \newline
+
+        after some time trying to figure out how to handle this problem i was instructed by the teacher to leave it as it is 
+        because the part were we have to track the process and implement the proper exit syscall will be done one the next step of the project.
+            \newpage
+        so the exit syscal was simply implemented like this:
+
+        \begin{lstlisting}[label={list:first},caption=SC\_Exit.]
+                            interrupt->Halt();
+                            break;
+        \end{lstlisting}
+    
+        as for the main value return it cam be recoverd by reading the register 4
+        after change the  file start.S to store the register 2 on register 4 instead of register 0 like:
+        \begin{lstlisting}[label={list:first},caption=\_\_start at start.S]
+                .globl __start
+                .ent	__start
+            __start:
+                jal	main
+                move	$4,$2		
+                jal	Exit	 
+                .end __start
+        \end{lstlisting}
+        
+        so the value of the register is stored at register 4 but up to now i don't really know if i should right this value back to register 2 as a return of the Exit syscall
+        
+    \end{homeworkSection}
+    \begin{homeworkSection}{Appel système GetChar}
+        was enought to call SynchGetChar and write the return value in the register 2
+    \end{homeworkSection}
+    \begin{homeworkSection}{Appel système GetString}
+        inspired by the implementatio of PutString it first calls the SynchGetString then write it on the adrees of the user space with the call of the function copyStringToMachine
+        and remenbering to always insert a '\textbackslash0' at the end 
+    \end{homeworkSection}
+    \begin{homeworkSection}{Bonus printf, PutInt, GetInt}
+        Not implemented as the the duo of the project was sick and i had no time to do all 
+        but will be implemented for the sake off learning
+    \end{homeworkSection}
+
+    \begin{homeworkSection}{tests}
+        for the test i did implement some extra functions inside putchar.c 
+        for testing the GetString and PutString i implemented a loop that works like the consoleTest on userprog
+        reading a string and printing it back that offer the ability to test diferent lenght of string for both syslcalls 
+    \end{homeworkSection}
+\end{homeworkProblem}
+%----------------------------------------------------------------------------------------
+\end{document}
+
