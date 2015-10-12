@@ -170,6 +170,19 @@ AddrSpace::InitRegisters ()
 	   numPages * PageSize - 16);
 }
 
+/************************
+ *  alocate user stack  *
+ ************************/
+int
+AddrSpace::AllocateUserStack(){
+    return machine->ReadRegister(StackReg)-256;    
+}
+
+
+
+
+
+
 //----------------------------------------------------------------------
 // AddrSpace::SaveState
 //      On a context switch, save any machine state, specific

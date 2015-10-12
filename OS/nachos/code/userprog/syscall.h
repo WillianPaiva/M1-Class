@@ -20,21 +20,23 @@
 /* system call codes -- used by the stubs to tell the kernel which system call
  * is being asked for
  */
-#define   SC_Halt        0
-#define   SC_Exit        1
-#define   SC_Exec        2
-#define   SC_Join        3
-#define   SC_Create      4
-#define   SC_Open        5
-#define   SC_Read        6
-#define   SC_Write       7
-#define   SC_Close       8
-#define   SC_Fork        9
-#define   SC_PutChar     11
-#define   SC_Yield       10
-#define   SC_PutString   12
-#define   SC_GetChar     13
-#define   SC_GetString   14
+#define SC_Halt        0
+#define SC_Exit        1
+#define SC_Exec        2
+#define SC_Join        3
+#define SC_Create      4
+#define SC_Open        5
+#define SC_Read        6
+#define SC_Write       7
+#define SC_Close       8
+#define SC_Fork        9
+#define SC_PutChar     11
+#define SC_Yield       10
+#define SC_PutString   12
+#define SC_GetChar     13
+#define SC_GetString   14
+#define SC_ThreadCreate 15
+#define SC_ThreadExit   16
 
 #ifdef IN_USER_MODE
 
@@ -103,6 +105,8 @@ void PutChar(char c);
 void PutString(char *c);
 void GetString(char *c);
 char GetChar();
+int ThreadCreate(void f(void *arg), void *arg);
+void ThreadExit(void);
 /* Create a Nachos file, with "name" */
 void Create (const char *name);
 

@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
 \documentclass{article}
@@ -74,8 +74,8 @@
     escapeinside={\%*}{*)}
 }
 %----------------------------------------------------------------------------------------
-%	DOCUMENT STRUCTURE COMMANDS
-%	Skip this unless you know what you're doing
+%   DOCUMENT STRUCTURE COMMANDS
+%   Skip this unless you know what you're doing
 %----------------------------------------------------------------------------------------
 
 % Header and footer for when a page split occurs within a problem environment
@@ -110,17 +110,17 @@
 }
 
 %----------------------------------------------------------------------------------------
-%	NAME AND CLASS SECTION
+%   NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{NachOS project} % Assignment title
-\newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
+\newcommand{\hmwkDueDate}{Monday,\ October\ 12,\ 2015} % Due date
 \newcommand{\hmwkClass}{J1INAW11} % Course/class
 \newcommand{\hmwkClassInstructor}{NAMYST Raymond} % Teacher/lecturer
-\newcommand{\hmwkAuthorName}{VER VALEM Willian} % Your name
+\newcommand{\hmwkAuthorName}{VER VALEM Willian , RAKOTONIERA Hoby} % Your name
 
 %----------------------------------------------------------------------------------------
-%	TITLE PAGE
+%   TITLE PAGE
 %----------------------------------------------------------------------------------------
 
 \title{\vspace{2in}
@@ -140,7 +140,7 @@
 \maketitle
 
 %----------------------------------------------------------------------------------------
-%	TABLE OF CONTENTS
+%   TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
 %\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
@@ -150,19 +150,40 @@
 \newpage
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 1
+%   PROBLEM 1
 %----------------------------------------------------------------------------------------
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
 \begin{homeworkProblem}[Introduction]
+J'ai réalisé l'ensemble des appels systèmes qui étaient demandés : \textit{PutChar}, \textit{PutString},\textit{Exit}, \textit{GetChar}, \textit{GetString}. L'ensemble du projet a été réalisé sans difficultés particulières, hormis des difficultés de temps. C'est pour cette raison que je n'ai pas pu réaliser les bonus \textit{printf}, \textit{PutInt} et \textit{GetInt}. 
+\newline
+
+J'ai passé un certain temps, pour commencer, à essayer de comprendre le code, et de me faire une idée du fonctionnement du programme. Cela a été ma principale difficulté. \newline
+
+
+Après ce temps d'adaptation et de compréhension, j'ai pu terminer la totalité de la mise en oeuvre de ces exercices. La seule chose que je n'ai pas pu finir c'est, pour la raison de temps évoquée plus haut, celle des bonus.
+\newline
+
+
+Pour ce qui a été fait, tout fonctionne correctement. Après avoir testé les fonctionnements de ces appels système, je n'ai pas pu trouver de bug. J'espère simplement que ce n'est pas par manque de parce que je n'ai pas su les détecter\ldots
+\newline
+
+
+En ce qui concerne les choses que je n'ai pas eu le temps de réaliser, je suppose qu'elles seraient du même ordre de difficulté que ce que j'ai déjà fait, et donc il me semble que je devrais y arriver de même, en espérant là aussi que je serais capable de trouver d'éventuels bugs.
+\newline
+
+Je pense qu'il me faudrait deux jours de travail de plus pour finir le bonus, à condition que je puisse m'y consacrer exclusivement. 
+
+
+
 \end{homeworkProblem}
 \begin{homeworkProblem}[Points délicats]
     \begin{homeworkSection}{Entrée-sorties synchrones}
-        the mistake done in this part of the project was to not include a break in case of end of file, end of string or new line
-        on the function SynchGetString witch caused the program to leak the previus string into the new one.
+    L'erreur commise dans cette partie du projet a été de ne pas inclure de \textit{break} en cas de fin de fichier (\textit{EOF}), fin de chaîne de caractères ou de nouvelle ligne au sein de la fonction \textit{SynchGetString} ce qui a amené le programme à faire fuir la chaîne précédente dans la nouvelle.\newline    
+   
+   Cette erreur a été réparée en insérant les lignes 4 à 6 :
         
-        that was fixed by including the lines 4 to 6:
         \begin{lstlisting}[label={list:first},caption=SynchGetString.]
             for(int i = 0;i<n;i++){
                 readAvail->P();
@@ -174,66 +195,71 @@
         \end{lstlisting}
     \end{homeworkSection}
     \begin{homeworkSection}{Appel système Putchar}
-        following the steps given by the exercise description was enought to implement these syscall    
+        Suivre les étapes fournies dans la description de l'exercice a été suffisant pour mettre en place ces \textit{syscall}
+        
     \end{homeworkSection}
     \begin{homeworkSection}{Appel système PutString}
-        for this exercise witch was the most complicated on my humble opinion 
-        i got really stuck on the part to manipulate strings via a small buffer witch caused some problems.
-        for the solution of this problem i declared 2 constants BUFFER\_SIZE and MAXI\_SIZE. \newline
-
-        then reading a sequence of charateres of BUFFER\_SIZE or until we find a '\textbackslash0' 
-        and if a BUFFER\_SIZE was readed but no '\textbackslash0' was readed we repeat the process until a it finds a '\textbackslash0'
-        or a MAXI\_SIZE was reached in case a MAXI\_SIZE is reached with no '\textbackslash0' the '\textbackslash0' is added to the and of the string. \newline
-
-        for the function copyStringFromMachine i decided to place it at the file machine.h e implement in machine.c as the use of this function looks really tight to the other functions form machine
+        Pour cet exercice, qui à mon avis était le plus compliqué, j'ai vraiment été bloqué au niveau de la partie qui consistait à manipuler des chaînes de caractères via un petit buffer, ce qui a posé quelques problèmes. \newline
+        
+        Afin de trouver une solution à ce problème, j'ai déclaré deux constantes : \textit{BUFFER\_SIZE} et \textit{MAXI\_SIZE}.\newline
+        
+        De ce fait, lorsqu'on lit une séquence de caractères dans \textit{BUFFER\_SIZE} ou jusqu'à ce qu'on trouve une commande '\textbackslash0', et si un \textit{BUFFER\_SIZE} a été lu mais qu'il n'y avait pas de '\textbackslash0', le programme répète la séquence jusqu'à ce qu'il trouve un '\textbackslash0'. Ou si on lit un \textit{MAXI\_SIZE}, au cas où un \textit{MAXI\_SIZE} était lu mais sans '\textbackslash0', le '\textbackslash0' est ajouté à la fin de la chaîne.\newline
+        
+        Pour la fonction copyStringFromMachine, j'ai décidé de la placer dans le fichier \textit{machine.h implement in machine.c} car l'usage de cette fonction semble étroitement relié aux autres fonctions de la machine.       
+        
+     
     \end{homeworkSection}
     \begin{homeworkSection}{Appel système Exit}
-        for this syscall to implement the asked on the exercise was necessaire to move the machine halt to the syscall EXIT
-        witch works well in case of a unic process. \newline
-
-        after some time trying to figure out how to handle this problem i was instructed by the teacher to leave it as it is 
-        because the part were we have to track the process and implement the proper exit syscall will be done one the next step of the project.
-            \newpage
-        so the exit syscal was simply implemented like this:
-
-        \begin{lstlisting}[label={list:first},caption=SC\_Exit.]
+    
+    Pour mettre en oeuvre cet appel système comme il est demandé dans l'exercice, il a fallu copier l'appel à fonction \textit{halt} dans l'appel système \textit{sc\_Exit}
+   ce qui fonctionne bien dans le cas d'un process unique.  \newline
+   
+   Après avoir passé quelque temps à essayer d'imaginer comment gérer ce problème, j'ai reçu le conseil de l'enseignant qui m'a dit de laisser les choses en l'état, parce que la partie dans laquelle nous devons contrôler la quantité de process et mettre en oeuvre l'appel système approprié sera traité dans l'étape suivante du projet. 
+   
+       Donc, l'exit syscal a simplement été mis en oeuvre de la façon suivante : 
+    
+    \begin{lstlisting}[label={list:first},caption=SC\_Exit.]
                             interrupt->Halt();
                             break;
         \end{lstlisting}
-    
-        as for the main value return it cam be recoverd by reading the register 4
-        after change the  file start.S to store the register 2 on register 4 instead of register 0 like:
+    En ce qui concerne la récupération de la valeur \textit{main}, elle peut être récupérée en lisant le registre 4 après avoir modifié le fichier \textit{start.S} pour enregistrer le registre 2 dans le registre 4 au lieu du registre 0, de la façon suivante : 
+        
         \begin{lstlisting}[label={list:first},caption=\_\_start at start.S]
                 .globl __start
-                .ent	__start
+                .ent    __start
             __start:
-                jal	main
-                move	$4,$2		
-                jal	Exit	 
+                jal main
+                move    $4,$2       
+                jal Exit     
                 .end __start
         \end{lstlisting}
         
-        so the value of the register is stored at register 4 but up to now i don't really know if i should right this value back to register 2 as a return of the Exit syscall
+       Ainsi, la valeur du registre est enregistrée dans le registre 4, mais jusqu'à maintenant, je ne sais pas vraiment si je devrais réinscrire cette valeur dans le registre 2 comme résultat de l'appel système \textit{Exit}.
+       
         
     \end{homeworkSection}
     \begin{homeworkSection}{Appel système GetChar}
-        was enought to call SynchGetChar and write the return value in the register 2
-    \end{homeworkSection}
+        Pour la mise en oeuvre de cet appel système, il a été suffisant d'appeler la fonction \textit{SynchGetChar} et d'inscrire la valeur résultat dans le registre 2.
+       
+       \end{homeworkSection}
     \begin{homeworkSection}{Appel système GetString}
-        inspired by the implementatio of PutString it first calls the SynchGetString then write it on the adrees of the user space with the call of the function copyStringToMachine
-        and remenbering to always insert a '\textbackslash0' at the end 
-    \end{homeworkSection}
+        
+        Inspiré par l'implementation de \textit{PutString} cet appel système appelle le \textit{SynchGetString} puis écrit le résultat dans l'adresse de l'espace utilisateur employant l'appel de la fonction \textit{CopyStringToMachine} ; il faut se rappeler de toujours insérer un '\textbackslash0' à la fin.
+        
+          \end{homeworkSection}
     \begin{homeworkSection}{Bonus printf, PutInt, GetInt}
-        Not implemented as the the duo of the project was sick and i had no time to do all 
-        but will be implemented for the sake off learning
+        
+        Cette partie n'a pu être mise en oeuvre, car mon binôme a été malade. J'ai donc dû travailler seul, et n'ai pas eu le temps de tout faire. Mais je vais le faire, même seul, car mon objectif est d'apprendre au maximum. 
+       
     \end{homeworkSection}
 
     \begin{homeworkSection}{tests}
-        for the test i did implement some extra functions inside putchar.c 
-        for testing the GetString and PutString i implemented a loop that works like the consoleTest on userprog
-        reading a string and printing it back that offer the ability to test diferent lenght of string for both syslcalls 
+        Pour le test, j'ai mis en oeuvre quelques fonctions supplémenaires dans \textit{putchar.c}.
+        Afin de tester les appels système \textit{GetString} et \textit{PutString}, j'ai créé une boucle qui travaille comme le \textit{consoleTest} sous \textit{userprog} qui lit une chaîne de caractères et la reproduit, ce qui offre la possibilité de tester différentes longueurs de chaîne pour les deux appels système. 
+        
     \end{homeworkSection}
 \end{homeworkProblem}
 %----------------------------------------------------------------------------------------
 \end{document}
+
 
