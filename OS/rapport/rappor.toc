@@ -1,0 +1,10 @@
+\contentsline {section}{Introduction}{3}
+\contentsline {section}{Points d\IeC {\'e}licats}{3}
+\contentsline {subsection}{Entr\IeC {\'e}e-sorties synchrones}{3}
+\contentsline {subsection}{Appel syst\IeC {\`e}me Putchar}{3}
+\contentsline {subsection}{Appel syst\IeC {\`e}me PutString}{4}
+\contentsline {subsection}{Appel syst\IeC {\`e}me Exit}{4}
+\contentsline {subsection}{Appel syst\IeC {\`e}me GetChar}{4}
+\contentsline {subsection}{Appel syst\IeC {\`e}me GetString}{5}
+\contentsline {subsection}{Bonus printf, PutInt, GetInt}{5}
+\contentsline {subsection}{tests}{5}

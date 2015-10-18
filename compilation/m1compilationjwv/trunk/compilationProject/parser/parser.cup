@@ -31,6 +31,7 @@ parser code {:
 -----------------------------------------------------------------------
 */
 terminal PROC,STRUCT, MAIN, INT, CHAR, FLOAT,STR , BOOL, LIST, POINTER, CLASS,TP;
+
 /*
 -----------------------------------------------------------------------
 -                             opareators                              -
@@ -44,7 +45,7 @@ terminal EQ, EQUALS, GEQL, LEQL, DIFF, COLON,INCR,DECR;
 -----------------------------------------------------------------------
 */
 terminal LPAR,RPAR,SEMIC,NEWBLOCK,ENDBLOCK, COMMA; 
-terminal IF, ELSE, WHILE, EXIT, RETURN,FOR;
+terminal IF, ELSE, WHILE, EXIT, RETURN,FOR , SBRKL, SBRKR;
 /*
 -----------------------------------------------------------------------
 -                              specials                               -
@@ -53,11 +54,12 @@ terminal IF, ELSE, WHILE, EXIT, RETURN,FOR;
 terminal String STRING; 
 terminal String ID;
 terminal Integer NB;
+terminal Float FLOATNB;
 
 
 
 /* The grammar */
-non terminal type, complextype, program,parameterscall;
+non terminal type, complextype, program,parameterscall,initivalue;
 non terminal declaration, function, codeblock,parameters, instruction, main, class;
 
 precedence left OR,AND;
@@ -105,6 +107,7 @@ declaration::= ID:id COLON type:t1                   {: System.out.println("dec 
     | TRUE                                                       {: System.out.println("true");:}
     | FALSE                                                      {: System.out.println("false");:}
     | NB:t1                                                      {: System.out.println("number -->"+t1);:}
+    | FLOATNB:t1                                                      {: System.out.println("number -->"+t1);:}
     | STRING:t1                                                  {: System.out.println("string -->"+t1);:}
     | NULL                                                       {: System.out.println("NULL");:}
     | ID:id                                                      {: System.out.println("id -->"+id);:}
@@ -117,9 +120,19 @@ declaration::= ID:id COLON type:t1                   {: System.out.println("dec 
         {: System.out.println("FOR("+t1+";"+t2+";"+t3+")"+t4);:}
     | RETURN  declaration:t1                                     {: System.out.println("return"+t1);:}
     | EXIT                                                       {: System.out.println("exit");:}
+    | NEWBLOCK initivalue ENDBLOCK                               {: :}
+    | type:ti ID SBRKL declaration:t2 SBRKR                                      {: :}
+    | ID:t1 SBRKL declaration:t2 SBRKR                                     {: :}
     |function:t1
     | class:t1                                                   {: System.out.println("class");:} 
     ;
+    
+initivalue::= declaration:t
+| COMMA  initivalue:t
+;
+
+
+
 parameterscall::= declaration:t1
     |parameterscall:t1 COMMA parameterscall:t2
     |

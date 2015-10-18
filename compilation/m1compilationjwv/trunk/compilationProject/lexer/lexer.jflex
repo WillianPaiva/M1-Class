@@ -51,6 +51,8 @@ NB        = 0|[1-9][0-9]*
     ">="                       { return symbol(CompSymbol.GEQL);}
     "++"                       { return symbol(CompSymbol.INCR);}
     "--"                       { return symbol(CompSymbol.DECR);}
+    "&&"                        { return symbol(CompSymbol.AND);}
+    "||"                        { return symbol(CompSymbol.OR);}
 
     "procedure"{SPACING}"main" { return symbol(CompSymbol.MAIN);}
     "procedure"                { return symbol(CompSymbol.PROC);}
@@ -76,6 +78,7 @@ NB        = 0|[1-9][0-9]*
     "return"                   { return symbol(CompSymbol.RETURN);}
 
     {ID}                       { return symbol(CompSymbol.ID, new String(yytext()));}
+    {NB}\.{NB}                 { return symbol(CompSymbol.FLOATNB , new Float(yytext())) ;}
     {NB}                       { return symbol(CompSymbol.NB, new Integer(yytext()));}
     /* -------------------------------------------------
             Separateurs Operateurs
@@ -92,11 +95,11 @@ NB        = 0|[1-9][0-9]*
     ";"                        { return symbol(CompSymbol.SEMIC);}
     "{"                        { return symbol(CompSymbol.NEWBLOCK); 	}
     "}"                        { return symbol(CompSymbol.ENDBLOCK);	}
+    "["                        { return symbol(CompSymbol.SBRKL); 	}
+    "]"                        { return symbol(CompSymbol.SBRKR);	}
     "<"                        { return symbol(CompSymbol.INF);}
     ">"                        { return symbol(CompSymbol.SUP);}
     "!"                        { return symbol(CompSymbol.NOT);}
-    "&"                        { return symbol(CompSymbol.AND);}
-    "|"                        { return symbol(CompSymbol.OR);}
     "="                        { return symbol(CompSymbol.EQ);}
     ":"                        { return symbol(CompSymbol.COLON);}
 
