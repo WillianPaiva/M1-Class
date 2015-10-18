@@ -108,9 +108,9 @@ public class Catalogue implements CatalogUserItf , CatalogAdiminItf {
 
 
     public Product findProductById(int id) {
-        Iterator e = this.catalogue.iterator();
+        Iterator<Product> e = this.catalogue.iterator();
         while(e.hasNext()){
-            Product temp = (Product) e.next();
+            Product temp = e.next();
             if(temp.getId() == id){
                 return temp;
             }
