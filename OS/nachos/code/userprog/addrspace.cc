@@ -173,6 +173,29 @@ AddrSpace::InitRegisters ()
 
 
 
+void
+AddrSpace::InitUserRegisters (int f,int arg)
+{
+    printf("inside\n");
+    //int i;
+
+    //for (i = 0; i < NumTotalRegs; i++)
+        //machine->WriteRegister (i, 0);
+    // Initial program counter -- must be location of "Start"
+    machine->WriteRegister (PCReg, f);
+    machine->WriteRegister(4, arg);
+
+    // Need to also tell MIPS where next instruction is, because
+    // of branch delay possibility
+    machine->WriteRegister (NextPCReg, machine->ReadRegister(PCReg) + 4);
+
+    // Set the stack register to the end of the address space, where we
+    // allocated the stack; but subtract off a bit, to make sure we don't
+    // accidentally reference off the end!
+    machine->WriteRegister (StackReg, numPages * PageSize - 256);
+    DEBUG ('a', "Initializing USER stack register to 0x%x\n",
+	   numPages * PageSize - 256);
+}
 
 
 

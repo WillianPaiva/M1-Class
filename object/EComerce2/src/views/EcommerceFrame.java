@@ -11,7 +11,7 @@ public class EcommerceFrame {
         /*create a frame */
         JFrame frame = new JFrame("CatalogView");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new SallesPanel(Arrays.asList("tab1","tab2")),BorderLayout.CENTER);
+        //frame.add(new SallesPanel(Arrays.asList("tab1","tab2")),BorderLayout.CENTER);
 
         frame.pack();
         frame.setVisible(true);

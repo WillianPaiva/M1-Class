@@ -32,37 +32,27 @@ void print(char c, int n)
 void printString(char* c)
 {
 #if 1
-    {
         PutString(c);
-    }
+        ThreadExit();
 #endif
 }
 char getchar()
 {
 #if 1
-    {
-        GetChar();
-    }
 #endif
+        GetChar();
 }
 char getstring(char *x)
 {
 #if 1
-    {
         GetString(x);
-    }
 #endif
 }
 int main()
 {
-    char temp[1000];
-    print('a',4);
-    printString("01234567890123456789\n");
-    /*print(getchar(),1);*/
-    for(;;){
-    getstring(temp);
-    printString(temp);
-    }
+    char* s = "\n\n\n ------------------------------ thread test-----------------------------------\n\n\n";
+    ThreadCreate(printString,s);
+    for(;;){}
     return 5;
 }
 

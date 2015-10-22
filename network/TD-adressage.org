@@ -1,0 +1,37 @@
+* subnet address 
+* 1-
+** address 193.55.28.152
+   address 193.55.28.255 
+   class C 
+   subnet mask 255.255.255.0
+
+* 2- 
+** 129.178 with 60 subnet
+  class b
+  subnet mask 255.255.252.0
+   pow(2,6) = 64
+  for each subnet we can have 
+   pow(2,10) -2 = 1022 
+
+* 3- 
+** mask = 255.255.248.0 class b 
+** 129.148.208.26
+   208/8 = 26 --> yes
+   broadcast = 215.255
+** 129.148.216.145
+   216/8 = 27  --> yes
+   broadcast = 223.255
+** 129.148.210.32
+
+
+
+
+* 4- gateway
+on c 
+Network Destination | Netmask   | Gateway   | Interface | Metric
+10.0.0.00           | 255.0.0.0 | 20.0.0.10 |     1     | 1
+20.0.0.00           | 255.0.0.0 |     *     |     1     | 0
+30.0.0.00           | 255.0.0.0 |     *     |     2     | 0
+40.0.0.00           | 255.0.0.0 | 30.0.0.10 |     2     | 1
+
+

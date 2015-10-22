@@ -1,0 +1,61 @@
+userprog/progtest.cc:42:    machine->Run ();		// jump to the user progam
+userprog/progtest.cc:43:    ASSERT (FALSE);		// machine->Run never returns;
+userprog/userthread.cc:22:    machine->Run();
+userprog/addrspace.cc:108:	  executable->ReadAt (&(machine->mainMemory[noffH.code.virtualAddr]),
+userprog/addrspace.cc:116:			      (machine->mainMemory
+userprog/addrspace.cc:156:	machine->WriteRegister (i, 0);
+userprog/addrspace.cc:159:    machine->WriteRegister (PCReg, USER_START_ADDRESS);
+userprog/addrspace.cc:163:    machine->WriteRegister (NextPCReg, machine->ReadRegister(PCReg) + 4);
+userprog/addrspace.cc:168:    machine->WriteRegister (StackReg, numPages * PageSize - 16);
+userprog/addrspace.cc:183:        machine->WriteRegister (i, 0);
+userprog/addrspace.cc:185:    machine->WriteRegister (PCReg, f);
+userprog/addrspace.cc:186:    machine->WriteRegister(4, arg);
+userprog/addrspace.cc:190:    machine->WriteRegister (NextPCReg, machine->ReadRegister(PCReg) + 4);
+userprog/addrspace.cc:195:    machine->WriteRegister (StackReg, numPages * PageSize - 256);
+userprog/addrspace.cc:226:    machine->pageTable = pageTable;
+userprog/addrspace.cc:227:    machine->pageTableSize = numPages;
+userprog/exception.cc:37:    int pc = machine->ReadRegister (PCReg);
+userprog/exception.cc:38:    machine->WriteRegister (PrevPCReg, pc);
+userprog/exception.cc:39:    pc = machine->ReadRegister (NextPCReg);
+userprog/exception.cc:40:    machine->WriteRegister (PCReg, pc);
+userprog/exception.cc:42:    machine->WriteRegister (NextPCReg, pc);
+userprog/exception.cc:71:    int type = machine->ReadRegister (2);
+userprog/exception.cc:89:                            synchconsole->SynchPutChar(machine->ReadRegister (4));
+userprog/exception.cc:96:                            machine->WriteRegister(2,temp);
+userprog/exception.cc:103:                            int arg1 = machine->ReadRegister(4);
+userprog/exception.cc:127:                                int y = copyStringFromMachine(machine->ReadRegister(4)+(x*sizeof(char)),temp,BUFFER_SIZE);
+userprog/exception.cc:144:                            DEBUG('s', "exit return --> %d \n", machine->ReadRegister(4));              
+userprog/exception.cc:150:                            int f = machine->ReadRegister(4);
+userprog/exception.cc:151:                            int arg = machine->ReadRegister(5);
+userprog/exception.cc:171:                printf("NULL dereference at PC %x!\n", machine->registers[PCReg]);
+userprog/exception.cc:174:                printf ("Page Fault at address %x at PC %x\n", type, machine->registers[PCReg]);
+userprog/exception.cc:179:            printf ("Unexpected user mode exception %d %d at PC %x\n", which, type, machine->registers[PCReg]);
+machine/machine.cc:227:        machine->ReadMem(from+(i*sizeof(char)),sizeof(char),&temp);
+machine/machine.cc:242:       machine->WriteMem(to + (i*sizeof(char)),sizeof(char),temp);
+machine/machine.cc:244:           machine->WriteMem(to + ((i+1)*sizeof(char)),sizeof(char),'\0');
+machine/interrupt.cc:337:    	machine->DelayedLoad(0, 0);
+machine/translate.cc:98:	machine->RaiseException(exception, addr);
+machine/translate.cc:103:	data = machine->mainMemory[physicalAddress];
+machine/translate.cc:108:	data = *(unsigned short *) &machine->mainMemory[physicalAddress];
+machine/translate.cc:113:	data = *(unsigned int *) &machine->mainMemory[physicalAddress];
+machine/translate.cc:147:	machine->RaiseException(exception, addr);
+machine/translate.cc:152:	machine->mainMemory[physicalAddress] = (unsigned char) (value & 0xff);
+machine/translate.cc:156:	*(unsigned short *) &machine->mainMemory[physicalAddress]
+machine/translate.cc:161:	*(unsigned int *) &machine->mainMemory[physicalAddress]
+threads/thread.h:145:// Magical machine-dependent routines, defined in switch.s
+machine/mipssim.cc:114:    if (!machine->ReadMem(registers[PCReg], 4, &raw))
+machine/mipssim.cc:249:	if (!machine->ReadMem(tmp, 1, &value))
+machine/mipssim.cc:267:	if (!machine->ReadMem(tmp, 2, &value))
+machine/mipssim.cc:289:	if (!machine->ReadMem(tmp, 4, &value))
+machine/mipssim.cc:301:	if (!machine->ReadMem(tmp & ~0x3, 4, &value))
+machine/mipssim.cc:332:	if (!machine->ReadMem(tmp & ~0x3, 4, &value))
+machine/mipssim.cc:397:	if (!machine->WriteMem((unsigned) 
+machine/mipssim.cc:403:	if (!machine->WriteMem((unsigned) 
+machine/mipssim.cc:523:	if (!machine->WriteMem((unsigned) 
+machine/mipssim.cc:531:	if (!machine->ReadMem((tmp & ~0x3), 4, &value))
+machine/mipssim.cc:547:	if (!machine->WriteMem((tmp & ~0x3), 4, value))
+machine/mipssim.cc:554:	if (!machine->ReadMem((tmp & ~0x3), 4, &value))
+machine/mipssim.cc:573:	if (!machine->WriteMem((tmp & ~0x3), 4, value))
+threads/scheduler.cc:130:    // This is a machine-dependent assembly language routine defined 
+threads/thread.cc:398:	userRegisters[i] = machine->ReadRegister (i);
+threads/thread.cc:414:	machine->WriteRegister (i, userRegisters[i]);

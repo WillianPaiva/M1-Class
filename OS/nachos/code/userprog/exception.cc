@@ -24,6 +24,7 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
+#include "userthread.h"
 #define BUFFER_SIZE 12
 #define MAXI_SIZE 1000*BUFFER_SIZE
 //----------------------------------------------------------------------
@@ -140,9 +141,24 @@ ExceptionHandler (ExceptionType which)
                          ************************************************************/
                     case SC_Exit:
                         {
-                            DEBUG ('s', "exit return --> %d \n", machine->ReadRegister(4));              
+                            DEBUG('s', "exit return --> %d \n", machine->ReadRegister(4));              
                             interrupt->Halt();
                             break;
+                        }
+                    case SC_ThreadCreate:
+                        {
+                            int f = machine->ReadRegister(4);
+                            int arg = machine->ReadRegister(5);
+                            do_ThreadCreate(f,arg);
+                            break;
+
+                        }
+
+                    case SC_ThreadExit:
+                        {
+                            do_ThreadExit();
+                            break;
+
                         }
 #endif
                     default:

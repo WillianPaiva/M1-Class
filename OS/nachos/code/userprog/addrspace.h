@@ -28,6 +28,8 @@ class AddrSpace:dontcopythis
     ~AddrSpace ();		// De-allocate an address space
 
     void InitRegisters ();	// Initialize user-level CPU registers,
+    void InitUserRegisters (int f , int arg);
+    // Initialize user-level CPU registers,
     // before jumping to user code
 
     void SaveState ();		// Save/restore address space-specific
