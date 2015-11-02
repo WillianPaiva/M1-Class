@@ -35,11 +35,11 @@ public enum EnunTag {
     RETURN("return"),
     FOR("for"), 
     SBRKL("["),
-    SBRKR("]"),
+    SBRKR("]");
 
     private final String tag;
 
-    EnumTag(String s){
+    EnunTag(String s){
             tag = s;
     }
 

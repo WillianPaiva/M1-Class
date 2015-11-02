@@ -1,0 +1,10 @@
+syn keyword CTagsPackage ecomerce views
+syn keyword CTagsInterface CatalogAdiminItf Basket CatalogUserItf
+syn keyword CTagsField title instance SERIAL_COUNTER authors editor quantity serialVersionUID artists price descrption basketEntries COUNTER id creator productId cat catalogue
+syn keyword CTagsEnumeratorName ProductType
+syn keyword CTagsEnumerationValue CD Game Book
+syn keyword CTagsMethod findProductById getEditor toString getTitle CatalogueView getAdminItfInstace validateBasket addProductInCatalog getProductId listProductByIcreasingPrice compareTo SallesPanel setAuthors updateQuantityProductInBasket getUseItfInstance listProduct removeProductFromBasket Game Book main addProductInBasket emptyBasket getArtists getTotal isBasckeValid getDescription getList getType setCatalogue getId createAndShowGUI setEditor BasketItem findProductByType getAuthors makeTextPanel
+syn keyword CTagsMethod setCreator CD Catalogue getCreator getCopy Product setArtists BasketImpl removeProduct removeProductInCatalog getPrice hashCode getDescrption getQuantity getBasketEntries
+syn keyword CTagsClass BasketImpl EcommerceFrame BasketItem Game CatalogueView Book CD Catalogue SallesPanel Product Main
+
+syn match CTagsMethod /contains/

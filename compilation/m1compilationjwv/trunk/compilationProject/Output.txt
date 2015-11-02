@@ -1,0 +1,17 @@
+type -> integer
+type -> string
+parameter
+mult parameters
+type -> string
+string -->"sdfsdfsdf"
+dec -->abctype -->nullvalue -->null
+true
+number -->32
+idabc=null
+codeblock
+while(null)null
+true
+number -->25
+idabc=null
+codeblock
+parser error java.lang.NullPointerException

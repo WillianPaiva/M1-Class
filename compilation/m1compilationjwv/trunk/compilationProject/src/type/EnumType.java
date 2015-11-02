@@ -60,6 +60,7 @@ public enum EnumType {
 
     private final String tag;
 
+
     EnumType(String s){
             tag = s;
     }

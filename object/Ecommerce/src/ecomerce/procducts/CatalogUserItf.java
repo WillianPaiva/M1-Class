@@ -8,5 +8,6 @@ public interface CatalogUserItf {
     public String getDescription(int productId);
     public List<Integer> findProductByType(String type);
     public List<Integer> listProductByIcreasingPrice();
+    public Product findProductById(int id);
     String getTitle(int productId);
 }
