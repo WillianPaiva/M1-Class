@@ -1,0 +1,4 @@
+;; -*- mode: emacs-lisp -*-
+(((name . "Run remote control")
+(main-class . "Main")
+(vm-args . "-Dwhatever=42")))

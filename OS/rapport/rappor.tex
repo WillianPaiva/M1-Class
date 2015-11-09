@@ -114,7 +114,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{NachOS project} % Assignment title
-\newcommand{\hmwkDueDate}{Monday,\ October\ 12,\ 2015} % Due date
+\newcommand{\hmwkDueDate}{Monday,\ November\ 9,\ 2015} % Due date
 \newcommand{\hmwkClass}{J1INAW11} % Course/class
 \newcommand{\hmwkClassInstructor}{NAMYST Raymond} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{VER VALEM Willian , RAKOTONIERA Hoby} % Your name
@@ -155,110 +155,139 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
-\begin{homeworkProblem}[Introduction]
-J'ai réalisé l'ensemble des appels systèmes qui étaient demandés : \textit{PutChar}, \textit{PutString},\textit{Exit}, \textit{GetChar}, \textit{GetString}. L'ensemble du projet a été réalisé sans difficultés particulières, hormis des difficultés de temps. C'est pour cette raison que je n'ai pas pu réaliser les bonus \textit{printf}, \textit{PutInt} et \textit{GetInt}. 
+\section{Introduction}
+Pour cette partie du projet, il était demandé de mettre en place un niveau utilisateur Multithreading avec NachOS.
+\newline
+Pour réaliser ce travail, on a une suivi une série d'étapes fournies par l'enseignant, en commençant tout d'abord avec la possibilité de créer un seul thread d'une façon rudimentaire, et en l'améliorant ensuite, jusqu'à arriver à la possibilité de faire fonctionner un nombre indéterminé de threads, et synchroniser la façon dont ils se terminent.
+
+L'objectif était de comprendre comment les threads sont créés, gérés, chargés et terminés, c'est à dire le cycle de vie complet d'un thread; et ensuite de mettre en oeuvre ce cycle de vie dans NachOS.
+
+\section{Multithreading}
+\subsection{Multithreading dans les programmes utilisateurs}
+
+\subsubsection{ThreadCreat}
+La mise en oeuvre de l'appel système "\textit{ThreadCreat}" a été réalisée en créant une fonction qui a la responsabilité de mémoriser le "pointeur" de la fonction et le pointeur des arguments, de créer un thread et de le démarrer en utilisant \textit{StartUserThread} et en lui passant les arguments. 
+
+\subsubsection{ThreadExit}
+Dans la première partie du projet, \textit{ThreadExit} avait à effectuer une tâche simple, qui était d'appeler \textit{cutrrentThread->Finish()}.
+
+\subsubsection{StartUserThread}
+StartUserThread était le point clé de la création d'un thread, puisqu'il est responsable de charger le thread en mémoire et de le faire tourner. Pour réaliser cela, une nouvelle fonction similaire à \textit{InitRegisters} a été mise en oeuvre dans la classe \textit{addrespace}, la fonction \textit{InitUserRegisters} qui charge les registres et pointe vers eux (au sommet de la pile) - 256.
+
+Voici le code snippet de la fonction :
+\begin{verbatim}
+
+void
+AddrSpace::InitUserRegisters (int f,int arg)
+{
+    printf("inside\n");
+    int threadNumber = currentThread->threadNumber;
+    //int i;
+    //for (i = 0; i < NumTotalRegs; i++)
+    //machine->WriteRegister (i, 0);
+    // Initial program counter -- must be location of "Start"
+    machine->WriteRegister (PCReg, f);
+    machine->WriteRegister(4, arg);
+    machine->WriteRegister (NextPCReg, machine->ReadRegister(PCReg) + 4);
+    machine->WriteRegister (StackReg, numPages * PageSize -( 256 * threadNumber)-16);
+    DEBUG ('a', "Initializing USER stack register to 0x%x\n", numPages * PageSize - 256);
+}
+\end{verbatim}
+
+Il utilise une variable globale \textit{threadNumber} pour allouer l'espace approprié sur la pile, et qui, à ce stade du projet, avait pour seule valeur "1".
+
+
+\subsection{Plusieurs threads par processus}
+
+\subsubsection{ThreadCreat}
+
+Lorsque nous avons eu besoin de gérer plus d'un thread par processus, il a fallu changer cette fonction, car elle a créé des problèmes. 
+Ces problèmes sont les suivants : 
+\begin{itemize}
+\item{ThreadCreate avait besoin de répondre s'il était possible de créer le thread}
+\item{il ne pouvait pas créer un thread s'il ne savait pas s'il y avait des slots libres}
+\item{une fois qu'un thread était créé, il devait occuper ce slot pour éviter que d'autres threads y accèdent.}
+
+
+\end{itemize}
+
+Pour résoudre ces problèmes, l'approche choisie a été d'accéder au BitMap du processus, et de donner le nombre de threads avec cette fonction, et de cette manière, une fois qu'un thread est créé, il a déjà son numéro et le slot sur lequel il sera chargé ; cela évite ainsi que le thread principal se termine avant que le thread soit exécuté. 
 \newline
 
-J'ai passé un certain temps, pour commencer, à essayer de comprendre le code, et de me faire une idée du fonctionnement du programme. Cela a été ma principale difficulté. \newline
+Comme cette méthode incrémente également le \textit{threadCounter}, une fois qu'un \textit{StartUserThread} est appelé, le thread a déjà son espace affecté, auquel il est alloué. Cette démarche a été réalisée comme suit : 
+\begin{verbatim}
+int do_ThreadCreate(int f, int arg){
+    int* temp = new int[2];
+    temp[0] = f;
+    temp[1] = arg;
+    if(currentThread->space->threadBitMap->NumClear() > 0){
+        Thread *t = new Thread ("new thread");
+        t->threadNumber = currentThread->space->threadBitMap->Find();
+        currentThread->space->threadCounter++;
+        t->Start(StartUserThread,temp);
+        return 0;
+    }else{
+        return -1;
+    }
+}
+\end{verbatim}
+
+\subsubsection{ThreadExit}
+
+Comme maintenant il a un nombre indéterminé de threads, ThreadExit doit aussi garder la trace des threads et des slots et pour effectuer ce comportement, il appelle \textit{currentThread->Finish()}, libère le \textit{BitMap} et réduit le \textit{threadCounter}.
+
+De cette manière, NachOS peut garder la trace des threads actifs et réutiliser un espace pour allouer à de nouveaux threads et dans la classe  \textit{exception}, le  \textit{sysxall SC\_Exit} et le \textit{SC\_ThreadExit} ont été modifiés et font tous les deux la même chose. 
+\begin{verbatim}
+    if(currentThread->space->threadCounter == 1){
+        interrupt->Halt ();
+    }else{
+        do_ThreadExit();
+    }
+    break;
+\end{verbatim}
+
+Ainsi, avec cette méthode, ce n'est que le dernier thread qui est capable d'appeler le \textit{interrupt->Halt()}.
 
 
-Après ce temps d'adaptation et de compréhension, j'ai pu terminer la totalité de la mise en oeuvre de ces exercices. La seule chose que je n'ai pas pu finir c'est, pour la raison de temps évoquée plus haut, celle des bonus.
-\newline
+\subsubsection{SynchConsole and Lock}
+Pour pouvoir utiliser \textit{SynchConsole} avec les threads, un lock a été mis en place sur la classe \textit{Synch}. Ce qu'il fait, essentiellement, est de créer un \textit{semaphore} initialisé à un et arrêter le system interrupt à \textit{aquire} et redémarrer le system interrupt à \textit{release}
 
+Ainsi, grâce qu fait que j'aie mis ce système en place, j'ai été capable de vérouiller l'appel de \textit{SynchPutString} et \textit{SynchGetString} et de cette manière, un thread est capable d'imprimer et utiliser ces appels sans interruptions, mais lorsque ces fonctions sont appelées par le syscall à \textit{exception} il peut être interrompu par le système à la fin du buffer. Le meilleur moyen d'exécuter un résultat à ce niveau est de verrouiller cette fonction au niveau du syscall, à \textit{exception}. A ce moment là, il n'est pas mis en oeuvre, donc quand des chaînes longues (plus longues que le buffer) dépendant de \textit{-rs} passés à NachOS, la chaîne peut être coupée au milieu. 
 
-Pour ce qui a été fait, tout fonctionne correctement. Après avoir testé les fonctionnements de ces appels système, je n'ai pas pu trouver de bug. J'espère simplement que ce n'est pas par manque de parce que je n'ai pas su les détecter\ldots
-\newline
+\section{tests}
 
+Pour tester les threads, j'ai utilisé un simple bout de code, comme suit : 
 
-En ce qui concerne les choses que je n'ai pas eu le temps de réaliser, je suppose qu'elles seraient du même ordre de difficulté que ce que j'ai déjà fait, et donc il me semble que je devrais y arriver de même, en espérant là aussi que je serais capable de trouver d'éventuels bugs.
-\newline
+\begin{verbatim}
 
-Je pense qu'il me faudrait deux jours de travail de plus pour finir le bonus, à condition que je puisse m'y consacrer exclusivement. 
+void printString(char* c, int x)
+{
+    c[6]=48 + counter++;
+    PutString(c);
+    ThreadExit();
+}
 
+int main()
+{
 
+    char* stt = "\n\n\nth=0\n\n\n";
+    char* mai = "\n\n\nmain\n\n\n";
+    int x;
+    for(x=0;x<4;x++){
+        ThreadCreate(printString,stt);
+    }
+    PutString(mai);
+    for(x=0;x<100;x++){}
+    for(x=0;x<4;x++){
+        ThreadCreate(printString,stt);
+    } 
+    return 0;
+}
 
-\end{homeworkProblem}
-\begin{homeworkProblem}[Points délicats]
-    \begin{homeworkSection}{Entrée-sorties synchrones}
-    L'erreur commise dans cette partie du projet a été de ne pas inclure de \textit{break} en cas de fin de fichier (\textit{EOF}), fin de chaîne de caractères ou de nouvelle ligne au sein de la fonction \textit{SynchGetString} ce qui a amené le programme à faire fuir la chaîne précédente dans la nouvelle.\newline    
-   
-   Cette erreur a été réparée en insérant les lignes 4 à 6 :
-        
-        \begin{lstlisting}[label={list:first},caption=SynchGetString.]
-            for(int i = 0;i<n;i++){
-                readAvail->P();
-                s[i]=console->GetChar();
-                if(s[i] == EOF || s[i]=='\0' || s[i] == '\n'){
-                    break;
-                }
-            }
-        \end{lstlisting}
-    \end{homeworkSection}
-    \begin{homeworkSection}{Appel système Putchar}
-        Suivre les étapes fournies dans la description de l'exercice a été suffisant pour mettre en place ces \textit{syscall}
-        
-    \end{homeworkSection}
-    \begin{homeworkSection}{Appel système PutString}
-        Pour cet exercice, qui à mon avis était le plus compliqué, j'ai vraiment été bloqué au niveau de la partie qui consistait à manipuler des chaînes de caractères via un petit buffer, ce qui a posé quelques problèmes. \newline
-        
-        Afin de trouver une solution à ce problème, j'ai déclaré deux constantes : \textit{BUFFER\_SIZE} et \textit{MAXI\_SIZE}.\newline
-        
-        De ce fait, lorsqu'on lit une séquence de caractères dans \textit{BUFFER\_SIZE} ou jusqu'à ce qu'on trouve une commande '\textbackslash0', et si un \textit{BUFFER\_SIZE} a été lu mais qu'il n'y avait pas de '\textbackslash0', le programme répète la séquence jusqu'à ce qu'il trouve un '\textbackslash0'. Ou si on lit un \textit{MAXI\_SIZE}, au cas où un \textit{MAXI\_SIZE} était lu mais sans '\textbackslash0', le '\textbackslash0' est ajouté à la fin de la chaîne.\newline
-        
-        Pour la fonction copyStringFromMachine, j'ai décidé de la placer dans le fichier \textit{machine.h implement in machine.c} car l'usage de cette fonction semble étroitement relié aux autres fonctions de la machine.       
-        
-     
-    \end{homeworkSection}
-    \begin{homeworkSection}{Appel système Exit}
-    
-    Pour mettre en oeuvre cet appel système comme il est demandé dans l'exercice, il a fallu copier l'appel à fonction \textit{halt} dans l'appel système \textit{sc\_Exit}
-   ce qui fonctionne bien dans le cas d'un process unique.  \newline
-   
-   Après avoir passé quelque temps à essayer d'imaginer comment gérer ce problème, j'ai reçu le conseil de l'enseignant qui m'a dit de laisser les choses en l'état, parce que la partie dans laquelle nous devons contrôler la quantité de process et mettre en oeuvre l'appel système approprié sera traité dans l'étape suivante du projet. 
-   
-       Donc, l'exit syscal a simplement été mis en oeuvre de la façon suivante : 
-    
-    \begin{lstlisting}[label={list:first},caption=SC\_Exit.]
-                            interrupt->Halt();
-                            break;
-        \end{lstlisting}
-    En ce qui concerne la récupération de la valeur \textit{main}, elle peut être récupérée en lisant le registre 4 après avoir modifié le fichier \textit{start.S} pour enregistrer le registre 2 dans le registre 4 au lieu du registre 0, de la façon suivante : 
-        
-        \begin{lstlisting}[label={list:first},caption=\_\_start at start.S]
-                .globl __start
-                .ent    __start
-            __start:
-                jal main
-                move    $4,$2       
-                jal Exit     
-                .end __start
-        \end{lstlisting}
-        
-       Ainsi, la valeur du registre est enregistrée dans le registre 4, mais jusqu'à maintenant, je ne sais pas vraiment si je devrais réinscrire cette valeur dans le registre 2 comme résultat de l'appel système \textit{Exit}.
-       
-        
-    \end{homeworkSection}
-    \begin{homeworkSection}{Appel système GetChar}
-        Pour la mise en oeuvre de cet appel système, il a été suffisant d'appeler la fonction \textit{SynchGetChar} et d'inscrire la valeur résultat dans le registre 2.
-       
-       \end{homeworkSection}
-    \begin{homeworkSection}{Appel système GetString}
-        
-        Inspiré par l'implementation de \textit{PutString} cet appel système appelle le \textit{SynchGetString} puis écrit le résultat dans l'adresse de l'espace utilisateur employant l'appel de la fonction \textit{CopyStringToMachine} ; il faut se rappeler de toujours insérer un '\textbackslash0' à la fin.
-        
-          \end{homeworkSection}
-    \begin{homeworkSection}{Bonus printf, PutInt, GetInt}
-        
-        Cette partie n'a pu être mise en oeuvre, car mon binôme a été malade. J'ai donc dû travailler seul, et n'ai pas eu le temps de tout faire. Mais je vais le faire, même seul, car mon objectif est d'apprendre au maximum. 
-       
-    \end{homeworkSection}
+\end{verbatim}
 
-    \begin{homeworkSection}{tests}
-        Pour le test, j'ai mis en oeuvre quelques fonctions supplémenaires dans \textit{putchar.c}.
-        Afin de tester les appels système \textit{GetString} et \textit{PutString}, j'ai créé une boucle qui travaille comme le \textit{consoleTest} sous \textit{userprog} qui lit une chaîne de caractères et la reproduit, ce qui offre la possibilité de tester différentes longueurs de chaîne pour les deux appels système. 
-        
-    \end{homeworkSection}
-\end{homeworkProblem}
+De cette façon, j'ai été capable de tester où le programme crée les threads, quand il les exécute et les libère correctement. 
+Le problème que j'ai eu à résoudre dépend du \textit{-rs} passé à NachOS. Le second cycle n'est pas exécuté tant que les 4 premiers threads ne sont pas finis, donc ça dépend comment le scheduler priorise l'exécution des threads. 
 %----------------------------------------------------------------------------------------
 \end{document}
 

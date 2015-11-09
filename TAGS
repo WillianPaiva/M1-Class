@@ -1,0 +1,2425 @@
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/Stree.java,792
+package stree;stree1,0
+public class Stree {Stree12,205
+    protected EnumTag tag;	// node labeltag14,227
+    protected Stree left;left15,268
+    protected Stree right;right16,294
+    protected Object object;object17,321
+    protected int id;   // used in toDotid18,350
+    protected static int uniqId=0;uniqId19,391
+    public Stree(EnumTag tag, Stree left, Stree right, Object object) {Stree21,427
+    public EnumTag getTag() {getTag29,620
+    public int getId() {getId33,685
+    public Stree getLeft() {getLeft37,744
+    public Stree getRight() {getRight41,798
+    public Object getObject() {getObject45,854
+    public String toString() {toString49,913
+    public void toDot(StringBuffer str) {toDot67,1382
+    public void toDot(String file) {toDot83,1804
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/EnumTag.java,904
+package stree;stree1,0
+public enum EnumTag { EnumTag3,16
+    IF ("IF"), IF5,44
+    ELSE ("ELSE"), ELSE6,60
+    WHILE ("WHILE"), WHILE7,80
+    EQ ("="), EQ8,102
+    NOT ("!"), NOT9,117
+    AND ("&&"), AND10,133
+    OR ("||"), OR11,150
+    INF ("<"), INF12,166
+    SUP (">"), SUP13,182
+    LEQL ("<="), LEQL14,198
+    GEQL (">="), GEQL15,216
+    EQUALS ("=="), EQUALS16,234
+    DIFF ("!=") , DIFF17,254
+    PLUS ("+"), PLUS18,273
+    MIN ("-"), MIN19,290
+    MULT ("*"), MULT21,328
+    DIV ("/"), DIV22,345
+    MOD ("%"), MOD23,361
+    PROC("PROC"),PROC25,397
+    ID ("ID"),ID26,415
+    CALL ("CALL"),CALL27,430
+    CHAR ("CHAR"), CHAR29,472
+    INT ("INT"), INT30,492
+    FLOAT ("FLOAT"), FLOAT31,510
+    STR("STR");STR32,532
+    private final String tag;tag35,554
+    EnumTag(String s){EnumTag37,585
+    public String toString(){toString41,636
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/lexer/MyCLexer.java,3852
+class MyCLexer implements java_cup.runtime.Scanner {MyCLexer12,345
+  public static final int YYEOF = -1;YYEOF15,447
+  private static final int ZZ_BUFFERSIZE = 16384;ZZ_BUFFERSIZE18,532
+  public static final int YYINITIAL = 0;YYINITIAL21,607
+  private static final int ZZ_LEXSTATE[] = { ZZ_LEXSTATE29,904
+  private static final String ZZ_CMAP_PACKED = ZZ_CMAP_PACKED36,1027
+  private static final char [] ZZ_CMAP = zzUnpackCMap(ZZ_CMAP_PACKED);ZZ_CMAP46,1391
+  private static final int [] ZZ_ACTION = zzUnpackAction();ZZ_ACTION51,1528
+  private static final String ZZ_ACTION_PACKED_0 =ZZ_ACTION_PACKED_053,1589
+  private static int [] zzUnpackAction() {zzUnpackAction58,1736
+  private static int zzUnpackAction(String packed, int offset, int [] result) {zzUnpackAction65,1921
+  private static final int [] ZZ_ROWMAP = zzUnpackRowMap();ZZ_ROWMAP81,2381
+  private static final String ZZ_ROWMAP_PACKED_0 =ZZ_ROWMAP_PACKED_083,2442
+  private static int [] zzUnpackRowMap() {zzUnpackRowMap89,2727
+  private static int zzUnpackRowMap(String packed, int offset, int [] result) {zzUnpackRowMap96,2912
+  private static final int [] ZZ_TRANS = zzUnpackTrans();ZZ_TRANS110,3303
+  private static final String ZZ_TRANS_PACKED_0 =ZZ_TRANS_PACKED_0112,3362
+  private static int [] zzUnpackTrans() {zzUnpackTrans127,3971
+  private static int zzUnpackTrans(String packed, int offset, int [] result) {zzUnpackTrans134,4154
+  private static final int ZZ_UNKNOWN_ERROR = 0;ZZ_UNKNOWN_ERROR149,4572
+  private static final int ZZ_NO_MATCH = 1;ZZ_NO_MATCH150,4621
+  private static final int ZZ_PUSHBACK_2BIG = 2;ZZ_PUSHBACK_2BIG151,4665
+  private static final String ZZ_ERROR_MSG[] = {ZZ_ERROR_MSG154,4758
+  private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();ZZ_ATTRIBUTE163,5019
+  private static final String ZZ_ATTRIBUTE_PACKED_0 =ZZ_ATTRIBUTE_PACKED_0165,5086
+  private static int [] zzUnpackAttribute() {zzUnpackAttribute169,5201
+  private static int zzUnpackAttribute(String packed, int offset, int [] result) {zzUnpackAttribute176,5395
+  private java.io.Reader zzReader;zzReader189,5807
+  private int zzState;zzState192,5881
+  private int zzLexicalState = YYINITIAL;zzLexicalState195,5940
+  private char zzBuffer[] = new char[ZZ_BUFFERSIZE];zzBuffer199,6091
+  private int zzMarkedPos;zzMarkedPos202,6199
+  private int zzCurrentPos;zzCurrentPos205,6276
+  private int zzStartRead;zzStartRead208,6381
+  private int zzEndRead;zzEndRead212,6502
+  private int yyline;yyline215,6604
+  private int yychar;yychar218,6697
+  private int yycolumn;yycolumn224,6826
+  private boolean zzAtBOL = true;zzAtBOL229,6941
+  private boolean zzAtEOF;zzAtEOF232,7031
+  private boolean zzEOFDone;zzEOFDone235,7123
+private Symbol symbol (int type) {symbol238,7172
+private Symbol symbol (int type, Object value) {symbol242,7262
+  MyCLexer(java.io.Reader in) {MyCLexer253,7545
+  MyCLexer(java.io.InputStream in) {MyCLexer263,7776
+  private static char [] zzUnpackCMap(String packed) {zzUnpackCMap273,8060
+  private boolean zzRefill() throws java.io.IOException {zzRefill293,8599
+  public final void yyclose() throws java.io.IOException {yyclose343,9903
+  public final void yyreset(java.io.Reader reader) {yyreset362,10473
+  public final int yystate() {yystate377,10810
+  public final void yybegin(int newState) {yybegin387,10966
+  public final String yytext() {yytext395,11124
+  public final char yycharat(int pos) {yycharat411,11552
+  public final int yylength() {yylength419,11700
+  private void zzScanError(int errorCode) {zzScanError438,12317
+  public void yypushback(int number)  {yypushback459,12876
+  private void zzDoEOF() throws java.io.IOException {zzDoEOF471,13133
+  public java_cup.runtime.Symbol next_token() throws java.io.IOException {next_token486,13504
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/parser/MyCSymbol.java,580
+public class MyCSymbol {MyCSymbol8,265
+  public static final int WHILE = 4;WHILE10,308
+  public static final int SEMIC = 7;SEMIC11,345
+  public static final int MAIN = 3;MAIN12,382
+  public static final int MULT = 9;MULT13,418
+  public static final int LPAR = 5;LPAR14,454
+  public static final int PROCEDURE = 2;PROCEDURE15,490
+  public static final int PLUS = 8;PLUS16,531
+  public static final int EOF = 0;EOF17,567
+  public static final int ID = 10;ID18,602
+  public static final int error = 1;error19,637
+  public static final int RPAR = 6;RPAR20,674
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/parser/MyCParser.java,1784
+public class MyCParser extends java_cup.runtime.lr_parser {MyCParser15,391
+  public MyCParser() {super();}MyCParser18,482
+  public MyCParser(java_cup.runtime.Scanner s) {super(s);}MyCParser21,568
+  public MyCParser(java_cup.runtime.Scanner s, java_cup.runtime.SymbolFactory sf) {super(s,sf);}MyCParser24,681
+  protected static final short _production_table[][] = _production_table27,806
+  public short[][] production_table() {return _production_table;}production_table36,1232
+  protected static final short[][] _action_table = _action_table39,1328
+  public short[][] action_table() {return _action_table;}action_table65,2859
+  protected static final short[][] _reduce_table = _reduce_table68,2959
+  public short[][] reduce_table() {return _reduce_table;}reduce_table83,3729
+  protected CUP$MyCParser$actions action_obj;action_obj86,3837
+  protected void init_actions()init_actions89,3934
+  public java_cup.runtime.Symbol do_action(do_action95,4077
+  public int start_state() {return 0;}start_state107,4461
+  public int start_production() {return 0;}start_production109,4537
+  public int EOF_sym() {return 0;}EOF_sym112,4622
+  public int error_sym() {return 1;}error_sym115,4700
+  public boolean do_debug_parse = false;do_debug_parse119,4740
+  public void debug_message(String mess){debug_message121,4782
+  public void syntax_error(Symbol cur_token){syntax_error125,4859
+  public void unrecovered_syntax_error(Symbol cur_token)unrecovered_syntax_error129,5015
+class CUP$MyCParser$actions {CUP$MyCParser$actions137,5313
+  private final MyCParser parser;parser138,5343
+  CUP$MyCParser$actions(MyCParser parser) {CUP$MyCParser$actions141,5399
+  public final java_cup.runtime.Symbol CUP$MyCParser$do_action(CUP$MyCParser$do_action146,5529
+
+compilation/m1compilationjwv/trunk/compilationProject/exemple/Main.java,87
+public class Main {Main5,76
+    public static void main(String[] args) {main10,132
+
+compilation/m1compilationjwv/trunk/compilationProject/rapport/assignment_2.tex,277
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problemhomeworkProblemName72,2773
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argumenthomeworkSectionName85,3576
+
+compilation/m1compilationjwv/trunk/compilationProject/src/CompLexer.java,3983
+class CompLexer implements java_cup.runtime.Scanner {CompLexer13,372
+  public static final int YYEOF = -1;YYEOF16,475
+  private static final int ZZ_BUFFERSIZE = 16384;ZZ_BUFFERSIZE19,560
+  public static final int STRING = 2;STRING22,635
+  public static final int YYINITIAL = 0;YYINITIAL23,673
+  private static final int ZZ_LEXSTATE[] = { ZZ_LEXSTATE31,970
+  private static final String ZZ_CMAP_PACKED = ZZ_CMAP_PACKED38,1101
+  private static final char [] ZZ_CMAP = zzUnpackCMap(ZZ_CMAP_PACKED);ZZ_CMAP50,1583
+  private static final int [] ZZ_ACTION = zzUnpackAction();ZZ_ACTION55,1720
+  private static final String ZZ_ACTION_PACKED_0 =ZZ_ACTION_PACKED_057,1781
+  private static int [] zzUnpackAction() {zzUnpackAction69,2274
+  private static int zzUnpackAction(String packed, int offset, int [] result) {zzUnpackAction76,2460
+  private static final int [] ZZ_ROWMAP = zzUnpackRowMap();ZZ_ROWMAP92,2920
+  private static final String ZZ_ROWMAP_PACKED_0 =ZZ_ROWMAP_PACKED_094,2981
+  private static int [] zzUnpackRowMap() {zzUnpackRowMap115,4278
+  private static int zzUnpackRowMap(String packed, int offset, int [] result) {zzUnpackRowMap122,4464
+  private static final int [] ZZ_TRANS = zzUnpackTrans();ZZ_TRANS136,4855
+  private static final String ZZ_TRANS_PACKED_0 =ZZ_TRANS_PACKED_0138,4914
+  private static int [] zzUnpackTrans() {zzUnpackTrans254,10015
+  private static int zzUnpackTrans(String packed, int offset, int [] result) {zzUnpackTrans261,10199
+  private static final int ZZ_UNKNOWN_ERROR = 0;ZZ_UNKNOWN_ERROR276,10617
+  private static final int ZZ_NO_MATCH = 1;ZZ_NO_MATCH277,10666
+  private static final int ZZ_PUSHBACK_2BIG = 2;ZZ_PUSHBACK_2BIG278,10710
+  private static final String ZZ_ERROR_MSG[] = {ZZ_ERROR_MSG281,10803
+  private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();ZZ_ATTRIBUTE290,11064
+  private static final String ZZ_ATTRIBUTE_PACKED_0 =ZZ_ATTRIBUTE_PACKED_0292,11131
+  private static int [] zzUnpackAttribute() {zzUnpackAttribute297,11309
+  private static int zzUnpackAttribute(String packed, int offset, int [] result) {zzUnpackAttribute304,11504
+  private java.io.Reader zzReader;zzReader317,11916
+  private int zzState;zzState320,11990
+  private int zzLexicalState = YYINITIAL;zzLexicalState323,12049
+  private char zzBuffer[] = new char[ZZ_BUFFERSIZE];zzBuffer327,12200
+  private int zzMarkedPos;zzMarkedPos330,12308
+  private int zzCurrentPos;zzCurrentPos333,12385
+  private int zzStartRead;zzStartRead336,12490
+  private int zzEndRead;zzEndRead340,12611
+  private int yyline;yyline343,12713
+  private int yychar;yychar346,12806
+  private int yycolumn;yycolumn352,12935
+  private boolean zzAtBOL = true;zzAtBOL357,13050
+  private boolean zzAtEOF;zzAtEOF360,13140
+  private boolean zzEOFDone;zzEOFDone363,13232
+public StringBuilder str;str366,13281
+private Symbol symbol (int type) {symbol367,13307
+private Symbol symbol (int type, Object value) {symbol371,13397
+  CompLexer(java.io.Reader in) {CompLexer382,13680
+  CompLexer(java.io.InputStream in) {CompLexer392,13912
+  private static char [] zzUnpackCMap(String packed) {zzUnpackCMap402,14197
+  private boolean zzRefill() throws java.io.IOException {zzRefill422,14737
+  public final void yyclose() throws java.io.IOException {yyclose472,16041
+  public final void yyreset(java.io.Reader reader) {yyreset491,16611
+  public final int yystate() {yystate505,16925
+  public final void yybegin(int newState) {yybegin515,17081
+  public final String yytext() {yytext523,17239
+  public final char yycharat(int pos) {yycharat539,17667
+  public final int yylength() {yylength547,17815
+  private void zzScanError(int errorCode) {zzScanError566,18432
+  public void yypushback(int number)  {yypushback587,18991
+  private void zzDoEOF() throws java.io.IOException {zzDoEOF599,19248
+  public java_cup.runtime.Symbol next_token() throws java.io.IOException {next_token614,19619
+
+compilation/m1compilationjwv/trunk/compilationProject/src/type/TypeDiff.java,205
+package type;type1,0
+public class TypeDiff {TypeDiff3,15
+	private Type x;x5,40
+	private Type y;y6,57
+    public TypeDiff(Type x, Type y) { TypeDiff8,75
+    public boolean IsDiff(){IsDiff12,148
+
+compilation/m1compilationjwv/trunk/compilationProject/src/type/Type.java,798
+package type;type1,0
+public class Type {Type5,46
+    private Type left;left7,71
+    private Type right;right8,94
+    private EnumType type;	type9,118
+    private Integer integer; // array sizeinteger10,146
+    public Type(Type left, Type right, Integer i, EnumType type) {Type13,195
+    public Type(Type left, Type right, EnumType type) {Type20,343
+    public Type(EnumType type) {Type25,454
+    public Type getLeft() {getLeft29,525
+    public void setLeft(Type left) {setLeft33,578
+    public Type getRight() {getRight37,645
+    public void setRight(Type right) {setRight41,700
+    public EnumType getEnumType() {getEnumType45,771
+    public TypeDiff Diff(Type t){Diff49,837
+    public Type unify(Type t){unify53,920
+    public String toString() {toString61,1083
+
+compilation/m1compilationjwv/trunk/compilationProject/src/type/EnumType.java,709
+package type;type1,0
+public enum EnumType {EnumType2,14
+    PROC("procedure"),PROC3,37
+    STRUCT("struct"),STRUCT4,60
+    MAIN("main"),MAIN5,82
+    INT("int"),INT6,100
+    CHAR("char"),CHAR7,116
+    FLOAT("float"),FLOAT8,134
+    STR("string"), STR9,154
+    BOOL("bool"),BOOL10,174
+    LIST("list"),LIST11,192
+    POINTER("^"),POINTER12,210
+    CLASS("class"),CLASS13,228
+    TP("type"),TP14,248
+    ID("id"),ID15,264
+    NB("nb"),NB16,278
+    FLOATNB("floatnb"),FLOATNB17,292
+    STRING("string"),STRING18,316
+    ERROR("error");ERROR19,338
+    private final String tag;tag61,982
+    EnumType(String s){EnumType64,1014
+    public String toString(){toString68,1066
+
+compilation/m1compilationjwv/trunk/compilationProject/src/CompSymbol.java,2682
+public class CompSymbol {CompSymbol8,264
+  public static final int ENDBLOCK = 39;ENDBLOCK10,308
+  public static final int MULT = 14;MULT11,349
+  public static final int CHAR = 6;CHAR12,386
+  public static final int STR = 8;STR13,422
+  public static final int EQUALS = 28;EQUALS14,457
+  public static final int SEMIC = 37;SEMIC15,496
+  public static final int DECR = 34;DECR16,534
+  public static final int INT = 5;INT17,571
+  public static final int INCR = 33;INCR18,606
+  public static final int FOR = 46;FOR19,643
+  public static final int NOT = 18;NOT20,679
+  public static final int AND = 19;AND21,715
+  public static final int RPAR = 36;RPAR22,751
+  public static final int INF = 23;INF23,788
+  public static final int OR = 26;OR24,824
+  public static final int COMMA = 40;COMMA25,859
+  public static final int BOOL = 9;BOOL26,897
+  public static final int CLASS = 12;CLASS27,933
+  public static final int DIV = 17;DIV28,971
+  public static final int EXIT = 44;EXIT29,1007
+  public static final int PLUS = 24;PLUS30,1044
+  public static final int IF = 41;IF31,1081
+  public static final int MIN = 16;MIN32,1116
+  public static final int MAIN = 4;MAIN33,1152
+  public static final int ID = 50;ID34,1188
+  public static final int EOF = 0;EOF35,1223
+  public static final int RETURN = 45;RETURN36,1258
+  public static final int NEWBLOCK = 38;NEWBLOCK37,1297
+  public static final int TRUE = 20;TRUE38,1338
+  public static final int error = 1;error39,1375
+  public static final int SBRKR = 48;SBRKR40,1412
+  public static final int FLOATNB = 52;FLOATNB41,1450
+  public static final int NULL = 22;NULL42,1490
+  public static final int MOD = 15;MOD43,1527
+  public static final int SBRKL = 47;SBRKL44,1563
+  public static final int EQ = 27;EQ45,1601
+  public static final int COLON = 32;COLON46,1636
+  public static final int ELSE = 42;ELSE47,1674
+  public static final int TP = 13;TP48,1711
+  public static final int WHILE = 43;WHILE49,1746
+  public static final int LIST = 10;LIST50,1784
+  public static final int FLOAT = 7;FLOAT51,1821
+  public static final int SUP = 25;SUP52,1858
+  public static final int NB = 51;NB53,1894
+  public static final int STRING = 49;STRING54,1929
+  public static final int LPAR = 35;LPAR55,1968
+  public static final int PROC = 2;PROC56,2005
+  public static final int DIFF = 31;DIFF57,2041
+  public static final int POINTER = 11;POINTER58,2078
+  public static final int FALSE = 21;FALSE59,2118
+  public static final int GEQL = 29;GEQL60,2156
+  public static final int STRUCT = 3;STRUCT61,2193
+  public static final int LEQL = 30;LEQL62,2231
+
+compilation/m1compilationjwv/trunk/compilationProject/src/enviroment/ScopeTree.java,1146
+ackage enviroment;enviroment1,0
+public class ScopeTree {ScopeTree9,151
+    protected static int nb=0;	nb11,177
+    private ScopeTree left;left13,210
+    private ScopeTree right;right14,238
+    private int id;id15,267
+    private String tag;	/* node label */tag16,287
+    private Object object;  object17,328
+    private boolean flag;flag18,357
+    public ScopeTree(ScopeTree left, ScopeTree right, String s, Object o) {ScopeTree20,384
+    public ScopeTree(String s, Object t) {ScopeTree29,624
+    public ScopeTree getLeft() {getLeft33,706
+    public void putLeft(ScopeTree left) {putLeft37,767
+    public ScopeTree getRight() {getRight41,842
+    public int getId() {getId45,905
+    public Object getObject() {getObject49,956
+    public String getTag() {getTag53,1018
+    public void putRight(ScopeTree right) {putRight57,1074
+    public Object find(String s) {find61,1153
+    public ScopeTree add(String s, Object t, ScopeTree a, boolean uniq) {add79,1653
+    public String toString() {toString98,2427
+    public void toDot(StringBuffer str) {toDot113,2831
+    public void flagOff() {flagOff134,3481
+
+compilation/m1compilationjwv/trunk/compilationProject/src/enviroment/EnunTag.java,1177
+package enviroment;enviroment1,0
+public enum EnunTag {EnunTag3,21
+    MULT("*"),MULT4,43
+    MOD("%"),MOD5,58
+    MIN("-"),MIN6,72
+    DIV("/"),DIV7,86
+    NOT("!"),NOT8,100
+    AND("&&"),AND9,114
+    TRUE("true"),TRUE10,129
+    FALSE("false"),FALSE11,147
+    NULL("null"),NULL12,167
+    INF("<"),INF13,185
+    PLUS("+"),PLUS14,199
+    SUP(">"),SUP15,214
+    OR("||"),OR16,228
+    EQ("="),EQ17,242
+    EQUALS("=="),EQUALS18,255
+    GEQL(">="),GEQL19,273
+    LEQL("<="),LEQL20,289
+    DIFF("!="),DIFF21,305
+    COLON(":"),COLON22,321
+    INCR("++"),INCR23,337
+    DECR("--"),DECR24,353
+    LPAR("("),LPAR25,369
+    RPAR(")"),RPAR26,384
+    SEMIC(";"),SEMIC27,399
+    NEWBLOCK("{"),NEWBLOCK28,415
+    ENDBLOCK("}"),ENDBLOCK29,434
+    COMMA(","),COMMA30,453
+    IF("if"),IF31,469
+    ELSE("else"),ELSE32,483
+    WHILE("while"),WHILE33,501
+    EXIT("exit"),EXIT34,521
+    RETURN("return"),RETURN35,539
+    FOR("for"), FOR36,561
+    SBRKL("["),SBRKL37,578
+    SBRKR("]");SBRKR38,594
+    private final String tag;tag40,611
+    EnunTag(String s){EnunTag42,642
+    public String toString(){toString46,693
+
+compilation/m1compilationjwv/trunk/compilationProject/src/enviroment/Env.java,956
+package enviroment;enviroment1,0
+public class Env {Env10,163
+    private Env prev;prev12,211
+    private Env next;next13,233
+    private ScopeTree root; /* scope on top of the stack */root14,255
+    private int id;   // used in toDotid15,315
+    protected static int uniqId=1;	uniqId16,354
+    private int scopenum;scopenum17,390
+    public Env(Env prev, Env next) {Env19,421
+    public Env(Env prev){Env29,614
+    public Env() {Env32,668
+    public int getId() {getId36,720
+    public Env getPrev() {getPrev40,768
+    public void putPrev(Env prev) {putPrev44,820
+    public Env getNext() {getNext48,886
+    public void putNext(Env next) {putNext52,938
+    public ScopeTree getRoot() {getRoot56,1004
+    public void toDot(String file) {toDot60,1062
+    public void add(String s, Object t, boolean uniq) {add93,1977
+    public void add(String s, Object t) {add108,2437
+    public Object find(String s){find112,2506
+
+compilation/m1compilationjwv/trunk/compilationProject/src/Main.java,83
+public class Main {Main4,38
+    public static void main(String[] args)main6,59
+
+compilation/m1compilationjwv/trunk/compilationProject/src/CompParser.java,1897
+public class CompParser extends java_cup.runtime.lr_parser {CompParser15,394
+  public CompParser() {super();}CompParser18,486
+  public CompParser(java_cup.runtime.Scanner s) {super(s);}CompParser21,573
+  public CompParser(java_cup.runtime.Scanner s, java_cup.runtime.SymbolFactory sf) {super(s,sf);}CompParser24,687
+  protected static final short _production_table[][] = _production_table27,813
+  public short[][] production_table() {return _production_table;}production_table54,2297
+  protected static final short[][] _action_table = _action_table57,2393
+  public short[][] action_table() {return _action_table;}action_table660,43821
+  protected static final short[][] _reduce_table = _reduce_table663,43921
+  public short[][] reduce_table() {return _reduce_table;}reduce_table738,48375
+  protected CUP$CompParser$actions action_obj;action_obj741,48483
+  protected void init_actions()init_actions744,48581
+  public java_cup.runtime.Symbol do_action(do_action750,48725
+  public int start_state() {return 0;}start_state762,49110
+  public int start_production() {return 0;}start_production764,49186
+  public int EOF_sym() {return 0;}EOF_sym767,49271
+  public int error_sym() {return 1;}error_sym770,49349
+       public boolean do_debug_parse = false;do_debug_parse776,49393
+       public void debug_message(String mess)debug_message778,49440
+       public void syntax_error(Symbol cur_token)syntax_error783,49545
+       public void unrecovered_syntax_error(Symbol cur_token)unrecovered_syntax_error788,49728
+class CUP$CompParser$actions {CUP$CompParser$actions798,50082
+ public  Env stackEnv = new Env();stackEnv800,50114
+  private final CompParser parser;parser801,50149
+  CUP$CompParser$actions(CompParser parser) {CUP$CompParser$actions804,50206
+  public final java_cup.runtime.Symbol CUP$CompParser$do_action(CUP$CompParser$do_action809,50338
+
+OS/nachos/bin/nachos_arch,0
+
+OS/nachos/bin/nachos_sys,0
+
+OS/nachos/code/.ycm_extra_conf.py,721
+import osos33,1460
+import ycm_coreycm_core34,1470
+flags = [flags36,1487
+compilation_database_folder = ''compilation_database_folder67,2322
+  database = ycm_core.CompilationDatabase( compilation_database_folder )database70,2406
+  database = Nonedatabase72,2485
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]SOURCE_EXTENSIONS74,2504
+def DirectoryOfThisScript():DirectoryOfThisScript76,2570
+def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):MakeRelativePathsInFlagsAbsolute80,2657
+def IsHeaderFile( filename ):IsHeaderFile109,3431
+def GetCompilationInfoForFile( filename ):GetCompilationInfoForFile114,3565
+def FlagsForFile( filename, **kwargs ):FlagsForFile132,4322
+
+OS/nachos/code/bin/instr.h,234
+#define rd(rd11,258
+#define rt(rt12,294
+#define rs(rs13,330
+#define shamt(shamt14,366
+#define immed(immed15,403
+#define off26(off2617,467
+#define top4(top418,514
+#define off16(off1619,561
+#define extend(extend21,600
+
+OS/nachos/code/bin/main.c,1459
+static FILE *fp;fp18,382
+static LDFILE *ldptr;ldptr19,399
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;texthead20,421
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;rdatahead20,421
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;datahead20,421
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;sdatahead20,421
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;sbsshead20,421
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;bsshead20,421
+static char filename[1000] = "a.out";	/* default a.out file */filename22,497
+static char self[256];			/* name of invoking program */self23,560
+char mem[MEMSIZE];		/* main memory. use malloc later */mem25,617
+int TRACE, Traptrace, Regtrace;TRACE26,673
+int TRACE, Traptrace, Regtrace;Traptrace26,673
+int TRACE, Traptrace, Regtrace;Regtrace26,673
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;NROWS27,705
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;ASSOC27,705
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;LINESIZE27,705
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;RAND27,705
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;LRD27,705
+main(argc, argv)main31,780
+char *string(s)string81,1781
+load_program(filename)load_program92,1909
+#define LOADSECTION(LOADSECTION112,2282
+int *m_alloc(n)m_alloc160,3510
+
+OS/nachos/code/bin/encode.h,2176
+#define I_SPECIAL	I_SPECIAL12,254
+#define I_BCOND	I_BCOND13,276
+#define I_J	I_J14,297
+#define I_JAL	I_JAL15,314
+#define I_BEQ	I_BEQ16,333
+#define I_BNE	I_BNE17,352
+#define I_BLEZ	I_BLEZ18,371
+#define I_BGTZ	I_BGTZ19,391
+#define I_ADDI	I_ADDI20,411
+#define I_ADDIU	I_ADDIU21,431
+#define I_SLTI	I_SLTI22,452
+#define I_SLTIU	I_SLTIU23,472
+#define I_ANDI	I_ANDI24,493
+#define I_ORI	I_ORI25,513
+#define I_XORI	I_XORI26,532
+#define I_LUI	I_LUI27,552
+#define I_COP0	I_COP028,571
+#define I_COP1	I_COP129,591
+#define I_COP2	I_COP230,611
+#define I_COP3	I_COP331,631
+#define I_LB	I_LB33,652
+#define I_LH	I_LH34,670
+#define I_LWL	I_LWL35,688
+#define I_LW	I_LW36,707
+#define I_LBU	I_LBU37,725
+#define I_LHU	I_LHU38,744
+#define I_LWR	I_LWR39,763
+#define I_SB	I_SB41,783
+#define I_SH	I_SH42,801
+#define I_SWL	I_SWL43,819
+#define I_SW	I_SW44,838
+#define I_SWR	I_SWR46,857
+#define I_LWC0	I_LWC048,877
+#define I_LWC1	I_LWC149,897
+#define I_LWC2	I_LWC250,917
+#define I_LWC3	I_LWC351,937
+#define I_SWC0	I_SWC053,958
+#define I_SWC1	I_SWC154,978
+#define I_SWC2	I_SWC255,998
+#define I_SWC3	I_SWC356,1018
+#define I_SLL	I_SLL60,1062
+#define I_SRL	I_SRL62,1082
+#define I_SRA	I_SRA63,1101
+#define I_SLLV	I_SLLV64,1120
+#define I_SRLV	I_SRLV66,1141
+#define I_SRAV	I_SRAV67,1161
+#define I_JR	I_JR68,1181
+#define I_JALR	I_JALR69,1199
+#define I_SYSCALL	I_SYSCALL71,1220
+#define I_BREAK	I_BREAK72,1242
+#define I_MFHI	I_MFHI74,1264
+#define I_MTHI	I_MTHI75,1284
+#define I_MFLO	I_MFLO76,1304
+#define I_MTLO	I_MTLO77,1324
+#define I_MULT	I_MULT79,1345
+#define I_MULTU	I_MULTU80,1365
+#define I_DIV	I_DIV81,1386
+#define I_DIVU	I_DIVU82,1405
+#define I_ADD	I_ADD84,1426
+#define I_ADDU	I_ADDU85,1445
+#define I_SUB	I_SUB86,1465
+#define I_SUBU	I_SUBU87,1484
+#define I_AND	I_AND88,1504
+#define I_OR	I_OR89,1523
+#define I_XOR	I_XOR90,1541
+#define I_NOR	I_NOR91,1560
+#define I_SLT	I_SLT93,1580
+#define I_SLTU	I_SLTU94,1599
+#define I_BLTZ	I_BLTZ99,1642
+#define I_BGEZ	I_BGEZ100,1662
+#define I_BLTZAL	I_BLTZAL102,1683
+#define I_BGEZAL	I_BGEZAL103,1704
+#define I_NOP I_NOP107,1752
+
+OS/nachos/code/bin/execute.c,1570
+#define FAST	FAST14,307
+#define true	true15,322
+#define false	false16,337
+int Reg[32];			/* GPR's */Reg23,427
+int HI, LO;			/* mul/div machine registers */HI24,454
+int HI, LO;			/* mul/div machine registers */LO24,454
+int numjmpls;numjmpls27,535
+int arch1cycles;arch1cycles28,549
+#define  b31(b3131,601
+#define cc_add(cc_add34,708
+#define cc_sub(cc_sub40,857
+#define cc_logic(cc_logic48,1072
+#define cc_mulscc(cc_mulscc54,1149
+runprogram(startpc, argc, argv)runprogram61,1317
+u()				/* unimplemented */u378,8659
+ny()ny383,8740
+RS(i)RS391,8824
+RT(i)RT397,8857
+RD(i)RD403,8890
+IM(i)IM409,8923
+dump_reg()dump_reg417,8961
+ilog2(i)ilog2447,9432
+#define NH NH465,9831
+#define NNN NNN466,9849
+static int hists[NH][NNN];hists468,9869
+int hoflo[NH], htotal[NH];hoflo469,9896
+int hoflo[NH], htotal[NH];htotal469,9896
+void henters(n, hist)henters471,9924
+hprint()hprint478,10048
+int numadds=1, numsubs=1, numsuccesses, numcarries;numadds501,10475
+int numadds=1, numsubs=1, numsuccesses, numcarries;numsubs501,10475
+int numadds=1, numsubs=1, numsuccesses, numcarries;numsuccesses501,10475
+int numadds=1, numsubs=1, numsuccesses, numcarries;numcarries501,10475
+int addtable[33][33];addtable502,10527
+int subtable[33][33];subtable503,10549
+char fmt[] = "%6d";fmt505,10572
+char fmt2[] = "------";fmt2506,10592
+patable(tab)patable508,10617
+printstatistics()printstatistics533,10937
+#define NNNN	NNNN555,11471
+static int hist[NNNN];hist557,11490
+henter(n)henter559,11514
+printhist()printhist566,11579
+
+OS/nachos/code/bin/noff.h,654
+#define NOFFMAGIC	NOFFMAGIC8,203
+typedef struct segment {segment12,300
+  int virtualAddr;		/* location of segment in virt addr space */virtualAddr13,325
+  int inFileAddr;		/* location of segment in this file */inFileAddr14,390
+  int size;			/* size of segment */size15,448
+} Segment;Segment16,484
+typedef struct noffHeader {noffHeader18,496
+   int noffMagic;		/* should be NOFFMAGIC */noffMagic19,524
+   Segment code;		/* executable code segment */ code20,569
+   Segment initData;		/* initialized data segment */initData21,618
+   Segment uninitData;		/* uninitialized data segment --uninitData22,671
+} NoffHeader;NoffHeader25,773
+
+OS/nachos/code/bin/out.c,1190
+#define MAINMAIN7,207
+#undef MAINMAIN9,243
+#define read_struct(read_struct29,649
+#define MAXRELOCS MAXRELOCS31,704
+#define MAXDATA MAXDATA34,729
+struct data {data36,752
+  long data[MAXDATA];data37,766
+  struct reloc reloc[MAXRELOCS];reloc38,788
+  int length;length39,821
+  int relocs;relocs40,835
+#define MAXSCNS MAXSCNS43,853
+#define MAXSYMS MAXSYMS44,872
+#define MAXSSPACE MAXSSPACE45,892
+struct filehdr filehdr;filehdr47,917
+struct aouthdr aouthdr;aouthdr48,941
+struct scnhdr scnhdr[MAXSCNS];scnhdr49,965
+struct data section[MAXSCNS];section50,996
+HDRR symhdr;symhdr51,1026
+EXTR symbols[MAXSYMS];symbols52,1039
+char sspace[20000];sspace53,1062
+char *symbol_type[] = {symbol_type55,1083
+char *storage_class[] = {storage_class60,1269
+main(argc,argv)main66,1540
+static column = 1;column148,3755
+static FILE *outfile = stdout;outfile149,3774
+myprintf(va_alist)myprintf153,3840
+mytab(n)mytab174,4187
+mysetfile(f)mysetfile184,4297
+#define printf printf190,4339
+print_section(i)print_section193,4379
+char *section_name[] = {section_name224,5011
+char *reloc_type[] = {reloc_type229,5135
+print_reloc(vaddr,i,j)print_reloc233,5223
+
+OS/nachos/code/bin/coff2noff.c,403
+#define MAINMAIN23,849
+#undef MAINMAIN25,886
+WordToHost(unsigned int word) {WordToHost45,1299
+ShortToHost(unsigned short shortword) {ShortToHost59,1632
+#define ReadStruct(ReadStruct70,1885
+char *noffFileName = NULL;noffFileName72,1932
+void Read(int fd, void *buf, int nBytes)Read75,1991
+void Write(int fd, void *buf, int nBytes)Write85,2199
+int main (int argc, char **argv)main94,2373
+
+OS/nachos/code/bin/Makefile,281
+NACHOS_ROOT = ../../NACHOS_ROOT11,385
+NACHOS_SYS := $(shell $(NACHOS_ROOT)/bin/nachos_sys)NACHOS_SYS12,406
+NACHOS_ARCH := $(shell $(NACHOS_ROOT)/bin/nachos_arch)NACHOS_ARCH13,459
+CC=gccCC20,701
+CFLAGS=-I./ -I../threads -Wall -Wextra -WshadowCFLAGS21,708
+LD=gccLD22,756
+
+OS/nachos/code/bin/coff2flat.c,275
+#define MAINMAIN15,553
+#undef MAINMAIN17,589
+#define StackSize StackSize31,887
+#define ReadStruct(ReadStruct32,937
+void Read(int fd, void *buf, int nBytes)Read37,1039
+void Write(int fd, void *buf, int nBytes)Write46,1217
+main (int argc, char **argv)main55,1391
+
+OS/nachos/code/bin/coff.h,2755
+struct filehdr {filehdr5,72
+        unsigned short  f_magic;        /* magic number */f_magic6,89
+        unsigned short  f_nscns;        /* number of sections */f_nscns7,148
+        int             f_timdat;       /* time & date stamp */f_timdat8,213
+        int             f_symptr;       /* file pointer to symbolic header */f_symptr9,277
+        int             f_nsyms;        /* sizeof(symbolic hdr) */f_nsyms10,355
+        unsigned short  f_opthdr;       /* sizeof(optional hdr) */f_opthdr11,422
+        unsigned short  f_flags;        /* flags */f_flags12,489
+#define  MIPSELMAGIC MIPSELMAGIC15,551
+#define OMAGIC OMAGIC17,583
+#define SOMAGIC SOMAGIC18,604
+typedef struct aouthdr {aouthdr20,628
+        short   magic;          /* see above                            */magic21,653
+        short   vstamp;         /* version stamp                        */vstamp22,728
+        int     tsize;          /* text size in bytes, padded to DW bdry*/tsize23,803
+        int     dsize;          /* initialized data "  "                */dsize24,878
+        int     bsize;          /* uninitialized data "   "             */bsize25,953
+        int     entry;          /* entry pt.                            */entry26,1028
+        int     text_start;     /* base of text used for this file      */text_start27,1103
+        int     data_start;     /* base of data used for this file      */data_start28,1178
+        int     bss_start;      /* base of bss used for this file       */bss_start29,1253
+        int     gprmask;        /* general purpose register mask        */gprmask30,1328
+        int     cprmask[4];     /* co-processor register masks          */cprmask31,1403
+        int     gp_value;       /* the gp value used for this object    */gp_value32,1478
+      } AOUTHDR;AOUTHDR33,1553
+#define AOUTHSZ AOUTHSZ34,1570
+struct scnhdr {scnhdr37,1605
+        char            s_name[8];      /* section name */s_name38,1621
+        int             s_paddr;        /* physical address, aliased s_nlib */s_paddr39,1680
+        int             s_vaddr;        /* virtual address */s_vaddr40,1759
+        int             s_size;         /* section size */s_size41,1821
+        int             s_scnptr;       /* file ptr to raw data for section */s_scnptr42,1880
+        int             s_relptr;       /* file ptr to relocation */s_relptr43,1959
+        int             s_lnnoptr;      /* file ptr to gp histogram */s_lnnoptr44,2028
+        unsigned short  s_nreloc;       /* number of relocation entries */s_nreloc45,2099
+        unsigned short  s_nlnno;        /* number of gp histogram entries */s_nlnno46,2174
+        int             s_flags;        /* flags */s_flags47,2251
+
+OS/nachos/code/bin/int.h,394
+#define MEMSIZE MEMSIZE11,233
+#define memoffset memoffset12,257
+#define amark(amark15,330
+#define imark(imark16,349
+#define ifetch(ifetch18,369
+#define fetch(fetch19,438
+#define sfetch(sfetch20,506
+#define usfetch(usfetch21,577
+#define cfetch(cfetch22,657
+#define ucfetch(ucfetch23,727
+#define store(store25,807
+#define sstore(sstore27,889
+#define cstore(cstore29,974
+
+OS/nachos/code/bin/system.c,196
+system_break()system_break19,398
+system_trap()system_trap26,480
+#define	IOCPARM_MASK	IOCPARM_MASK89,1649
+char *u_to_int_addr(ptr)u_to_int_addr125,2367
+u_to_int_fd(fd)u_to_int_fd133,2543
+
+OS/nachos/code/bin/d.c,185
+#define NULL	NULL11,270
+int sptr;sptr13,286
+int longdis = 1;longdis14,296
+char *regstrings[] =regstrings19,357
+#define R(R27,594
+dump_ascii(instruction, pc)dump_ascii30,623
+
+OS/nachos/code/bin/disasm.c,1551
+static FILE *fp;fp18,383
+static LDFILE *ldptr;ldptr19,400
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;texthead20,422
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;rdatahead20,422
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;datahead20,422
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;sdatahead20,422
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;sbsshead20,422
+static SCNHDR texthead, rdatahead, datahead, sdatahead, sbsshead, bsshead;bsshead20,422
+static char filename[1000] = "a.out";	/* default a.out file */filename22,498
+static char self[256];			/* name of invoking program */self23,561
+char mem[MEMSIZE];		/* main memory. use malloc later */mem25,618
+int TRACE, Traptrace, Regtrace;TRACE26,674
+int TRACE, Traptrace, Regtrace;Traptrace26,674
+int TRACE, Traptrace, Regtrace;Regtrace26,674
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;NROWS27,706
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;ASSOC27,706
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;LINESIZE27,706
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;RAND27,706
+int NROWS=64, ASSOC=1, LINESIZE=4, RAND=0, LRD=0;LRD27,706
+int pc;pc28,756
+main(argc, argv)main32,789
+#define LOADSECTION(LOADSECTION69,1422
+load_section(hd)load_section71,1470
+load_program(filename)load_program88,1870
+int *m_alloc(n)m_alloc140,3282
+disasm(startpc, argc, argv)disasm148,3379
+dis1(xpc)dis1162,3546
+
+OS/nachos/code/bin/opstrings.c,79
+char *normalops[] = {normalops9,231
+char *specialops[] = {specialops76,788
+
+OS/nachos/code/filesys/filehdr.cc,371
+FileHeader::Allocate(BitMap *freeMap, int fileSize)Allocate42,1678
+FileHeader::Deallocate(BitMap *freeMap)Deallocate62,2287
+FileHeader::FetchFrom(int sector)FetchFrom78,2774
+FileHeader::WriteBack(int sector)WriteBack91,3158
+FileHeader::ByteToSector(int offset)ByteToSector107,3736
+FileHeader::FileLength()FileLength118,4045
+FileHeader::Print()Print130,4386
+
+OS/nachos/code/filesys/openfile.h,853
+#define OPENFILE_HOPENFILE_H21,889
+class OpenFile:dontcopythis {OpenFile29,1099
+    OpenFile(int f) { file = f; currentOffset = 0; }	// open the fileOpenFile31,1139
+    ~OpenFile() { Close(file); }			// close the file~OpenFile32,1209
+    int ReadAt(void *into, int numBytes, int position) { ReadAt34,1263
+    int WriteAt(const void *from, int numBytes, int position) { WriteAt38,1411
+    int Read(void *into, int numBytes) {Read43,1576
+    int Write(const void *from, int numBytes) {Write48,1727
+    int Length() { Lseek(file, 0, SEEK_END); return Tell(file); }Length54,1892
+    int file;file57,1974
+    int currentOffset;currentOffset58,1988
+class OpenFile:dontcopythis {OpenFile64,2051
+    FileHeader *hdr;			// Header for this file hdr91,3032
+    int seekPosition;			// Current position within the fileseekPosition92,3080
+
+OS/nachos/code/filesys/fstest.cc,366
+#define TransferSize TransferSize24,680
+Copy(char *from, char *to)Copy32,976
+Print(char *name)Print78,2193
+#define FileName FileName111,3168
+#define Contents Contents112,3197
+#define ContentSize ContentSize113,3228
+#define FileSize FileSize114,3266
+FileWrite()FileWrite117,3326
+FileRead()FileRead145,4033
+PerformanceTest()PerformanceTest173,4750
+
+OS/nachos/code/filesys/filesys.cc,577
+#define FreeMapSector FreeMapSector57,2386
+#define DirectorySector DirectorySector58,2412
+#define BitsInByte	BitsInByte63,2634
+#define FreeMapFileSize FreeMapFileSize64,2656
+#define NumDirEntries NumDirEntries65,2707
+#define DirectoryFileSize DirectoryFileSize66,2734
+FileSystem::FileSystem(bool format)FileSystem81,3369
+FileSystem::Create(const char *name, int initialSize)Create176,6880
+FileSystem::Open(const char *name)Open229,8515
+FileSystem::Remove(const char *name)Remove259,9497
+FileSystem::List()List297,10560
+FileSystem::Print()Print317,11120
+
+OS/nachos/code/filesys/filehdr.h,387
+#define FILEHDR_HFILEHDR_H15,481
+#define NumDirect NumDirect20,539
+#define MaxFileSize MaxFileSize21,605
+class FileHeader {FileHeader38,1376
+    int numBytes;			// Number of bytes in the filenumBytes60,2095
+    int numSectors;			// Number of data sectors in the filenumSectors61,2146
+    int dataSectors[NumDirect];		// Disk sector numbers for each data dataSectors62,2206
+
+OS/nachos/code/filesys/openfile.cc,436
+OpenFile::OpenFile(int sector)OpenFile29,1013
+OpenFile::~OpenFile()~OpenFile41,1366
+OpenFile::Seek(int position)Seek55,1770
+OpenFile::Read(void *into, int numBytes)Read74,2446
+OpenFile::Write(const void *into, int numBytes)Write82,2595
+OpenFile::ReadAt(void *into, int numBytes, int position)ReadAt116,4006
+OpenFile::WriteAt(const void *from, int numBytes, int position)WriteAt146,5030
+OpenFile::Length() Length193,6756
+
+OS/nachos/code/filesys/Makefile,250
+DEFINES =-DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYSDEFINES11,446
+INCPATH = -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machineINCPATH12,512
+C_OFILES = $(THREAD_O) $(USERPROG_O) $(VM_O) $(FILESYS_O)C_OFILES13,592
+
+OS/nachos/code/filesys/directory.cc,486
+Directory::Directory(int size)Directory38,1569
+Directory::~Directory()~Directory51,1944
+Directory::FetchFrom(OpenFile *file)FetchFrom64,2277
+Directory::WriteBack(OpenFile *file)WriteBack77,2683
+Directory::FindIndex(const char *name)FindIndex91,3158
+Directory::Find(const char *name)Find109,3744
+Directory::Add(const char *name, int newSector)Add130,4378
+Directory::Remove(const char *name)Remove154,5117
+Directory::List()List170,5512
+Directory::Print()Print184,5927
+
+OS/nachos/code/filesys/synchdisk.cc,348
+DiskRequestDone (void *arg)DiskRequestDone27,1067
+SynchDisk::SynchDisk(const char* name)SynchDisk43,1538
+SynchDisk::~SynchDisk()~SynchDisk56,1972
+SynchDisk::ReadSector(int sectorNumber, void* data)ReadSector73,2446
+SynchDisk::WriteSector(int sectorNumber, const void* data)WriteSector91,3050
+SynchDisk::RequestDone()RequestDone106,3546
+
+OS/nachos/code/filesys/synchdisk.h,288
+#define SYNCHDISK_HSYNCHDISK_H12,351
+class SynchDisk:dontcopythis {SynchDisk27,980
+    Disk *disk;		  		// Raw disk devicedisk46,1682
+    Semaphore *semaphore; 		// To synchronize requesting thread semaphore47,1722
+    Lock *lock;		  		// Only one read/write requestlock49,1822
+
+OS/nachos/code/filesys/directory.h,531
+#define DIRECTORY_HDIRECTORY_H18,637
+#define FileNameMaxLen FileNameMaxLen22,681
+class DirectoryEntry {DirectoryEntry32,1073
+    bool inUse;				// Is this directory entry in use?inUse34,1106
+    int sector;				// Location on disk to find the sector35,1160
+    char name[FileNameMaxLen + 1];	// Text name for file, with +1 for name37,1248
+class Directory:dontcopythis {Directory51,1777
+    int tableSize;			// Number of directory entriestableSize75,2629
+    DirectoryEntry *table;		// Table of pairs: table76,2681
+
+OS/nachos/code/filesys/filesys.h,556
+#define FS_HFS_H36,1736
+class FileSystem:dontcopythis {FileSystem44,1949
+    FileSystem(bool format) { (void) format; }FileSystem46,1991
+    bool Create(const char *name, int initialSize) { Create48,2039
+    OpenFile* Open(const char *name) {Open57,2242
+    bool Remove(const char *name) { return Unlink(name) == 0; }Remove64,2428
+class FileSystem:dontcopythis {FileSystem69,2514
+   OpenFile* freeMapFile;		// Bit map of free disk blocks,freeMapFile90,3187
+   OpenFile* directoryFile;		// "Root" directory -- list of directoryFile92,3276
+
+OS/nachos/code/vm/Makefile,244
+DEFINES = -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLBDEFINES15,592
+INCPATH = -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machineINCPATH16,665
+C_OFILES = $(THREAD_O) $(USERPROG_O) $(VM_O)C_OFILES17,745
+
+OS/nachos/code/test/matmult.c,122
+#define Dim Dim12,274
+int A[Dim][Dim];A16,367
+int B[Dim][Dim];B17,384
+int C[Dim][Dim];C18,401
+main ()main21,423
+
+OS/nachos/code/test/halt.c,20
+main ()main16,496
+
+OS/nachos/code/test/shell.c,18
+main ()main4,26
+
+OS/nachos/code/test/sort.c,127
+#define N N12,291
+int A[N];			/* size of physical memory; with code, we'll run out of space! */A13,306
+main ()main16,389
+
+OS/nachos/code/test/putchar.c,217
+int counter = 0;counter21,474
+void print(char c, int n)print23,492
+void printString(char* c, int x)printString33,604
+char getchar()getchar41,717
+char getstring(char *x)getstring47,764
+int main()main53,823
+
+OS/nachos/code/test/Makefile,928
+NACHOS_ROOT = ../../NACHOS_ROOT13,546
+NACHOS_SYS := $(shell $(NACHOS_ROOT)/bin/nachos_sys)NACHOS_SYS14,567
+NACHOS_ARCH := $(shell $(NACHOS_ROOT)/bin/nachos_arch)NACHOS_ARCH15,620
+GCCDIR	= /opt/xgcc/decstation-ultrix/binGCCDIR20,753
+GCCDIR	= /opt/xgcc/decstation-ultrix/binGCCDIR24,849
+GCCDIR	= /opt/xgcc/decstation-ultrix/binGCCDIR31,1011
+GCCDIR = /Volumes/NachOS/decstation-ultrix/binGCCDIR36,1102
+LDFLAGS = -T script -NLDFLAGS39,1156
+ASFLAGS = ASFLAGS40,1179
+CPPFLAGS = $(INCDIR) -DCHANGEDCPPFLAGS41,1190
+CC	:=	$(GCCDIR)/gccCC51,1327
+AS	:=	$(GCCDIR)/asAS52,1347
+LD	:=	$(GCCDIR)/ldLD53,1366
+OBJDUMP	:=	$(GCCDIR)/objdumpOBJDUMP54,1385
+CPP	:=	$(GCCDIR)/gcc -E -PCPP56,1415
+INCDIR	:=	-I../userprog -I../threadsINCDIR57,1442
+CFLAGS 	:=	-DIN_USER_MODE -c $(INCDIR) -G 0 -Wall -O2 -DCHANGEDCFLAGS58,1479
+SOURCES	:=	$(wildcard *.c)SOURCES60,1544
+PROGS	:=	$(patsubst %.c,%,$(SOURCES))PROGS61,1571
+
+OS/nachos/code/test/start.S,453
+__start:__start34,926
+Halt:Halt63,1840
+Exit:Exit71,1919
+Exec:Exec79,1998
+Join:Join87,2077
+Create:Create95,2160
+Open:Open103,2245
+Read:Read111,2324
+Write:Write119,2405
+Close:Close127,2489
+Fork:Fork135,2571
+Yield:Yield143,2652
+PutChar:PutChar152,2741
+PutString:PutString160,2839
+GetChar:GetChar168,2939
+GetString:GetString176,3037
+ThreadCreate:ThreadCreate184,3147
+ThreadExit:ThreadExit192,3262
+__main:__main200,3419
+
+OS/nachos/code/machine/network.cc,428
+static void NetworkReadPoll(void *arg)NetworkReadPoll17,557
+static void NetworkSendDone(void *arg)NetworkSendDone19,653
+Network::Network(NetworkAddress addr, double reliability,Network26,974
+Network::~Network()~Network50,1775
+Network::CheckPktAvail()CheckPktAvail60,2034
+Network::SendDone()SendDone90,2982
+Network::Send(PacketHeader hdr, const void* data)Send103,3356
+Network::Receive(void* data)Receive130,4201
+
+OS/nachos/code/machine/console.h,736
+#define CONSOLE_HCONSOLE_H24,1027
+class Console:dontcopythis {Console41,1620
+    int readFileNo;			// UNIX file emulating the keyboard readFileNo66,2547
+    int writeFileNo;			// UNIX file emulating the displaywriteFileNo67,2606
+    VoidFunctionPtr writeHandler; 	// Interrupt handler to call when writeHandler68,2664
+    VoidFunctionPtr readHandler; 	// Interrupt handler to call when readHandler70,2768
+    void *handlerArg;			// argument to be passed to the handlerArg72,2883
+    bool putBusy;    			// Is a PutChar operation in progress?putBusy74,2967
+    int incoming;    			// Contains the character to be read,incoming76,3071
+    static int stdin_busy;		// Whether stdin is already read fromstdin_busy79,3201
+
+OS/nachos/code/machine/translate.h,639
+#define TLB_HTLB_H19,704
+class TranslationEntry {TranslationEntry30,1085
+    unsigned int virtualPage;  	// The page number in virtual memory, only whenvirtualPage32,1120
+    unsigned int physicalPage; 	// The page number in real memory (relative to thephysicalPage34,1218
+    bool valid;         // If this bit is cleared, the translation is ignored.valid36,1330
+    bool readOnly;	// If this bit is set, the user program is not allowedreadOnly38,1468
+    bool use;           // This bit is set by the hardware every time theuse40,1584
+    bool dirty;         // This bit is set by the hardware every time thedirty42,1696
+
+OS/nachos/code/machine/valgrind.h,168
+#define VALGRIND_HVALGRIND_H9,271
+#define VALGRIND_STACK_REGISTER(VALGRIND_STACK_REGISTER16,383
+#define VALGRIND_STACK_DEREGISTER(VALGRIND_STACK_DEREGISTER20,471
+
+OS/nachos/code/machine/machine.h,2357
+#define MACHINE_HMACHINE_H22,877
+#define PageSize PageSize31,1045
+#define NumPhysPages NumPhysPages35,1149
+#define MemorySize MemorySize36,1208
+#define TLBSize	TLBSize37,1254
+enum ExceptionType {ExceptionType39,1311
+    NoException,           // Everything ok!NoException40,1332
+    SyscallException,      // A program executed a system call.SyscallException41,1377
+    PageFaultException,    // No valid translation foundPageFaultException42,1441
+    ReadOnlyException,     // Write attempted to page marked ReadOnlyException43,1498
+    BusErrorException,     // Translation resulted in an BusErrorException45,1579
+    AddressErrorException, // Unaligned reference or one thatAddressErrorException47,1669
+    OverflowException,     // Integer overflow in add or sub.OverflowException50,1785
+    IllegalInstrException, // Unimplemented or reserved instr.IllegalInstrException51,1847
+    NumExceptionTypesNumExceptionTypes52,1910
+#define StackReg	StackReg60,2174
+#define RetAddrReg	RetAddrReg61,2218
+#define NumGPRegs	NumGPRegs62,2284
+#define HiReg	HiReg63,2345
+#define LoReg	LoReg64,2406
+#define PCReg	PCReg65,2424
+#define NextPCReg	NextPCReg66,2469
+#define PrevPCReg	PrevPCReg67,2534
+#define LoadReg	LoadReg68,2599
+#define LoadValueReg LoadValueReg69,2661
+#define BadVAddrReg	BadVAddrReg70,2731
+#define NumTotalRegs NumTotalRegs72,2802
+class Instruction {Instruction81,3035
+        unsigned int value; // binary representation of the instructionvalue85,3146
+        unsigned char opCode;opCode89,3345
+        unsigned char rs, rt, rd;rs91,3420
+        unsigned char rs, rt, rd;rt91,3420
+        unsigned char rs, rt, rd;rd91,3420
+        unsigned int extra;extra94,3552
+class Machine:dontcopythis {Machine110,4215
+        char *mainMemory;		// physical memory to store user program,mainMemory159,6127
+        int registers[NumTotalRegs]; // CPU registers, for executing user programsregisters161,6238
+        TranslationEntry *tlb;		// this pointer should be considered tlb182,7438
+        TranslationEntry *pageTable;pageTable185,7554
+        unsigned int pageTableSize;pageTableSize186,7591
+        bool singleStep;		// drop back into the debugger after eachsingleStep189,7641
+        int runUntilTime;		// drop back into the debugger when simulatedrunUntilTime191,7742
+
+OS/nachos/code/machine/mipssim.h,3029
+#define MIPSSIM_HMIPSSIM_H11,364
+#define OP_ADD	OP_ADD25,728
+#define OP_ADDI	OP_ADDI26,746
+#define OP_ADDIU	OP_ADDIU27,765
+#define OP_ADDU	OP_ADDU28,784
+#define OP_AND	OP_AND29,803
+#define OP_ANDI	OP_ANDI30,821
+#define OP_BEQ	OP_BEQ31,840
+#define OP_BGEZ	OP_BGEZ32,858
+#define OP_BGEZAL	OP_BGEZAL33,877
+#define OP_BGTZ	OP_BGTZ34,897
+#define OP_BLEZ	OP_BLEZ35,917
+#define OP_BLTZ	OP_BLTZ36,937
+#define OP_BLTZAL	OP_BLTZAL37,957
+#define OP_BNE	OP_BNE38,978
+#define OP_DIV	OP_DIV40,998
+#define OP_DIVU	OP_DIVU41,1017
+#define OP_J	OP_J42,1037
+#define OP_JAL	OP_JAL43,1054
+#define OP_JALR	OP_JALR44,1073
+#define OP_JR	OP_JR45,1093
+#define OP_LB	OP_LB46,1111
+#define OP_LBU	OP_LBU47,1129
+#define OP_LH	OP_LH48,1148
+#define OP_LHU	OP_LHU49,1166
+#define OP_LUI	OP_LUI50,1185
+#define OP_LW	OP_LW51,1204
+#define OP_LWL	OP_LWL52,1222
+#define OP_LWR	OP_LWR53,1241
+#define OP_MFHI	OP_MFHI55,1261
+#define OP_MFLO	OP_MFLO56,1281
+#define OP_MTHI	OP_MTHI58,1302
+#define OP_MTLO	OP_MTLO59,1322
+#define OP_MULT	OP_MULT60,1342
+#define OP_MULTU	OP_MULTU61,1362
+#define OP_NOR	OP_NOR62,1382
+#define OP_OR	OP_OR63,1401
+#define OP_ORI	OP_ORI64,1419
+#define OP_RFE	OP_RFE65,1438
+#define OP_SB	OP_SB66,1457
+#define OP_SH	OP_SH67,1475
+#define OP_SLL	OP_SLL68,1493
+#define OP_SLLV	OP_SLLV69,1512
+#define OP_SLT	OP_SLT70,1532
+#define OP_SLTI	OP_SLTI71,1551
+#define OP_SLTIU	OP_SLTIU72,1571
+#define OP_SLTU	OP_SLTU73,1591
+#define OP_SRA	OP_SRA74,1611
+#define OP_SRAV	OP_SRAV75,1630
+#define OP_SRL	OP_SRL76,1650
+#define OP_SRLV	OP_SRLV77,1669
+#define OP_SUB	OP_SUB78,1689
+#define OP_SUBU	OP_SUBU79,1708
+#define OP_SW	OP_SW80,1728
+#define OP_SWL	OP_SWL81,1746
+#define OP_SWR	OP_SWR82,1765
+#define OP_XOR	OP_XOR83,1784
+#define OP_XORI	OP_XORI84,1803
+#define OP_SYSCALL	OP_SYSCALL85,1823
+#define OP_UNIMP	OP_UNIMP86,1845
+#define OP_RES	OP_RES87,1865
+#define MaxOpcode	MaxOpcode88,1884
+#define IndexToAddr(IndexToAddr94,1944
+#define SIGN_BIT	SIGN_BIT96,1979
+#define R31	R3197,2007
+#define SPECIAL SPECIAL105,2223
+#define BCOND	BCOND106,2243
+#define IFMT IFMT108,2262
+#define JFMT JFMT109,2277
+#define RFMT RFMT110,2292
+struct OpInfo {OpInfo112,2308
+    int opCode;		/* Translated op code. */opCode113,2324
+    int format;		/* Format type (IFMT or JFMT or RFMT) */format114,2367
+static OpInfo opTable[] = {opTable117,2429
+static int specialTable[] = {specialTable141,3703
+enum RegType { NONE, RS, RT, RD, EXTRA }; RegType155,4360
+enum RegType { NONE, RS, RT, RD, EXTRA }; NONE155,4360
+enum RegType { NONE, RS, RT, RD, EXTRA }; RS155,4360
+enum RegType { NONE, RS, RT, RD, EXTRA }; RT155,4360
+enum RegType { NONE, RS, RT, RD, EXTRA }; RD155,4360
+enum RegType { NONE, RS, RT, RD, EXTRA }; EXTRA155,4360
+struct OpString {OpString157,4404
+    const char *string;	// Printed version of instructionstring158,4422
+    RegType args[3];args159,4480
+static struct OpString opStrings[] = {opStrings162,4505
+
+OS/nachos/code/machine/sysdep.h,33
+#define SYSDEP_HSYSDEP_H12,482
+
+OS/nachos/code/machine/mipssim.cc,342
+Machine::Run()Run31,1071
+TypeToReg(RegType reg, Instruction *instr)TypeToReg66,2196
+Machine::OneInstruction(Instruction *instr)OneInstruction106,3736
+Machine::DelayedLoad(int nextReg, int nextValue)DelayedLoad619,20752
+Instruction::Decode()Decode633,21214
+Mult(int a, int b, bool signedArith, int* hiPtr, int* loPtr)Mult679,22469
+
+OS/nachos/code/machine/console.cc,485
+static void ConsoleReadPoll(void *c) ConsoleReadPoll22,811
+static void ConsoleWriteDone(void *c)ConsoleWriteDone24,913
+int Console::stdin_busy;stdin_busy40,1635
+Console::Console(const char *readFile, const char *writeFile, VoidFunctionPtr readAvailHandler, Console42,1661
+Console::~Console()~Console74,2656
+Console::CheckCharAvail()CheckCharAvail104,3532
+Console::WriteDone()WriteDone174,5258
+Console::GetChar()GetChar188,5672
+Console::PutChar(int ch)PutChar203,6036
+
+OS/nachos/code/machine/stats.h,1311
+#define STATS_HSTATS_H12,385
+class Statistics {Statistics22,668
+  long long totalTicks;      	// Total time running NachostotalTicks32,1106
+  long long idleTicks;       	// Time spent idle (no threads to run)idleTicks33,1165
+  long long systemTicks;	// Time spent executing system codesystemTicks34,1234
+  long long userTicks;       	// Time spent executing user codeuserTicks35,1295
+    int numDiskReads;		// number of disk read requestsnumDiskReads41,1454
+    int numDiskWrites;		// number of disk write requestsnumDiskWrites42,1509
+    int numConsoleCharsRead;	// number of characters read from the keyboardnumConsoleCharsRead43,1566
+    int numConsoleCharsWritten; // number of characters written to the displaynumConsoleCharsWritten44,1642
+    int numPageFaults;		// number of virtual memory page faultsnumPageFaults45,1721
+    int numPacketsSent;		// number of packets sent over the networknumPacketsSent46,1785
+    int numPacketsRecvd;	// number of packets received over the networknumPacketsRecvd47,1853
+#define UserTick UserTick62,2383
+#define SystemTick SystemTick63,2447
+#define RotationTime RotationTime64,2515
+#define SeekTime SeekTime65,2582
+#define ConsoleTime ConsoleTime66,2650
+#define NetworkTime NetworkTime67,2714
+#define TimerTicks TimerTicks68,2780
+
+OS/nachos/code/machine/interrupt.h,2063
+#define INTERRUPT_HINTERRUPT_H36,1464
+enum IntStatus { IntOff, IntOn };IntStatus42,1585
+enum IntStatus { IntOff, IntOn };IntOff42,1585
+enum IntStatus { IntOff, IntOn };IntOn42,1585
+enum MachineStatus {IdleMode, SystemMode, UserMode};MachineStatus47,1780
+enum MachineStatus {IdleMode, SystemMode, UserMode};IdleMode47,1780
+enum MachineStatus {IdleMode, SystemMode, UserMode};SystemMode47,1780
+enum MachineStatus {IdleMode, SystemMode, UserMode};UserMode47,1780
+enum IntType { TimerInt, DiskInt, ConsoleWriteInt, ConsoleReadInt, IntType52,2007
+enum IntType { TimerInt, DiskInt, ConsoleWriteInt, ConsoleReadInt, TimerInt52,2007
+enum IntType { TimerInt, DiskInt, ConsoleWriteInt, ConsoleReadInt, DiskInt52,2007
+enum IntType { TimerInt, DiskInt, ConsoleWriteInt, ConsoleReadInt, ConsoleWriteInt52,2007
+enum IntType { TimerInt, DiskInt, ConsoleWriteInt, ConsoleReadInt, ConsoleReadInt52,2007
+				NetworkSendInt, NetworkRecvInt};NetworkSendInt53,2075
+				NetworkSendInt, NetworkRecvInt};NetworkRecvInt53,2075
+class PendingInterrupt {PendingInterrupt59,2286
+    VoidFunctionPtr handler;    // The function (in the hardware devicehandler66,2484
+    void *arg;                  // The argument to the function.arg68,2607
+    long long when;		// When the interrupt is supposed to firewhen69,2672
+    IntType type;		// for debuggingtype70,2735
+class Interrupt:dontcopythis {Interrupt78,3005
+    IntStatus getLevel() {return level;}// Return whether interruptsgetLevel87,3314
+    MachineStatus getStatus() { return status; } // idle, kernel, usergetStatus99,3693
+    void setStatus(MachineStatus st) { status = st; }setStatus100,3764
+    IntStatus level;		// are interrupts enabled or disabled?level117,4381
+    List *pending;		// the list of interrupts scheduledpending118,4442
+    bool inHandler;		// TRUE if we are running an interrupt handlerinHandler120,4528
+    bool yieldOnReturn; 	// TRUE if we are to context switchyieldOnReturn121,4596
+    MachineStatus status;	// idle, kernel mode, user modestatus123,4701
+
+OS/nachos/code/machine/timer.h,319
+#define TIMER_HTIMER_H21,816
+class Timer {Timer27,928
+    ~Timer() {}~Timer32,1122
+    bool randomize;		// set if we need to use a random timeout delayrandomize43,1420
+    VoidFunctionPtr handler;	// timer interrupt handler handler44,1489
+    void *arg;			// argument to pass to interrupt handlerarg45,1546
+
+OS/nachos/code/machine/disk.h,687
+#define DISK_HDISK_H18,725
+#define SectorSize SectorSize49,2203
+#define SectorsPerTrack SectorsPerTrack50,2263
+#define NumTracks NumTracks51,2328
+#define NumSectors NumSectors52,2380
+class Disk:dontcopythis {Disk55,2468
+    int fileno;				// UNIX file number for simulated disk fileno79,3314
+    VoidFunctionPtr handler;		// Interrupt handler, to be invoked handler80,3373
+    void *handlerArg;			// Argument to interrupt handler handlerArg82,3479
+    bool active;     			// Is a disk operation in progress?active83,3537
+    int lastSector;			// The previous disk request lastSector84,3597
+    int bufferInit;			// When the track buffer started bufferInit85,3649
+
+OS/nachos/code/machine/sysdep.cc,1515
+PollFile(int fd)PollFile115,3891
+OpenForWrite(const char *name)OpenForWrite156,5100
+OpenForReadWrite(const char *name, bool crashOnError)OpenForReadWrite173,5527
+Read(int fd, void *buffer, int nBytes)Read187,5897
+ReadPartial(int fd, void *buffer, int nBytes)ReadPartial200,6258
+WriteFile(int fd, const void *buffer, int nBytes)WriteFile212,6573
+Lseek(int fd, int offset, int whence)Lseek224,6926
+Tell(int fd)Tell236,7251
+Close(int fd)Close252,7638
+Unlink(const char *name)Unlink264,7893
+OpenSocket()OpenSocket277,8306
+CloseSocket(int sockID)CloseSocket293,8633
+InitSocketName(struct sockaddr_un *uname, const char *name)InitSocketName304,8915
+AssignNameToSocket(const char *socketName, int sockID)AssignNameToSocket317,9319
+DeAssignNameToSocket(const char *socketName)DeAssignNameToSocket335,9937
+PollSocket(int sockID)PollSocket346,10263
+ReadFromSocket(int sockID, void *buffer, int packetSize)ReadFromSocket356,10596
+SendToSocket(int sockID, const void *buffer, int packetSize, const char *toName)SendToSocket388,11580
+CallOnUserAbort(VoidNoArgFunctionPtr func)CallOnUserAbort407,12137
+BlockUserAbort(void)BlockUserAbort418,12443
+UnBlockUserAbort(void)UnBlockUserAbort430,12699
+Delay(int seconds)Delay444,13072
+Abort()Abort455,13320
+Exit(int exitCode)Exit466,13539
+RandomInit(unsigned seed)RandomInit478,13880
+Random()Random489,14125
+AllocBoundedArray(int size)AllocBoundedArray507,14664
+DeallocBoundedArray(char *ptr, int size)DeallocBoundedArray526,15229
+
+OS/nachos/code/machine/network.h,1342
+#define NETWORK_HNETWORK_H16,608
+typedef int NetworkAddress;	 NetworkAddress23,779
+class PacketHeader {PacketHeader31,1106
+    NetworkAddress to;		// Destination machine IDto33,1137
+    NetworkAddress from;	// source machine IDfrom34,1187
+    unsigned length;	 	// bytes of packet data, excluding the length35,1233
+#define MaxWireSize MaxWireSize40,1389
+#define MaxPacketSize MaxPacketSize41,1459
+class Network {Network55,2134
+    NetworkAddress ident;	// This machine's network addressident84,3253
+    double chanceToWork;	// Likelihood packet will be droppedchanceToWork85,3313
+    int sock;			// UNIX socket number for incoming packetssock86,3375
+    char sockName[32];		// File name corresponding to UNIX socketsockName87,3434
+    VoidFunctionPtr writeHandler; // Interrupt handler, signalling next packet writeHandler88,3500
+    VoidFunctionPtr readHandler;  // Interrupt handler, signalling packet has readHandler90,3607
+    void *handlerArg;		// Argument to be passed to interrupt handlerhandlerArg92,3703
+    bool sendBusy;		// Packet is being sent.sendBusy94,3806
+    bool packetAvail;		// Packet has arrived, can be pulled off ofpacketAvail95,3851
+    PacketHeader inHdr;		// Information about arrived packetinHdr97,3935
+    char inbox[MaxPacketSize];  // Data for arrived packetinbox98,3996
+
+OS/nachos/code/machine/disk.cc,834
+#define MagicNumber MagicNumber23,908
+#define MagicSize MagicSize24,940
+#define DiskSize DiskSize26,972
+static void DiskDone(void *arg) { ((Disk *)arg)->HandleInterrupt(); }DiskDone29,1103
+Disk::Disk(const char* name, VoidFunctionPtr callWhenDone, void *callArg)Disk43,1734
+Disk::~Disk()~Disk76,2818
+PrintSector (bool writing, int sector, const void *data)PrintSector87,3101
+Disk::ReadRequest(int sectorNumber, void* data)ReadRequest116,4109
+Disk::WriteRequest(int sectorNumber, const void* data)WriteRequest136,4714
+Disk::HandleInterrupt ()HandleInterrupt162,5594
+Disk::TimeToSeek(int newSector, int *rotation) TimeToSeek180,6252
+Disk::ModuloDiff(int to, int from)ModuloDiff203,7050
+Disk::ComputeLatency(int newSector, bool writing)ComputeLatency233,8266
+Disk::UpdateLast(int newSector)UpdateLast262,9334
+
+OS/nachos/code/machine/machine.cc,686
+static const char* exceptionNames[] = { "no exception", "syscall", exceptionNames16,504
+void CheckEndian()CheckEndian28,998
+Machine::Machine(bool debug)Machine55,1662
+Machine::~Machine()~Machine84,2397
+Machine::RaiseException(ExceptionType which, int badVAddr)RaiseException102,2974
+void Machine::Debugger()Debugger124,3864
+Machine::DumpState()DumpState171,5037
+int Machine::ReadRegister(int num)ReadRegister209,6134
+void Machine::WriteRegister(int num, int value)WriteRegister215,6251
+int copyStringFromMachine(int from, char *to, unsigned size){copyStringFromMachine223,6443
+int copyStringToMachine(int to, char *from, unsigned size){copyStringToMachine237,6767
+
+OS/nachos/code/machine/stats.cc,77
+Statistics::Statistics()Statistics19,659
+Statistics::Print()Print34,1155
+
+OS/nachos/code/machine/timer.cc,246
+static void TimerHandler(void *arg)TimerHandler27,1033
+Timer::Timer(VoidFunctionPtr timerHandler, void *callArg, bool doRandom)Timer44,1775
+Timer::TimerExpired() TimerExpired62,2396
+Timer::TimeOfNextInterrupt() TimeOfNextInterrupt79,2955
+
+OS/nachos/code/machine/translate.cc,517
+WordToHost(unsigned int word) {WordToHost42,1626
+ShortToHost(unsigned short shortword) {ShortToHost56,1959
+WordToMachine(unsigned int word) { return WordToHost(word); }WordToMachine68,2228
+ShortToMachine(unsigned short shortword) { return ShortToHost(shortword); }ShortToMachine71,2306
+Machine::ReadMem(int addr, int size, int *value)ReadMem88,2908
+Machine::WriteMem(int addr, int size, int value)WriteMem138,4235
+Machine::Translate(int virtAddr, int* physAddr, int size, bool writing)Translate187,5800
+
+OS/nachos/code/machine/interrupt.cc,937
+static const char *intLevelNames[] = { "off", "on"};intLevelNames30,911
+static const char *intTypeNames[] = { "timer", "disk", "console write", intTypeNames31,964
+PendingInterrupt::PendingInterrupt(VoidFunctionPtr func, void *param, long long time, PendingInterrupt45,1618
+Interrupt::Interrupt()Interrupt61,2102
+Interrupt::~Interrupt()~Interrupt75,2495
+Interrupt::ChangeLevel(IntStatus old, IntStatus now)ChangeLevel101,3385
+Interrupt::SetLevel(IntStatus now)SetLevel123,4054
+Interrupt::Enable()Enable144,4727
+Interrupt::OneTick()OneTick159,5165
+Interrupt::YieldOnReturn()YieldOnReturn201,6618
+Interrupt::Idle()Idle219,7220
+Interrupt::Halt()Halt249,8439
+Interrupt::Schedule(VoidFunctionPtr handler, void *arg, long long fromNow, IntType type)Schedule273,9275
+Interrupt::CheckIfDue(bool advanceClock)CheckIfDue299,10267
+PrintPending(void *arg)PrintPending357,12151
+Interrupt::DumpState()DumpState372,12630
+
+OS/nachos/code/threads/system.cc,793
+Thread *currentThread;		// the thread we are running nowcurrentThread18,512
+Thread *threadToBeDestroyed;	// the thread that just finishedthreadToBeDestroyed19,569
+Scheduler *scheduler;		// the ready listscheduler20,631
+Interrupt *interrupt;		// interrupt statusinterrupt21,672
+Statistics *stats;		// performance metricsstats22,715
+Timer *timer;			// the hardware timer device,timer23,758
+FileSystem *fileSystem;fileSystem27,860
+SynchDisk *synchDisk;synchDisk31,907
+Machine *machine;		// user program memory and registersmachine35,1001
+PostOffice *postOffice;postOffice39,1080
+SynchConsole *synchconsole;synchconsole44,1147
+TimerInterruptHandler (void *dummy)TimerInterruptHandler70,2203
+Initialize (int argc, char **argv)Initialize88,2944
+Cleanup ()Cleanup201,6035
+
+OS/nachos/code/threads/main.cc,91
+#define MAINMAIN15,611
+#undef MAINMAIN17,647
+main (int argc, char **argv)main48,1575
+
+OS/nachos/code/threads/list.h,450
+#define LIST_HLIST_H14,537
+class ListElement:dontcopythisListElement27,959
+    ListElement *next;		// next element on list, next32,1084
+    long long key;			// priority, for a sorted listkey34,1166
+    void *item;			// pointer to item on the listitem35,1218
+class List:dontcopythisList44,1526
+      ListElement * first;	// Head of the list, NULL if list is emptyfirst64,2214
+    ListElement *last;		// Last element of listlast65,2284
+
+OS/nachos/code/threads/copyright.h,49
+static const char *copyright =copyright23,1097
+
+OS/nachos/code/threads/synchlist.h,306
+#define SYNCHLIST_HSYNCHLIST_H12,402
+class SynchList:dontcopythisSynchList24,761
+      List * list;		// the unsynchronized listlist38,1239
+    Lock *lock;			// enforce mutual exclusive access to the listlock39,1286
+    Condition *listEmpty;	// wait in Remove if the list is emptylistEmpty40,1351
+
+OS/nachos/code/threads/utility.h,421
+#define UTILITY_HUTILITY_H24,956
+#define min(min35,1149
+#define max(max36,1193
+#define divRoundDown(divRoundDown39,1277
+#define divRoundUp(divRoundUp40,1316
+typedef void (*VoidFunctionPtr) (void *arg);VoidFunctionPtr51,1726
+typedef void (*VoidNoArgFunctionPtr) ();VoidNoArgFunctionPtr52,1771
+#define ASSERT(ASSERT76,2643
+class dontcopythis {dontcopythis88,3321
+		dontcopythis() {};dontcopythis93,3449
+
+OS/nachos/code/threads/switch.h,4504
+#define SWITCH_HSWITCH_H18,561
+#define SP SP28,780
+#define S0 S029,793
+#define S1 S130,806
+#define S2 S231,819
+#define S3 S332,833
+#define S4 S433,847
+#define S5 S534,861
+#define S6 S635,875
+#define S7 S736,889
+#define FP FP37,903
+#define PC PC38,917
+#define InitialPC	InitialPC50,1412
+#define InitialArg	InitialArg51,1433
+#define WhenDonePC	WhenDonePC52,1455
+#define StartupPC	StartupPC53,1477
+#define PCState	PCState55,1499
+#define FPState	FPState56,1525
+#define InitialPCState	InitialPCState57,1551
+#define InitialArgState	InitialArgState58,1583
+#define WhenDonePCState	WhenDonePCState59,1616
+#define StartupPCState	StartupPCState60,1649
+#define I0 I067,1802
+#define I1 I168,1815
+#define I2 I269,1828
+#define I3 I370,1842
+#define I4 I471,1856
+#define I5 I572,1870
+#define I6 I673,1884
+#define I7 I774,1898
+#define FP FP77,1952
+#define PC PC78,1966
+#define InitialPC InitialPC81,2033
+#define InitialArg InitialArg82,2061
+#define WhenDonePC WhenDonePC83,2089
+#define StartupPC StartupPC84,2117
+#define PCState PCState86,2146
+#define InitialPCState InitialPCState87,2179
+#define InitialArgState InitialArgState88,2212
+#define WhenDonePCState WhenDonePCState89,2245
+#define StartupPCState StartupPCState90,2278
+#define   SP SP96,2432
+#define   S0 S097,2449
+#define   S1 S198,2466
+#define   S2 S299,2483
+#define   S3 S3100,2501
+#define   S4 S4101,2519
+#define   S5 S5102,2537
+#define   S6 S6103,2555
+#define   S7 S7104,2573
+#define   S8 S8105,2591
+#define   S9 S9106,2609
+#define   S10 S10107,2627
+#define   S11 S11108,2645
+#define   S12 S12109,2663
+#define   S13 S13110,2681
+#define   S14 S14111,2699
+#define   S15 S15112,2717
+#define   PC PC113,2735
+#define InitialPC InitialPC116,2806
+#define InitialArg InitialArg117,2843
+#define WhenDonePC WhenDonePC118,2871
+#define StartupPC StartupPC119,2899
+#define PCState PCState121,2928
+#define InitialPCState InitialPCState122,2961
+#define InitialArgState InitialArgState123,2994
+#define WhenDonePCState WhenDonePCState124,3027
+#define StartupPCState StartupPCState125,3060
+#define   R0 R0130,3132
+#define   R1 R1131,3149
+#define   R2 R2132,3218
+#define   R3 R3133,3235
+#define   R4 R4134,3253
+#define   R5 R5135,3271
+#define   R6 R6136,3289
+#define   R7 R7137,3307
+#define   R8 R8138,3325
+#define   R9 R9139,3343
+#define   R10 R10140,3361
+#define   R11 R11141,3379
+#define   R12 R12142,3397
+#define   R13 R13143,3415
+#define   R14 R14144,3433
+#define   R15 R15145,3451
+#define   R16 R16146,3469
+#define   R17 R17147,3487
+#define   R18 R18148,3505
+#define InitialPC InitialPC151,3576
+#define InitialArg InitialArg152,3604
+#define WhenDonePC WhenDonePC153,3632
+#define StartupPC StartupPC154,3660
+#define PCState PCState157,3736
+#define InitialPCState InitialPCState158,3762
+#define InitialArgState InitialArgState159,3788
+#define WhenDonePCState WhenDonePCState160,3814
+#define StartupPCState StartupPCState161,3840
+#define _ESP _ESP168,3980
+#define _EAX _EAX169,3999
+#define _EBX _EBX170,4018
+#define _ECX _ECX171,4037
+#define _EDX _EDX172,4057
+#define _EBP _EBP173,4077
+#define _ESI _ESI174,4097
+#define _EDI _EDI175,4117
+#define _PC _PC176,4137
+#define PCState PCState179,4219
+#define FPState FPState180,4253
+#define InitialPCState InitialPCState181,4288
+#define InitialArgState InitialArgState182,4323
+#define WhenDonePCState WhenDonePCState183,4358
+#define StartupPCState StartupPCState184,4393
+#define InitialPC InitialPC186,4429
+#define InitialArg InitialArg187,4458
+#define WhenDonePC WhenDonePC188,4487
+#define StartupPC StartupPC189,4516
+#define _RSP _RSP195,4648
+#define _RAX _RAX196,4667
+#define _RBX _RBX197,4686
+#define _RCX _RCX198,4706
+#define _RDX _RDX199,4726
+#define _RBP _RBP200,4746
+#define _RSI _RSI201,4766
+#define _RDI _RDI202,4786
+#define _R12 _R12203,4806
+#define _R13 _R13204,4826
+#define _R14 _R14205,4846
+#define _R15 _R15206,4866
+#define _PC _PC207,4886
+#define PCState PCState210,4968
+#define FPState FPState211,5002
+#define InitialPCState InitialPCState212,5037
+#define InitialArgState InitialArgState213,5072
+#define WhenDonePCState WhenDonePCState214,5107
+#define StartupPCState StartupPCState215,5142
+#define InitialPC InitialPC217,5178
+#define InitialArg InitialArg218,5207
+#define WhenDonePC WhenDonePC219,5236
+#define StartupPC StartupPC220,5265
+
+OS/nachos/code/threads/system.h,32
+#define SYSTEM_HSYSTEM_H9,301
+
+OS/nachos/code/threads/synchlist.cc,223
+SynchList::SynchList ()SynchList25,930
+SynchList::~SynchList ()~SynchList37,1316
+SynchList::Append (void *item)Append54,1788
+SynchList::Remove ()Remove71,2307
+SynchList::Mapcar (VoidFunctionPtr func)Mapcar93,2897
+
+OS/nachos/code/threads/utility.cc,262
+static const char *enableFlags = NULL;	// controls which DEBUG messages are printed enableFlags20,716
+DebugInit (const char *flagList)DebugInit34,1234
+DebugIsEnabled (char flag)DebugIsEnabled45,1539
+DEBUG (char flag, const char *format, ...)DEBUG61,1984
+
+OS/nachos/code/threads/synch.h,683
+#define SYNCH_HSYNCH_H18,726
+class Semaphore:dontcopythisSemaphore39,1514
+    const char *getName ()getName44,1679
+    const char *name;		// useful for debuggingname53,1876
+    int value;			// semaphore value, always >= 0value54,1923
+    List *queue;		// threads waiting in P() for the value to be > 0queue55,1972
+class Lock:dontcopythisLock70,2561
+    const char *getName ()getName75,2697
+    const char *name;		// for debuggingname89,3073
+    Thread *threadHolding = NULL;threadHolding90,3113
+    Semaphore *locksem;locksem91,3147
+class Condition:dontcopythisCondition126,4797
+    const char *getName ()getName132,4978
+    const char *name;name146,5396
+
+OS/nachos/code/threads/threadtest.cc,78
+SimpleThread (void *arg)SimpleThread25,866
+ThreadTest ()ThreadTest44,1385
+
+OS/nachos/code/threads/thread.h,1223
+#define THREAD_HTHREAD_H38,1670
+#define MachineStateSize MachineStateSize51,1992
+#define StackSize	StackSize56,2114
+enum ThreadStatusThreadStatus60,2173
+{ JUST_CREATED, RUNNING, READY, BLOCKED };JUST_CREATED61,2191
+{ JUST_CREATED, RUNNING, READY, BLOCKED };RUNNING61,2191
+{ JUST_CREATED, RUNNING, READY, BLOCKED };READY61,2191
+{ JUST_CREATED, RUNNING, READY, BLOCKED };BLOCKED61,2191
+class Thread:dontcopythisThread77,2798
+    unsigned long *stackTop;		// the current stack pointerstackTop82,2959
+    unsigned long machineState[MachineStateSize];	// all registers except for stackTopmachineState83,3018
+    void setStatus (ThreadStatus st)setStatus104,3727
+    const char *getName ()getName108,3790
+    void Print ()Print112,3845
+    unsigned long *stack;	// Bottom of the stack stack121,3976
+    unsigned int valgrind_id;	// valgrind ID for the stackvalgrind_id124,4106
+    ThreadStatus status;	// ready, running or blockedstatus125,4165
+    const char *name;name126,4219
+    int userRegisters[NumTotalRegs];	// user-level CPU register stateuserRegisters137,4571
+    AddrSpace *space;		// User code this thread is running.space142,4780
+    int threadNumber  ;threadNumber143,4840
+
+OS/nachos/code/threads/list.cc,473
+ListElement::ListElement (void *itemPtr, long long sortKey)ListElement30,1136
+List::List ()List43,1561
+List::~List ()~List58,2146
+List::Append (void *item)Append77,2722
+List::Prepend (void *item)Prepend106,3496
+List::Remove ()Remove131,4088
+List::Mapcar (VoidFunctionPtr func)Mapcar147,4601
+List::IsEmpty ()IsEmpty162,5047
+List::SortedInsert (void *item, long long sortKey)SortedInsert186,5820
+List::SortedRemove (long long *keyPtr)SortedRemove232,7105
+
+OS/nachos/code/threads/bool.h,85
+#define _bool_h _bool_h7,198
+#define TRUE TRUE11,239
+#define FALSE FALSE12,257
+
+OS/nachos/code/threads/Makefile,125
+DEFINES = -DTHREADSDEFINES10,364
+INCPATH = -I../threads -I../machineINCPATH11,384
+C_OFILES = $(THREAD_O)C_OFILES12,420
+
+OS/nachos/code/threads/switch.S,1090
+#define ThreadRoot _ThreadRootThreadRoot45,1492
+#define SWITCH _SWITCHSWITCH46,1523
+#define z       $0      /* zero register */z52,1602
+#define a0      $4      /* argument registers */a053,1646
+#define a1      $5a154,1695
+#define s0      $16     /* callee saved */s055,1714
+#define s1      $17s156,1757
+#define s2      $18s257,1777
+#define s3      $19s358,1797
+#define s4      $20s459,1817
+#define s5      $21s560,1837
+#define s6      $22s661,1857
+#define s7      $23s762,1877
+#define sp      $29     /* stack pointer */sp63,1897
+#define fp      $30     /* frame pointer */fp64,1941
+#define ra      $31     /* return address */ra65,1985
+ThreadRoot:ThreadRoot72,2105
+SWITCH:SWITCH89,2520
+#define MINFRAME 256MINFRAME129,3440
+#define STACK_ALIGN	32LSTACK_ALIGN130,3461
+ThreadRoot:	ThreadRoot144,3874
+SWITCH:	SWITCH171,4732
+ThreadRoot:ThreadRoot200,5166
+SWITCH:	SWITCH223,5453
+ThreadRootThreadRoot302,6810
+SWITCHSWITCH322,7216
+ThreadRoot:ThreadRoot391,8781
+SWITCH:SWITCH421,9498
+ThreadRoot:ThreadRoot471,11314
+SWITCH:SWITCH507,12161
+
+OS/nachos/code/threads/scheduler.cc,312
+Scheduler::Scheduler ()Scheduler30,1175
+Scheduler::Halt ()Halt42,1492
+Scheduler::~Scheduler ()~Scheduler52,1754
+Scheduler::ReadyToRun (Thread * thread)ReadyToRun66,2164
+Scheduler::FindNextToRun ()FindNextToRun83,2717
+Scheduler::Run (Thread * nextThread)Run105,3477
+Scheduler::Print ()Print164,5544
+
+OS/nachos/code/threads/scheduler.h,248
+#define SCHEDULER_HSCHEDULER_H10,372
+class Scheduler:dontcopythisScheduler20,664
+    List * readyList;		// queue of threads that are ready to run,readyList34,1176
+    bool halted;		// Whether we should prevent context switcheshalted36,1269
+
+OS/nachos/code/threads/synch.cc,606
+Semaphore::Semaphore (const char *debugName, int initialValue)Semaphore36,1574
+Semaphore::~Semaphore ()~Semaphore49,1995
+Semaphore::P ()P65,2508
+Semaphore::V ()V89,3324
+Lock::Lock (const char *debugName)Lock104,3819
+Lock::~Lock ()~Lock111,3949
+Lock::Acquire ()Acquire116,3997
+Lock::Release ()Release124,4176
+Condition::Condition (const char *debugName)Condition132,4338
+Condition::~Condition ()~Condition139,4444
+Condition::Wait (Lock * conditionLock)Wait143,4482
+Condition::Signal (Lock * conditionLock)Signal151,4596
+Condition::Broadcast (Lock * conditionLock)Broadcast158,4710
+
+OS/nachos/code/threads/thread.cc,706
+#define STACK_FENCEPOST STACK_FENCEPOST28,1012
+Thread::Thread (const char *threadName)Thread40,1471
+Thread::~Thread ()~Thread72,2421
+Thread::Start (VoidFunctionPtr func, void *arg)Start104,3583
+Thread::CheckOverflow ()CheckOverflow134,4800
+Thread::Finish ()Finish161,5785
+Thread::Yield ()Yield197,7092
+Thread::Sleep ()Sleep235,8563
+ThreadFinish ()ThreadFinish260,9414
+InterruptEnable ()InterruptEnable265,9476
+SetupThreadState ()SetupThreadState275,9730
+ThreadPrint (void *arg)ThreadPrint321,10962
+Thread::StackAllocate (VoidFunctionPtr func, void *arg)StackAllocate340,11570
+Thread::SaveUserState ()SaveUserState396,13656
+Thread::RestoreUserState ()RestoreUserState412,14248
+
+OS/nachos/code/userprog/syscall.h,877
+#define SYSCALLS_HSYSCALLS_H14,493
+#define USER_START_ADDRESS USER_START_ADDRESS18,537
+#define SC_Halt SC_Halt23,675
+#define SC_Exit SC_Exit24,700
+#define SC_Exec SC_Exec25,725
+#define SC_Join SC_Join26,750
+#define SC_Create SC_Create27,775
+#define SC_Open SC_Open28,800
+#define SC_Read SC_Read29,825
+#define SC_Write SC_Write30,850
+#define SC_Close SC_Close31,875
+#define SC_Fork SC_Fork32,900
+#define SC_PutChar SC_PutChar33,925
+#define SC_Yield SC_Yield34,951
+#define SC_PutString SC_PutString35,977
+#define SC_GetChar SC_GetChar36,1003
+#define SC_GetString SC_GetString37,1029
+#define SC_ThreadCreate SC_ThreadCreate38,1055
+#define SC_ThreadExit SC_ThreadExit39,1082
+typedef int SpaceId;SpaceId67,2069
+typedef int OpenFileId;OpenFileId90,2773
+#define ConsoleInput	ConsoleInput98,3042
+#define ConsoleOutput	ConsoleOutput99,3065
+
+OS/nachos/code/userprog/addrspace.h,404
+#define ADDRSPACE_HADDRSPACE_H14,529
+#define UserStacksAreaSize	UserStacksAreaSize21,638
+class AddrSpace:dontcopythisAddrSpace23,703
+    BitMap *threadBitMap;threadBitMap38,1254
+    int threadCounter;threadCounter39,1280
+      TranslationEntry * pageTable;	// Assume linear page table translationpageTable41,1314
+    unsigned int numPages;	// Number of pages in the virtual numPages43,1406
+
+OS/nachos/code/userprog/progtest.h,37
+#define PROGTEST_HPROGTEST_H12,428
+
+OS/nachos/code/userprog/synchconsole.cc,696
+static Semaphore *readAvail;readAvail6,103
+static Semaphore *writeDone;writeDone7,132
+Lock *lock;lock8,161
+static void ReadAvailHandler(void *arg) { (void) arg; readAvail->V();  }ReadAvailHandler10,174
+static void WriteDoneHandler(void *arg) { (void) arg; writeDone->V();  }WriteDoneHandler11,247
+SynchConsole::SynchConsole(const char *in, const char *out)SynchConsole12,320
+SynchConsole::~SynchConsole()~SynchConsole21,600
+void SynchConsole::SynchPutChar(int ch)SynchPutChar28,699
+int SynchConsole::SynchGetChar()SynchGetChar34,790
+void SynchConsole::SynchPutString(const char s[])SynchPutString39,878
+void SynchConsole::SynchGetString(char *s, int n)SynchGetString50,1120
+
+OS/nachos/code/userprog/synchconsole.h,137
+#define SYNCHCONSOLE_HSYNCHCONSOLE_H3,38
+class SynchConsole:dontcopythis {SynchConsole7,126
+        Console *console;console17,584
+
+OS/nachos/code/userprog/bitmap.cc,479
+#define BitsInByte BitsInByte13,480
+#define BitsInWord BitsInWord14,502
+BitMap::BitMap (int nitems)BitMap24,869
+BitMap::~BitMap ()~BitMap38,1257
+BitMap::Mark (int which)Mark54,1643
+BitMap::Clear (int which)Clear68,2044
+BitMap::Test (int which)Test82,2451
+BitMap::Find ()Find102,3007
+BitMap::NumClear ()NumClear120,3424
+BitMap::Print ()Print139,3905
+BitMap::FetchFrom (OpenFile * file)FetchFrom158,4403
+BitMap::WriteBack (OpenFile * file)WriteBack171,4785
+
+OS/nachos/code/userprog/userthread.cc,168
+int do_ThreadCreate(int f, int arg){do_ThreadCreate5,68
+int do_ThreadExit(){do_ThreadExit23,541
+static void StartUserThread(void *schmurtz){StartUserThread32,878
+
+OS/nachos/code/userprog/Makefile,212
+DEFINES = -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUBDEFINES12,457
+INCPATH = -I../bin -I../filesys -I../userprog -I../threads -I../machineINCPATH13,514
+C_OFILES = $(THREAD_O) $(USERPROG_O)C_OFILES14,586
+
+OS/nachos/code/userprog/bitmap.h,264
+#define BITMAP_HBITMAP_H16,580
+class BitMap:dontcopythisBitMap30,1009
+    int numBits;		// number of bits in the bitmapnumBits53,1837
+    int numWords;		// number of words of bitmap storagenumWords54,1887
+    unsigned int *map;		// bit storagemap58,2040
+
+OS/nachos/code/userprog/userthread.h,39
+#define USERTHREAD_HUSERTHREAD_H3,22
+
+OS/nachos/code/userprog/exception.cc,171
+#define BUFFER_SIZE BUFFER_SIZE28,1049
+#define MAXI_SIZE MAXI_SIZE29,1072
+UpdatePC ()UpdatePC35,1407
+ExceptionHandler (ExceptionType which)ExceptionHandler69,2526
+
+OS/nachos/code/userprog/progtest.cc,436
+StartProcess (char *filename)StartProcess24,793
+static Console *console;console51,1555
+static Semaphore *readAvail;readAvail52,1580
+static Semaphore *writeDone;writeDone53,1609
+ReadAvailHandler (void *arg)ReadAvailHandler61,1881
+WriteDoneHandler (void *arg)WriteDoneHandler67,1967
+ConsoleTest (const char *in, const char *out)ConsoleTest80,2333
+SynchConsoleTest (const char *in, const char *out)SynchConsoleTest112,3152
+
+OS/nachos/code/userprog/addrspace.cc,374
+SwapHeader (NoffHeader * noffH)SwapHeader33,1288
+AddrSpace::AddrSpace (OpenFile * executable)AddrSpace63,2730
+AddrSpace::~AddrSpace ()~AddrSpace133,5328
+AddrSpace::InitRegisters ()InitRegisters152,5971
+AddrSpace::InitUserRegisters (int f,int arg)InitUserRegisters179,6772
+AddrSpace::SaveState ()SaveState215,8004
+AddrSpace::RestoreState ()RestoreState228,8382
+
+OS/nachos/code/Makefile,231
+MAKE	:=	makeMAKE5,198
+DIRS	:=	threads userprog DIRS9,214
+LPR	:=	enscript --columns=2  --borders -r --landscape \LPR36,599
+INDENT	:= indent --indent-level4INDENT50,905
+DIRS_INDENT	:= threads userprog testDIRS_INDENT51,938
+
+OS/nachos/code/network/nettest.cc,39
+MailTest(int farAddr)MailTest34,1179
+
+OS/nachos/code/network/Makefile,277
+DEFINES = -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORKDEFINES11,424
+INCPATH = -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machineINCPATH12,491
+C_OFILES = $(THREAD_O) $(USERPROG_O) $(VM_O) $(FILESYS_O) $(NETWORK_O)C_OFILES13,584
+
+OS/nachos/code/network/post.cc,1040
+Mail::Mail(PacketHeader pktH, MailHeader mailH, const void *msgData)Mail34,1231
+MailBox::MailBox()MailBox52,1771
+MailBox::~MailBox()~MailBox65,2149
+PrintHeader(PacketHeader pktHdr, MailHeader mailHdr)PrintHeader80,2602
+MailBox::Put(PacketHeader pktHdr, MailHeader mailHdr, const void *data)Put100,3328
+MailBox::Get(PacketHeader *pktHdr, MailHeader *mailHdr, void *data) Get122,4109
+static void PostalHelper(void *arg)PostalHelper150,5178
+static void ReadAvailHandler(void *arg)ReadAvailHandler152,5277
+static void WriteDoneHandler(void *arg)WriteDoneHandler154,5380
+PostOffice::PostOffice(NetworkAddress addr, double reliability, int nBoxes)PostOffice176,6421
+PostOffice::~PostOffice()~PostOffice204,7432
+PostOffice::PostalDelivery()PostalDelivery222,7960
+PostOffice::Send(PacketHeader pktHdr, MailHeader mailHdr, const void* data)Send262,9156
+PostOffice::Receive(int box, PacketHeader *pktHdr, Receive309,10773
+PostOffice::IncomingPacket()IncomingPacket326,11323
+PostOffice::PacketSent()PacketSent342,11799
+
+OS/nachos/code/network/post.h,1359
+#define POST_HPOST_H29,1280
+typedef int MailBoxAddress;MailBoxAddress36,1478
+class MailHeader {MailHeader42,1671
+    MailBoxAddress to;		// Destination mail boxto44,1700
+    MailBoxAddress from;	// Mail box to reply tofrom45,1748
+    unsigned length;		// Bytes of message data (excluding the length46,1797
+#define MaxMailSize MaxMailSize53,2009
+class Mail {Mail62,2267
+     PacketHeader pktHdr;	// Header appended by NetworkpktHdr68,2441
+     MailHeader mailHdr;	// Header appended by PostOfficemailHdr69,2497
+     char data[MaxMailSize];	// Payload -- message datadata70,2555
+class MailBox:dontcopythis {MailBox78,2855
+    SynchList *messages;	// A mailbox is just a list of arrived messagesmessages90,3309
+class PostOffice:dontcopythis {PostOffice102,3825
+    Network *network;		// Physical network connectionnetwork132,4963
+    NetworkAddress netAddr;	// Network address of this machinenetAddr133,5017
+    MailBox *boxes;		// Table of mail boxes to hold incoming mailboxes134,5080
+    int numBoxes;		// Number of mail boxesnumBoxes135,5146
+    Semaphore *messageAvailable;// V'ed when message has arrived from networkmessageAvailable136,5189
+    Semaphore *messageSent;	// V'ed when next message can be sent to networkmessageSent137,5267
+    Lock *sendLock;		// Only one outgoing message at a timesendLock138,5344
+
+OS/rapport/rappor.tex,989
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problemhomeworkProblemName93,3482
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argumenthomeworkSectionName105,4209
+\newpageIntroduction150,6094
+intro that miuchine will do the magicMultithreading159,6403
+\section{Multithreading}Multithreading dans les programmes utilisateurs162,6443
+\subsection{Multithreading dans les programmes utilisateurs}ThreadCreat163,6468
+thread with \textit{StartUserThread} and the arguments.ThreadExit167,6638
+this was just calling \textit{cutrrentThread->Finish()}.StartUserThread170,6722
+\newpagePlusieurs threads par processus198,7693
+\subsection{Plusieurs threads par processus}ThreadCreat199,7702
+\end{verbatim}ThreadExit225,8641
+so that way just the last thread is able to call the \textit{interrupt->Halt()}SynchConsole243,9246
+\subsubsection{SynchConsole}Lock245,9327
+
+OS/rapport/auto/rappor.el,0
+
+object/calc/src/Main.java,83
+public class Main {Main4,68
+    public static void main(String[] args)main6,89
+
+object/calc/src/MemoryClass/OperationClass.java,150
+package MemoryClass;MemoryClass1,0
+public class OperationClass OperationClass3,22
+    public double solve(double a, char op, double b)solve6,54
+
+object/calc/src/MemoryClass/MemoryClass.java,348
+package MemoryClass;MemoryClass1,0
+public class MemoryClass MemoryClass4,23
+	private double mem;mem7,52
+    public MemoryClass() MemoryClass9,74
+    public void MS(double a)MS15,131
+    public void Mplus(double a)Mplus19,194
+    public void Mminus(double a)Mminus23,271
+    public double MR()MR27,349
+    public void MC()MC31,409
+
+object/EComerce2/src/views/EcommerceFrame.java,211
+package views;views1,0
+public class EcommerceFrame {EcommerceFrame9,123
+    public void createAndShowGUI(){createAndShowGUI10,153
+    protected JComponent makeTextPanel(String text) {makeTextPanel20,479
+
+object/EComerce2/src/views/SallesPanel.java,238
+package views;views1,0
+public class SallesPanel extends JPanel {SallesPanel9,92
+	private static final long serialVersionUID = -1656323725239244641L;serialVersionUID14,153
+	public SallesPanel(List<String> titles){SallesPanel16,223
+
+object/EComerce2/src/ecomerce/procducts/ProductType.java,149
+package ecomerce.procducts;ecomerce.procducts1,0
+public enum ProductType {ProductType3,29
+    Book,Book4,55
+    CD,CD5,65
+    GameGame6,73
+
+object/EComerce2/src/ecomerce/procducts/CatalogUserItf.java,514
+package ecomerce.procducts;ecomerce.procducts1,0
+public interface CatalogUserItf {CatalogUserItf5,53
+    public List<Integer> listProduct();listProduct6,87
+    public double getPrice(int productId);getPrice7,127
+    public String getDescription(int productId);getDescription8,170
+    public List<Integer> findProductByType(String type);findProductByType9,219
+    public List<Integer> listProductByIcreasingPrice();listProductByIcreasingPrice10,276
+    String getTitle(int productId);getTitle11,332
+
+object/EComerce2/src/ecomerce/procducts/types/CD.java,687
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class CD extends Product {CD8,161
+    private ArrayList<String> artists;artists9,195
+    private String editor;editor10,234
+    public CD(String title , String descrption , double priceCD15,285
+    public CD(CD d){CD21,538
+    public ArrayList<String> getArtists() {getArtists29,709
+    public void setArtists(List<String> artists) {setArtists36,841
+    public String getEditor() {getEditor43,996
+    public void setEditor(String editor) {setEditor50,1113
+    public Product getCopy(){getCopy54,1206
+    public ProductType getType(){getType58,1285
+    public String toString(){toString62,1371
+
+object/EComerce2/src/ecomerce/procducts/types/Game.java,538
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class Game extends Product {Game6,110
+    private String creator;creator7,146
+    public Game(String title, String descrption , double price , String creator) {Game12,198
+    public Game(Game g){Game17,361
+    public String getCreator() {getCreator24,508
+    public void setCreator(String creator) {setCreator31,629
+    public Product getCopy(){getCopy36,731
+    public ProductType getType(){getType40,812
+    public String toString(){toString44,899
+
+object/EComerce2/src/ecomerce/procducts/types/Book.java,687
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class Book extends Product{Book8,161
+    private ArrayList<String> authors;authors9,196
+    private String editor;editor10,235
+    public Book(String title, String descrption , Book15,286
+    public Book(Book b){Book23,542
+    public Product getCopy(){getCopy29,691
+    public ProductType getType(){getType34,777
+    public String toString(){toString38,864
+    public ArrayList<String> getAuthors() {getAuthors45,1008
+    public void setAuthors(List<String> authors) {setAuthors52,1140
+    public String getEditor() {getEditor59,1295
+    public void setEditor(String editor) {setEditor66,1412
+
+object/EComerce2/src/ecomerce/procducts/Catalogue.java,1343
+package ecomerce.procducts;ecomerce.procducts1,0
+public class Catalogue implements CatalogUserItf , CatalogAdiminItf {Catalogue9,191
+    private static volatile Catalogue instance = null;instance11,262
+    private SortedSet<Product> catalogue;catalogue12,317
+    public Catalogue() {Catalogue14,360
+    public final static CatalogUserItf getUseItfInstance(){getUseItfInstance17,440
+    public final static CatalogAdiminItf getAdminItfInstace(){getAdminItfInstace28,774
+    public List<Integer> listProduct(){listProduct40,1125
+    public int addProductInCatalog(Product t) {addProductInCatalog49,1338
+    public void removeProductInCatalog(int productId){removeProductInCatalog55,1468
+    public double getPrice(int productId){getPrice60,1595
+    public String getDescription(int productId){getDescription65,1713
+    public String getTitle(int productId){getTitle71,1843
+    public List<Integer> findProductByType(String type){findProductByType76,1961
+    public List<Integer> listProductByIcreasingPrice(){listProductByIcreasingPrice88,2257
+    protected void setCatalogue(SortedSet<Product> a){setCatalogue98,2570
+    public SortedSet<Product> getList() {getList101,2659
+    private void removeProduct(Product o){removeProduct105,2769
+    public Product findProductById(int id) {findProductById110,2854
+
+object/EComerce2/src/ecomerce/procducts/Product.java,945
+package ecomerce.procducts;ecomerce.procducts1,0
+public abstract class Product implements Comparable<Product>{Product3,29
+    private static int SERIAL_COUNTER = 1;SERIAL_COUNTER5,92
+    private String title;title6,135
+    private String descrption;descrption7,161
+    private double price;price8,192
+    private final int id = SERIAL_COUNTER++;id10,219
+    public Product(String title, String descrption, double price) { Product12,265
+    public Product(Product p){Product18,435
+    public String toString(){toString21,516
+    public int hashCode(){hashCode25,618
+    public int compareTo(Product o) {compareTo29,708
+    public abstract Product getCopy();getCopy32,814
+    public abstract ProductType getType();getType33,853
+    public String getTitle() {getTitle38,938
+    public String getDescrption() {getDescrption45,1044
+    public double getPrice() {getPrice52,1155
+    public int getId(){getId56,1219
+
+object/EComerce2/src/ecomerce/procducts/CatalogAdiminItf.java,265
+package ecomerce.procducts;ecomerce.procducts1,0
+public interface CatalogAdiminItf {CatalogAdiminItf3,29
+    public int addProductInCatalog(Product p);addProductInCatalog4,65
+    public void removeProductInCatalog(int productId);removeProductInCatalog5,112
+
+object/EComerce2/src/ecomerce/BasketItem.java,326
+package ecomerce;ecomerce1,0
+public class BasketItem {BasketItem3,19
+    private int productId;productId4,45
+    private int quantity;quantity5,72
+    public BasketItem(int productId , int quantity){BasketItem6,98
+    public int getProductId() {getProductId14,273
+    public int getQuantity() {getQuantity22,383
+
+object/EComerce2/src/ecomerce/basket.java,664
+package ecomerce;ecomerce1,0
+public interface Basket {Basket5,43
+    public void emptyBasket();emptyBasket6,69
+    public void addProductInBasket(int productId , int qty);addProductInBasket7,100
+    public void updateQuantityProductInBasket(int productId, int qty);updateQuantityProductInBasket8,161
+    public void removeProductFromBasket(int productId);removeProductFromBasket9,232
+    public double getTotal();getTotal10,288
+    public void validateBasket();validateBasket11,318
+    public boolean isBasckeValid();isBasckeValid12,352
+    public int getId();getId13,388
+    public List<BasketItem> getBasketEntries();getBasketEntries14,412
+
+object/EComerce2/src/ecomerce/BasketImpl.java,1094
+package ecomerce;ecomerce1,0
+public class BasketImpl implements Basket {BasketImpl10,162
+    private static int COUNTER = 1;COUNTER11,206
+    private final int id = COUNTER++;id12,242
+    private HashMap<Integer,Integer> basketEntries = basketEntries13,280
+    private CatalogUserItf cat;cat15,374
+    public BasketImpl(CatalogUserItf cat){BasketImpl17,407
+    private boolean contains(int productId){contains21,481
+    public void addProductInBasket(int productId, int qty) {addProductInBasket25,599
+    public List<BasketItem> getBasketEntries() {getBasketEntries34,866
+    public void emptyBasket() {emptyBasket44,1208
+    public int getId() {getId50,1293
+    public double getTotal() {getTotal55,1358
+    public boolean isBasckeValid() {isBasckeValid65,1649
+    public void removeProductFromBasket(int productId) {removeProductFromBasket71,1772
+    public void updateQuantityProductInBasket(int productId, int qty) {updateQuantityProductInBasket79,1987
+    public void validateBasket() {validateBasket88,2269
+    public String toString(){toString94,2373
+
+object/EComerce2/src/Main.java,85
+public class Main {Main8,139
+    public static void main(String[] args)main9,159
+
+object/Ecommerce/src/controlers/CatalogueCtrl.java,83
+package controlers;controlers1,0
+public class CatalogueCtrl {CatalogueCtrl3,21
+
+object/Ecommerce/src/controlers/Controler.java,139
+package controlers;controlers1,0
+public class Controler {Controler3,21
+    public ActionListener insertToBasket(){insertToBasket4,46
+
+object/Ecommerce/src/views/EcommerceFrame.java,226
+package views;views1,0
+public class EcommerceFrame {EcommerceFrame12,171
+    public void createAndShowGUI(List<Basket> t){createAndShowGUI13,201
+    protected JComponent makeTextPanel(String text) {makeTextPanel25,578
+
+object/Ecommerce/src/views/CatalogueView.java,174
+package views;views1,0
+public class CatalogueView extends JPanel{CatalogueView14,259
+    private JList list;list15,302
+    public CatalogueView(){CatalogueView16,326
+
+object/Ecommerce/src/views/SallesPanel.java,240
+package views;views1,0
+public class SallesPanel extends JPanel {SallesPanel14,209
+	private static final long serialVersionUID = -1656323725239244641L;serialVersionUID19,270
+	public SallesPanel(List<Basket> titles){SallesPanel21,340
+
+object/Ecommerce/src/ecomerce/procducts/ProductType.java,149
+package ecomerce.procducts;ecomerce.procducts1,0
+public enum ProductType {ProductType3,29
+    Book,Book4,55
+    CD,CD5,65
+    GameGame6,73
+
+object/Ecommerce/src/ecomerce/procducts/CatalogUserItf.java,581
+package ecomerce.procducts;ecomerce.procducts1,0
+public interface CatalogUserItf {CatalogUserItf5,53
+    public List<Integer> listProduct();listProduct6,87
+    public double getPrice(int productId);getPrice7,127
+    public String getDescription(int productId);getDescription8,170
+    public List<Integer> findProductByType(String type);findProductByType9,219
+    public List<Integer> listProductByIcreasingPrice();listProductByIcreasingPrice10,276
+    public Product findProductById(int id);findProductById11,332
+    String getTitle(int productId);getTitle12,376
+
+object/Ecommerce/src/ecomerce/procducts/types/CD.java,687
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class CD extends Product {CD8,161
+    private ArrayList<String> artists;artists9,195
+    private String editor;editor10,234
+    public CD(String title , String descrption , double priceCD15,285
+    public CD(CD d){CD21,538
+    public ArrayList<String> getArtists() {getArtists29,709
+    public void setArtists(List<String> artists) {setArtists36,841
+    public String getEditor() {getEditor43,996
+    public void setEditor(String editor) {setEditor50,1113
+    public Product getCopy(){getCopy54,1206
+    public ProductType getType(){getType58,1285
+    public String toString(){toString62,1371
+
+object/Ecommerce/src/ecomerce/procducts/types/Game.java,538
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class Game extends Product {Game6,110
+    private String creator;creator7,146
+    public Game(String title, String descrption , double price , String creator) {Game12,198
+    public Game(Game g){Game17,361
+    public String getCreator() {getCreator24,508
+    public void setCreator(String creator) {setCreator31,629
+    public Product getCopy(){getCopy36,731
+    public ProductType getType(){getType40,812
+    public String toString(){toString44,899
+
+object/Ecommerce/src/ecomerce/procducts/types/Book.java,687
+package ecomerce.procducts.types;ecomerce.procducts.types1,0
+public class Book extends Product{Book8,161
+    private ArrayList<String> authors;authors9,196
+    private String editor;editor10,235
+    public Book(String title, String descrption , Book15,286
+    public Book(Book b){Book23,542
+    public Product getCopy(){getCopy29,691
+    public ProductType getType(){getType34,777
+    public String toString(){toString38,864
+    public ArrayList<String> getAuthors() {getAuthors45,1008
+    public void setAuthors(List<String> authors) {setAuthors52,1140
+    public String getEditor() {getEditor59,1295
+    public void setEditor(String editor) {setEditor66,1412
+
+object/Ecommerce/src/ecomerce/procducts/Catalogue.java,1343
+package ecomerce.procducts;ecomerce.procducts1,0
+public class Catalogue implements CatalogUserItf , CatalogAdiminItf {Catalogue9,191
+    private static volatile Catalogue instance = null;instance11,262
+    private SortedSet<Product> catalogue;catalogue12,317
+    public Catalogue() {Catalogue14,360
+    public final static CatalogUserItf getUseItfInstance(){getUseItfInstance17,440
+    public final static CatalogAdiminItf getAdminItfInstace(){getAdminItfInstace28,774
+    public List<Integer> listProduct(){listProduct40,1125
+    public int addProductInCatalog(Product t) {addProductInCatalog49,1338
+    public void removeProductInCatalog(int productId){removeProductInCatalog55,1468
+    public double getPrice(int productId){getPrice60,1595
+    public String getDescription(int productId){getDescription65,1713
+    public String getTitle(int productId){getTitle71,1843
+    public List<Integer> findProductByType(String type){findProductByType76,1961
+    public List<Integer> listProductByIcreasingPrice(){listProductByIcreasingPrice88,2257
+    protected void setCatalogue(SortedSet<Product> a){setCatalogue98,2570
+    public SortedSet<Product> getList() {getList101,2659
+    private void removeProduct(Product o){removeProduct105,2769
+    public Product findProductById(int id) {findProductById110,2854
+
+object/Ecommerce/src/ecomerce/procducts/Product.java,945
+package ecomerce.procducts;ecomerce.procducts1,0
+public abstract class Product implements Comparable<Product>{Product3,29
+    private static int SERIAL_COUNTER = 1;SERIAL_COUNTER5,92
+    private String title;title6,135
+    private String descrption;descrption7,161
+    private double price;price8,192
+    private final int id = SERIAL_COUNTER++;id10,219
+    public Product(String title, String descrption, double price) { Product12,265
+    public Product(Product p){Product18,435
+    public String toString(){toString21,516
+    public int hashCode(){hashCode25,618
+    public int compareTo(Product o) {compareTo29,708
+    public abstract Product getCopy();getCopy32,814
+    public abstract ProductType getType();getType33,853
+    public String getTitle() {getTitle38,938
+    public String getDescrption() {getDescrption45,1044
+    public double getPrice() {getPrice52,1155
+    public int getId(){getId56,1219
+
+object/Ecommerce/src/ecomerce/procducts/CatalogAdiminItf.java,265
+package ecomerce.procducts;ecomerce.procducts1,0
+public interface CatalogAdiminItf {CatalogAdiminItf3,29
+    public int addProductInCatalog(Product p);addProductInCatalog4,65
+    public void removeProductInCatalog(int productId);removeProductInCatalog5,112
+
+object/Ecommerce/src/ecomerce/BasketItem.java,326
+package ecomerce;ecomerce1,0
+public class BasketItem {BasketItem3,19
+    private int productId;productId4,45
+    private int quantity;quantity5,72
+    public BasketItem(int productId , int quantity){BasketItem6,98
+    public int getProductId() {getProductId14,273
+    public int getQuantity() {getQuantity22,383
+
+object/Ecommerce/src/ecomerce/basket.java,664
+package ecomerce;ecomerce1,0
+public interface Basket {Basket5,43
+    public void emptyBasket();emptyBasket6,69
+    public void addProductInBasket(int productId , int qty);addProductInBasket7,100
+    public void updateQuantityProductInBasket(int productId, int qty);updateQuantityProductInBasket8,161
+    public void removeProductFromBasket(int productId);removeProductFromBasket9,232
+    public double getTotal();getTotal10,288
+    public void validateBasket();validateBasket11,318
+    public boolean isBasckeValid();isBasckeValid12,352
+    public int getId();getId13,388
+    public List<BasketItem> getBasketEntries();getBasketEntries14,412
+
+object/Ecommerce/src/ecomerce/BasketImpl.java,1094
+package ecomerce;ecomerce1,0
+public class BasketImpl implements Basket {BasketImpl10,162
+    private static int COUNTER = 1;COUNTER11,206
+    private final int id = COUNTER++;id12,242
+    private HashMap<Integer,Integer> basketEntries = basketEntries13,280
+    private CatalogUserItf cat;cat15,374
+    public BasketImpl(CatalogUserItf cat){BasketImpl17,407
+    private boolean contains(int productId){contains21,481
+    public void addProductInBasket(int productId, int qty) {addProductInBasket25,599
+    public List<BasketItem> getBasketEntries() {getBasketEntries34,866
+    public void emptyBasket() {emptyBasket44,1208
+    public int getId() {getId50,1293
+    public double getTotal() {getTotal55,1358
+    public boolean isBasckeValid() {isBasckeValid65,1649
+    public void removeProductFromBasket(int productId) {removeProductFromBasket71,1772
+    public void updateQuantityProductInBasket(int productId, int qty) {updateQuantityProductInBasket79,1987
+    public void validateBasket() {validateBasket88,2269
+    public String toString(){toString94,2373
+
+object/Ecommerce/src/Main.java,87
+public class Main {Main10,168
+    public static void main(String[] args)main11,188
+
+object/CalcTree/src/Tree/NodeMinus.java,260
+package Tree;Tree1,0
+public class NodeMinus extends NodeOp {NodeMinus3,15
+    public NodeMinus(final TreeNode left, final char op, final TreeNode right) {NodeMinus5,56
+    public double solve() {solve10,188
+    public String toString()toString21,438
+
+object/CalcTree/src/Tree/NodeOp.java,500
+package Tree;Tree1,0
+abstract  class  NodeOp implements TreeNode {NodeOp3,15
+    private char op;op4,61
+    private TreeNode left;left5,82
+    private TreeNode right;right6,109
+    NodeOp(final TreeNode left, final char op, final TreeNode right) {NodeOp8,138
+    public abstract double solve();solve14,292
+    public String toString()toString21,405
+    public char getOp() {getOp39,783
+    public TreeNode getLeft() {getLeft46,875
+    public TreeNode getRight() {getRight53,976
+
+object/CalcTree/src/Tree/NodeSqrt.java,195
+package Tree;Tree1,0
+public class NodeSqrt extends NodeOpSingle{NodeSqrt3,15
+    public NodeSqrt(final char op, final TreeNode right) {NodeSqrt5,60
+    public double solve() {solve10,165
+
+object/CalcTree/src/Tree/NodeTimes.java,214
+package Tree;Tree1,0
+public class NodeTimes extends NodeOp{NodeTimes3,15
+    public NodeTimes(final TreeNode left, final char op, final TreeNode right) {NodeTimes5,55
+    public double solve() {solve10,187
+
+object/CalcTree/src/Tree/Leaf.java,225
+package Tree;Tree1,0
+public class Leaf implements TreeNode Leaf3,15
+    double value;value5,56
+    public Leaf(double value){Leaf6,74
+    public double solve()solve9,139
+    public String toString()toString13,204
+
+object/CalcTree/src/Tree/NodePow.java,206
+package Tree;Tree1,0
+public class NodePow extends NodeOp{NodePow3,15
+    public NodePow(final TreeNode left, final char op, final TreeNode right) {NodePow5,57
+    public double solve() {solve10,187
+
+object/CalcTree/src/Tree/NodePlus.java,255
+package Tree;Tree1,0
+public class NodePlus extends NodeOp{NodePlus3,15
+    public NodePlus(final TreeNode left, final char op, final TreeNode right) {NodePlus5,54
+    public double solve() {solve10,186
+    public String toString()toString20,436
+
+object/CalcTree/src/Tree/NodeOpSingle.java,378
+package Tree;Tree1,0
+abstract class NodeOpSingle implements TreeNode {NodeOpSingle3,15
+    private char op;op4,65
+    private TreeNode right;right5,86
+    NodeOpSingle( final char op, final TreeNode right) {NodeOpSingle7,115
+    public abstract double solve();solve12,229
+    public String toString()toString14,266
+    public TreeNode getRight() {getRight29,542
+
+object/CalcTree/src/Tree/TreeNode.java,148
+package Tree;Tree1,0
+public interface TreeNode{TreeNode3,15
+    public  double solve();solve4,42
+    public  String toString();toString5,70
+
+object/CalcTree/src/Tree/NodeInv.java,191
+package Tree;Tree1,0
+public class NodeInv extends NodeOpSingle{NodeInv3,15
+    public NodeInv(final char op, final TreeNode right) {NodeInv5,59
+    public double solve() {solve10,167
+
+object/CalcTree/src/Tree/NodeDivide.java,218
+package Tree;Tree1,0
+public class NodeDivide  extends NodeOpNodeDivide3,15
+    public NodeDivide(final TreeNode left, final char op, final TreeNode right) {NodeDivide6,58
+    public double solve() {solve11,191
+
+object/CalcTree/src/Tree/Tree.java,766
+package Tree;Tree1,0
+public class Tree {Tree12,118
+    private TreeNode root;root13,138
+    private ArrayList<String> tokens;tokens14,165
+    Stack<Character> operators;operators15,203
+    Stack<TreeNode> operands;operands16,235
+    public Tree(final String expression){ Tree23,321
+    private TreeNode build(){build36,685
+    private void ProcessOperator(char op)ProcessOperator106,2837
+    private void ProcessRightP()ProcessRightP120,3142
+    private void NodeCreate(char op)NodeCreate134,3382
+    private TreeNode pop(){pop157,4189
+    public double solve(){solve170,4375
+    private int precedence(char op)precedence180,4505
+    private boolean isNumeric(String str)isNumeric210,5063
+    public String toString()toString220,5289
+
+object/CalcTree/src/Tree/MemoryNode.java,434
+package Tree;Tree1,0
+class MemoryNode implements TreeNode {MemoryNode4,37
+    private char op;op5,76
+    private double result;result6,97
+    private TreeNode right;right7,124
+    MemoryNode(final char op, final TreeNode right) {MemoryNode9,153
+    public double solve(){solve16,320
+    private void memExec(){memExec19,377
+    public String toString()toString29,716
+    public TreeNode getRight() {getRight44,993
+
+object/CalcTree/src/Main.java,83
+public class Main {Main4,41
+    public static void main(String[] args)main6,62
+
+object/CalcTree/src/Memory/Memory.java,360
+package Memory;Memory1,0
+public class Memory Memory3,17
+	private static double mem;mem6,41
+    public Memory() Memory8,70
+    public static void MS(double a)MS14,124
+    public static void Mplus(double a)Mplus18,196
+    public static void Mminus(double a)Mminus22,284
+    public static double MR()MR26,373
+    public static void MC()MC30,442
+
+object/SpaceInvader/src/Entity/Entity.java,141
+package Entity;Entity1,0
+public interface Entity {Entity3,17
+    public void move();move4,43
+    public void position();position5,67
+
+object/SpaceInvader/src/Main.java,82
+public class Main {Main1,0
+    public static void main(String[] args)main3,21

@@ -1,4 +1,4 @@
-* DONE exo 1
+:q* DONE exo 1
   Un télécopieur groupe 3 a une résolution de 300 dpi (dot per inch). On
   utilise le réseau téléphonique à 9600
   bits/s pour transférer une image A4 supposée pleine. Rappel : 1 inch = 2,54
@@ -55,7 +55,6 @@
   – Quel est le débit effectif si ces 100 trames sont envoyées en 2 s ?
   – En conservant la même quantité de données, quel est le débit si les
   trames ont une taille de 53 octets ?
-
 ** exo 3.1
 #+BEGIN_SRC
    (256*8) = 2048
@@ -68,7 +67,6 @@
    (2048*(100*0.814802))/2 = 83435.7248
 #+END_SRC
 ** trame of 53Bytes
-
 
 #+BEGIN_SRC
    204800/(53*8) = 483.018868
@@ -194,7 +192,7 @@
    30db = 10*log10(x)
    3=log10(x);
    x = pow(10,3) = 1000
- x = 1000;
+   x = 1000;
    H = 3100mhz
    C = 3100*log2(1001)
    C = 3100*10 = 31000

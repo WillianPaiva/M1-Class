@@ -1,10 +1,11 @@
 \contentsline {section}{Introduction}{3}
-\contentsline {section}{Points d\IeC {\'e}licats}{3}
-\contentsline {subsection}{Entr\IeC {\'e}e-sorties synchrones}{3}
-\contentsline {subsection}{Appel syst\IeC {\`e}me Putchar}{3}
-\contentsline {subsection}{Appel syst\IeC {\`e}me PutString}{4}
-\contentsline {subsection}{Appel syst\IeC {\`e}me Exit}{4}
-\contentsline {subsection}{Appel syst\IeC {\`e}me GetChar}{4}
-\contentsline {subsection}{Appel syst\IeC {\`e}me GetString}{5}
-\contentsline {subsection}{Bonus printf, PutInt, GetInt}{5}
-\contentsline {subsection}{tests}{5}
+\contentsline {section}{Multithreading}{3}
+\contentsline {subsection}{Multithreading dans les programmes utilisateurs}{3}
+\contentsline {subsubsection}{ThreadCreat}{3}
+\contentsline {subsubsection}{ThreadExit}{3}
+\contentsline {subsubsection}{StartUserThread}{3}
+\contentsline {subsection}{Plusieurs threads par processus}{4}
+\contentsline {subsubsection}{ThreadCreat}{4}
+\contentsline {subsubsection}{ThreadExit}{4}
+\contentsline {subsubsection}{SynchConsole and Lock}{5}
+\contentsline {section}{tests}{5}

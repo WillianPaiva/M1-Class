@@ -1,5 +1,4 @@
 * code postale 
-
 ** 1 
    the code starts always with a bar.
 
@@ -51,6 +50,7 @@
    5 , 7 
 
 ** 3
+SCHEDULED: <2015-11-09 Mon>
    [1101011]
     a a a a 
      cc  cc
