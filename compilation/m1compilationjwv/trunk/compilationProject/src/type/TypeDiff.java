@@ -12,5 +12,4 @@ public class TypeDiff {
     public boolean IsDiff(){
         return (x.getEnumType() == y.getEnumType());
     }
-
 }

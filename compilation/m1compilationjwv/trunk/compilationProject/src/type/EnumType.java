@@ -6,7 +6,7 @@ public enum EnumType {
     INT("int"),
     CHAR("char"),
     FLOAT("float"),
-    STR("string"), 
+    STR("string"),
     BOOL("bool"),
     LIST("list"),
     POINTER("^"),
@@ -18,7 +18,7 @@ public enum EnumType {
     STRING("string"),
     ERROR("error");
 /*
- *  those tags will be used for the next part 
+ *  those tags will be used for the next part
     MULT("*"),
     MOD("%"),
     MIN("-"),
@@ -51,10 +51,10 @@ public enum EnumType {
     WHILE("while"),
     EXIT("exit"),
     RETURN("return"),
-    FOR("for"), 
+    FOR("for"),
     SBRKL("["),
     SBRKR("]"),
-*/	
+*/
 
 
 

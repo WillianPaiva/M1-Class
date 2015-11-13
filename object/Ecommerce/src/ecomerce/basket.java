@@ -12,4 +12,6 @@ public interface Basket {
     public boolean isBasckeValid();
     public int getId();
     public List<BasketItem> getBasketEntries();
+    public void validate();
+    public void prevalider();
 }

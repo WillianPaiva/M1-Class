@@ -117,4 +117,12 @@ public class Env {
 	}
     }
 
+    public String toString() {
+        String result = new String();
+        result+= "[--" + root.toString() + "--]";
+        if(prev != null && prev.root != null){
+            result += "{ " + prev.toString() + " }";
+        }
+        return result;
+    }
 }

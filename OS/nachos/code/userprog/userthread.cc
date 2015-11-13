@@ -27,6 +27,7 @@ int do_ThreadExit(){
     }
     currentThread->space->threadCounter--;
     currentThread->Finish();
+    return 0;
 }
 
 static void StartUserThread(void *schmurtz){

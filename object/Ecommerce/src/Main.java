@@ -30,10 +30,11 @@ public class Main {
         b1.addProductInBasket(p.getId(),11);
         b1.addProductInBasket(p2.getId(),17);
         b1.addProductInBasket(p3.getId(),8);
+
         for(int i : t2.listProduct()){
             System.out.println(t2.getTitle(i));
         }
-        final EcommerceFrame view = new EcommerceFrame();        
+        final EcommerceFrame view = new EcommerceFrame();
         System.out.println(b.toString());
         javax.swing.SwingUtilities.invokeLater(new Runnable(){
             public void run(){
@@ -43,5 +44,5 @@ public class Main {
                 view.createAndShowGUI(lis);
             }
         });
-    } 
+    }
 }

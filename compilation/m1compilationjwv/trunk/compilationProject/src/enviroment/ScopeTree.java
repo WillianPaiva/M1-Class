@@ -1,4 +1,4 @@
-ackage enviroment;
+package enviroment;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -8,13 +8,13 @@ import java.io.IOException;
 
 public class ScopeTree {
 
-    protected static int nb=0;	
+    protected static int nb=0;
 
     private ScopeTree left;
     private ScopeTree right;
     private int id;
     private String tag;	/* node label */
-    private Object object;  
+    private Object object;
     private boolean flag;
 
     public ScopeTree(ScopeTree left, ScopeTree right, String s, Object o) {
@@ -78,7 +78,7 @@ public class ScopeTree {
 
     public ScopeTree add(String s, Object t, ScopeTree a, boolean uniq) {
         if (a==null){
-            //System.err.println("&&& DEFINES: "+s+": "+t.toString());   
+            //System.err.println("&&& DEFINES: "+s+": "+t.toString());
             return new ScopeTree(s, t);
         }
         else if (s.compareTo(a.tag) < 0)
@@ -86,11 +86,11 @@ public class ScopeTree {
         else if (s.compareTo(a.tag) > 0)
             return new ScopeTree(a.left, add(s, t, a.right, uniq), a.tag, a.object);
         //	else if (uniq){
-        //  System.err.println("***ERROR: "+s+" is already defined");   
+        //  System.err.println("***ERROR: "+s+" is already defined");
         //  return this;
         //	}
         else{
-            //System.err.println("&&& REDEFINES: "+s+": "+t.toString());   
+            //System.err.println("&&& REDEFINES: "+s+": "+t.toString());
             return new ScopeTree(a.left, a.right, s, t);
         }
     }
@@ -102,7 +102,7 @@ public class ScopeTree {
             result +="(";
             if (left != null)
                 result += left.toString();
-            result+=",";
+            result+="<-,->";
             if (right != null)
                 result += right.toString();
             result+=")";
@@ -115,9 +115,19 @@ public class ScopeTree {
             flag=true;
             str.append("r_"+id+" [label=\""+tag);
             if (object!=null){
-                str.append(" (");
-                str.append(object.toString());
-                str.append(")");
+                if(object instanceof Variable){
+                    str.append(" (");
+                    str.append(((Variable)object).toString());
+                    str.append(")");
+                }else if(object instanceof Function){
+                    str.append(" (");
+                    str.append(((Function)object).toString());
+                    str.append(")");
+                }else if(object instanceof ClassType){
+                    str.append(" (");
+                    str.append(((ClassType)object).toString());
+                    str.append(")");
+                }
             }
             str.append("\"];");
             if (left != null){
@@ -138,4 +148,5 @@ public class ScopeTree {
         if (right != null)
             right.flagOff();
     }
-}
+
+    }

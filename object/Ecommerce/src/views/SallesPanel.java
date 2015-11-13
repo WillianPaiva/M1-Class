@@ -14,11 +14,11 @@ import ecomerce.procducts.Catalogue;
 public class SallesPanel extends JPanel {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -1656323725239244641L;
+   *
+   */
+  private static final long serialVersionUID = -1656323725239244641L;
 
-	public SallesPanel(List<Basket> titles){
+  public SallesPanel(List<Basket> titles){
 
         super(new GridLayout(1 , 1));
         JTabbedPane tabbedPane =  new JTabbedPane();
@@ -29,7 +29,6 @@ public class SallesPanel extends JPanel {
                 BasketItem i = it.next();
                 JLabel name = new JLabel(
                         Catalogue.getUseItfInstance().getTitle(i.getProductId()));
-                
                 JFormattedTextField qty = new JFormattedTextField(
                         new Double(i.getQuantity()));
                 JLabel total = new JLabel(" "+
@@ -39,13 +38,9 @@ public class SallesPanel extends JPanel {
                 x.add(qty);
                 x.add(total);
                }
-
                 JButton command = new JButton("Command");
                 x.add(command);
             tabbedPane.addTab("Basket #"+s.getId(),null,x,null);
-            
-
-
         }
         add(tabbedPane);
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
