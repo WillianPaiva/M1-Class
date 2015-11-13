@@ -1,0 +1,137 @@
+[
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o main.o main.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/main.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o list.o list.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/list.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o scheduler.o scheduler.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/scheduler.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o synch.o synch.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/synch.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o synchlist.o synchlist.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/synchlist.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o system.o system.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/system.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o thread.o thread.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/thread.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o utility.o utility.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/utility.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o threadtest.o threadtest.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/threadtest.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o interrupt.o ../machine/interrupt.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/interrupt.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o stats.o ../machine/stats.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/stats.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o sysdep.o ../machine/sysdep.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/sysdep.cc"
+    },
+    {
+        "command": "c++ -c -g -I../threads -I../machine -DTHREADS -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o timer.o ../machine/timer.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/threads",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/timer.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o main.o ../threads/main.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/main.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o list.o ../threads/list.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/list.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o scheduler.o ../threads/scheduler.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/scheduler.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o synch.o ../threads/synch.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/synch.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o synchlist.o ../threads/synchlist.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/synchlist.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o system.o ../threads/system.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/system.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o thread.o ../threads/thread.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/thread.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o utility.o ../threads/utility.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/utility.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o threadtest.o ../threads/threadtest.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/threads/threadtest.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o interrupt.o ../machine/interrupt.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/interrupt.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o stats.o ../machine/stats.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/stats.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o sysdep.o ../machine/sysdep.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/sysdep.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o timer.o ../machine/timer.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/machine/timer.cc"
+    },
+    {
+        "command": "c++ -c -g -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_x86_64 -DHAVE_VALGRIND -DLINUX -DCHANGED -o addrspace.o addrspace.cc",
+        "directory": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog",
+        "file": "/home/willian/Documents/M1-Class/OS/nachos/code/userprog/addrspace.cc"
+    }
+]

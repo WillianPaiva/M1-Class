@@ -1,0 +1,8 @@
+add class type on the enviroment 
+--This line, and those below, will be ignored--
+
+M    compilationProject/parser/parser.cup
+A    compilationProject/src/enviroment/Class.java
+M    compilationProject/src/enviroment/Function.java
+M    compilationProject/src/enviroment/ScopeTree.java
+M    compilationProject/src/type/EnumType.java

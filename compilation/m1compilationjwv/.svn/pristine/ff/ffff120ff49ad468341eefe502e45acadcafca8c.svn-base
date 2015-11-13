@@ -1,0 +1,21 @@
+procedure main(){
+test : integer = 49;
+       integer ttt(){
+        hhh : integer = 45; 
+       integer ttt1(){
+        hhh1 : integer = 45; 
+       integer ttt2(){
+        hhh2 : integer = 45; 
+       integer ttt3(){
+        hhh3 : integer = 45; 
+       }
+       }
+       }
+       integer ttt4(){
+        hhh4 : integer = 45; 
+       }
+       }
+       integer ttt5(){
+        hhh5 : integer = 45; 
+       }
+}

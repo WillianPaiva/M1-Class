@@ -1,0 +1,18 @@
+procedure main(){
+someIntOnmain : integer = 49;
+       integer FirstFunction(){
+            intOnTheFirstFunction : integer = 45; 
+            integer SecondFunction(){
+                SecondFint : integer = 45; 
+                integer ThirdFunction(){
+                    ThirdInt : integer = 45; 
+                }
+            }
+            integer ThisOneIsoOntheFirstFunction(){
+                Avar : integer = 45; 
+            }
+        }
+    integer LastFunction(){
+        toto : integer = 45; 
+    }
+}

@@ -1,0 +1,43 @@
+package enviroment;
+
+
+
+
+//TODO Change String to String
+public class Variable {
+	private String type;
+	private int mem;
+	private Object value;
+
+	public Variable (String t, int mem, Object value){
+		this.type = t;
+		this.mem = mem;
+		this.value = value;
+	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getMem() {
+		return mem;
+	}
+
+	public void setMem(int mem) {
+		this.mem = mem;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
+    public String toString() {
+        return "variable " + type;
+    }
+}

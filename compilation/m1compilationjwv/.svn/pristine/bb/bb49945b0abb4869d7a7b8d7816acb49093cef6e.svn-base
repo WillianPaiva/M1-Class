@@ -1,0 +1,198 @@
+// CUP specification for a simple expression evaluator (w/ actions)
+import java_cup.runtime.*;
+import java.util.Vector;
+import java.io.*;
+import enviroment.*;
+import java.util.*;
+
+action code {: public  Env stackEnv = new Env();
+  public HashMap<String,Variable> parametersList;
+  public Env head = stackEnv;
+  public Env pointer = stackEnv;
+  :}
+
+parser code {:
+
+  public boolean do_debug_parse = false;
+
+  public void debug_message(String mess)
+  {
+    System.err.println(mess);
+  }
+
+  public void syntax_error(Symbol cur_token)
+  {
+    report_error("Syntax error at character "+(cur_token.right +1)+" on line "+ (cur_token.left+1), null);
+  }
+
+  public void unrecovered_syntax_error(Symbol cur_token)
+    throws java.lang.Exception{
+    report_fatal_error("Couldn't repair and continue parse at character "
+                       + (cur_token.right + 1)+ " on line " + (cur_token.left+1), null);
+  }
+  :};
+
+/*
+  -----------------------------------------------------------------------
+  -                                types                                -
+  -----------------------------------------------------------------------
+*/
+terminal PROC,STRUCT, MAIN, INT, CHAR, FLOAT,STR , BOOL, LIST, POINTER, CLASS,TP;
+
+/*
+  -----------------------------------------------------------------------
+  -                             opareators                              -
+  -----------------------------------------------------------------------
+*/
+terminal MULT, MOD, MIN, DIV, NOT, AND, TRUE, FALSE, NULL,INF, PLUS, SUP, OR;
+terminal EQ, EQUALS, GEQL, LEQL, DIFF, COLON,INCR,DECR;
+/*
+  -----------------------------------------------------------------------
+  -                             separators                              -
+  -----------------------------------------------------------------------
+*/
+terminal LPAR,RPAR,SEMIC,NEWBLOCK,ENDBLOCK, COMMA;
+terminal IF, ELSE, WHILE, EXIT, RETURN,FOR , SBRKL, SBRKR;
+/*
+  -----------------------------------------------------------------------
+  -                              specials                               -
+  -----------------------------------------------------------------------
+*/
+terminal String STRING;
+terminal String ID;
+terminal Integer NB;
+terminal Float FLOATNB;
+
+
+
+/* The grammar */
+non terminal type, complextype, program,parameterscall,initivalue;
+non terminal declaration, function, codeblock,parameters, instruction, main, class, blockfinish , blockstart;
+
+precedence left OR,AND;
+precedence left PLUS, MIN;
+precedence left MULT, DIV, MOD, LPAR;
+precedence nonassoc EQUALS, DIFF, LEQL , GEQL , INF , SUP ,NOT,RETURN,COMMA;
+precedence left INCR,DECR;
+
+
+start with program;
+
+//declares a program as a suit of declarations
+program::=instruction             {: RESULT = head; :}
+|instruction main instruction {: RESULT = head; :}
+;
+
+instruction::= declaration SEMIC instruction
+  |declaration instruction
+  |
+  ;
+//a declaration cam be a var declaration or a function
+declaration::= ID:id COLON type:t1                   {: stackEnv.add(id, new Variable((String)t1,0,null));:}
+|ID:id COLON type:t1 EQ declaration:t2                 {: stackEnv.add(id, new Variable((String)t1,0,t2));:}
+|ID:id COLON complextype:t1                             {: stackEnv.add(id, new Variable((String)t1,0,null));:}
+|ID:id COLON complextype:t1 EQ declaration:t2           {: stackEnv.add(id, new Variable((String)t1,0,t2));:}
+// |TP:t1 ID:id EQ complextype:t2                          {: System.out.println("type id -->"+id+"complextype -->"+t2);:}
+// |TP:t1 ID:id EQ type:t2                                 {: System.out.println("type id -->"+id+"type -->"+t2);:}
+| declaration:t1 PLUS declaration:t2                         {: System.out.println(t1+"PLUS"+t2);:}
+| declaration:t1 MIN declaration:t2                          {: System.out.println(t1+"MIN"+t2);:}
+| declaration:t1 MULT declaration:t2                         {: System.out.println(t1+"MULT"+t2);:}
+| declaration:t1 DIV declaration:t2                          {: System.out.println(t1+"DIV"+t2);:}
+| declaration:t1 MOD declaration:t2                          {: System.out.println(t1+"MOD"+t2);:}
+| declaration:t1 LEQL declaration:t2                         {: System.out.println(t1+"LEQL"+t2);:}
+| declaration:t1 INF declaration:t2                          {: System.out.println(t1+"INF"+t2);:}
+| declaration:t1 GEQL declaration:t2                         {: System.out.println(t1+"GEQL"+t2);:}
+| declaration:t1 DIFF declaration:t2                         {: System.out.println(t1+"DIFF"+t2);:}
+| declaration:t1 EQUALS declaration:t2                       {: System.out.println(t1+"EQUALS"+t2);:}
+| declaration:t1 SUP declaration:t2                          {: System.out.println(t1+"SUP"+t2);:}
+| declaration:t1 OR declaration:t2                           {: System.out.println(t1+"OR"+t2);:}
+| declaration:t1 AND declaration:t2                          {: System.out.println(t1+"AND"+t2);:}
+| NOT declaration:t1                                         {: System.out.println("NOT"+t1);:}
+| declaration:t1 INCR                                        {: System.out.println("INCR"+t1);:}
+| declaration:t1 DECR                                        {: System.out.println("DECR"+t1);:}
+| LPAR declaration:t1 RPAR                                   {: System.out.println("("+t1+")");:}
+| TRUE                                                       {: System.out.println("true");:}
+| FALSE                                                      {: System.out.println("false");:}
+| NB:t1                                                      {: RESULT = t1;:}
+| FLOATNB:t1                                                 {: RESULT = t1;:}
+| STRING:t1                                                  {: RESULT = t1;:}
+| NULL                                                       {: System.out.println("NULL");:}
+| ID:id                                                      {: RESULT = id;:}
+| ID:id LPAR parameterscall:t1 RPAR                          {: System.out.println("id"+id+"("+t1+")");:}
+| ID:id EQ declaration:t1                                    {: System.out.println("id"+id+"="+t1);:}
+| IF LPAR declaration:t1 RPAR codeblock:t2                   {: System.out.println("if("+t1+")"+t2);:}
+| IF LPAR declaration:t1 RPAR codeblock:t2 ELSE codeblock:t3 {: System.out.println("if("+t1+")"+t2+"else"+t3);:}
+| WHILE LPAR declaration:t1 RPAR codeblock:t2                {: System.out.println("while("+t1+")"+t2);:}
+| FOR LPAR declaration:t1 SEMIC declaration:t2 SEMIC declaration:t3 RPAR codeblock:t4
+{: System.out.println("FOR("+t1+";"+t2+";"+t3+")"+t4);:}
+| RETURN  declaration:t1                                     {: System.out.println("return"+t1);:}
+| EXIT                                                       {: System.out.println("exit");:}
+| NEWBLOCK initivalue ENDBLOCK                               {: :}
+| type:ti ID SBRKL declaration:t2 SBRKR                                      {: :}
+| ID:t1 SBRKL declaration:t2 SBRKR                                     {: :}
+|function:t1
+| class:t1                                                   {: System.out.println("class");:}
+;
+
+initivalue::= declaration:t
+  | COMMA  initivalue:t
+  ;
+
+
+
+parameterscall::= declaration:t1
+  |parameterscall:t1 COMMA parameterscall:t2
+  |
+  ;
+main::= MAIN LPAR parameters RPAR codeblock:t1 {: System.out.println("main declaration");
+
+                                                ((Env) t1).add("main",new Function("procedure",stackEnv,parametersList,0));
+                                                :}
+;
+
+class::= CLASS ID:id type:t2 codeblock:t1                               {:
+                                                                         ((Env) t1).add(id,new ClassType(0,(String)t2,stackEnv));
+
+                                                                         :}
+;
+//the basis os a function declaration
+function::= type:t1 ID:id LPAR parameters:t3 RPAR codeblock:t2
+{:
+ parametersList = new HashMap<String,Variable>();
+ ((Env) t2).add(id,new Function((String)t1,stackEnv,parametersList,0));
+
+ :}
+;
+
+//the codeblock structure
+codeblock::= blockstart:t1 instruction blockfinish {:
+                                                 RESULT = t1;
+                                            :};
+blockstart::= NEWBLOCK {:
+                        stackEnv.putNext(new Env());
+                        stackEnv.getNext().putPrev(stackEnv);
+                        pointer = stackEnv;
+                        stackEnv = stackEnv.getNext();
+                        RESULT = pointer;
+                        :};
+
+blockfinish::= ENDBLOCK {:
+                         // stackEnv = stackEnv.getPrev();
+                         :};
+//function parameters
+parameters::= ID:id COLON type:t                 {: parametersList.put(id,new Variable((String)t,0,null));:}
+|ID:id COLON type:t COMMA parameters         {: parametersList.put(id,new Variable((String)t,0,null));:}
+|                                      {: :}
+;
+type ::= INT:t {: RESULT = "INT"; :}
+| CHAR:t   {: RESULT = "CHAR"; :}
+| FLOAT:t  {: RESULT = "FLOAT"; :}
+| BOOL:t   {: RESULT = "BOOL"; :}
+| STR:t    {: RESULT = "STR"; :}
+| PROC:t   {: RESULT = "PROC"; :}
+;
+
+complextype ::= LIST:t1 type:t2              {: RESULT = "LIST"; :}
+| POINTER:t1 type:t2           {: RESULT = "POINTER"; :}
+//| STRUCT:t1 codeblock :t2      {:  :}
+;
