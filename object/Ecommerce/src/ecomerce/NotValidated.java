@@ -38,4 +38,23 @@ public class NotValidated implements BasketState {
         basketEntries.clear();
     }
 
+    @Override
+    public boolean isvalid(){
+        return false;
+    }
+
+    @Override
+    public boolean isprevalid(){
+        return false;
+    }
+
+    @Override
+    public BasketState validate(){
+        return new Valid();
+    }
+
+    @Override
+    public BasketState prevalidate(){
+        return new SemiValid();
+    }
 }

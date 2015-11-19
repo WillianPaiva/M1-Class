@@ -1,7 +1,9 @@
-package enviroment;
+package syntaxtree;
 
 public enum EnunTag {
     MULT("*"),
+    ROOT("root"),
+    SUCC("succ"),
     MOD("%"),
     MIN("-"),
     DIV("/"),
@@ -29,13 +31,24 @@ public enum EnunTag {
     ENDBLOCK("}"),
     COMMA(","),
     IF("if"),
-    ELSE("else"),
+    THENELSE("thenelse"),
     WHILE("while"),
     EXIT("exit"),
     RETURN("return"),
     FOR("for"), 
     SBRKL("["),
-    SBRKR("]");
+    SBRKR("]"),
+    NB("nb"),
+    FLOATNB("float"),
+    STRING("string"),
+    ID("id"),
+    CALL("call"),
+    VAR("var"),
+    PARAM("param"),
+    FUN("fun"),
+    CLASS("class"),
+    MAIN("main");
+
 
     private final String tag;
 

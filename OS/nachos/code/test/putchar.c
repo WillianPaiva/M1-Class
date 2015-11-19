@@ -18,7 +18,7 @@
 
 #include "syscall.h"
 
-int counter = 0;
+volatile int counter = 0;
 
 void print(char c, int n)
 {
@@ -30,7 +30,7 @@ void print(char c, int n)
     }
 #endif
 }
-void printString(char* c, int x)
+void printString(char* c)
 {
 #if 1
     c[6]=48 + counter++;
@@ -56,14 +56,10 @@ int main()
     char* stt = "\n\n\nth=0\n\n\n";
     char* mai = "\n\n\nmain\n\n\n";
     int x;
-    for(x=0;x<4;x++){
+    for(x=0;x<20;x++){
         ThreadCreate(printString,stt);
     }
     PutString(mai);
-    for(x=0;x<100;x++){}
-    for(x=0;x<4;x++){
-        ThreadCreate(printString,stt);
-    } 
     return 0;
 }
 

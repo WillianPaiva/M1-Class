@@ -65,7 +65,7 @@ AddrSpace::AddrSpace (OpenFile * executable)
   NoffHeader noffH;
   unsigned int i, size;
   threadCounter = 0;
-  threadBitMap = new BitMap(4);
+  threadBitMap = new BitMap(40);
   executable->ReadAt (&noffH, sizeof (noffH), 0);
   if ((noffH.noffMagic != NOFFMAGIC) &&
       (WordToHost (noffH.noffMagic) == NOFFMAGIC))
@@ -83,16 +83,25 @@ AddrSpace::AddrSpace (OpenFile * executable)
   // to run anything too big --
   // at least until we have
   // virtual memory
-  if (numPages > NumPhysPages)
-    throw std::bad_alloc();
 
+
+  //use page provider to see how many available pages
+  if (numPages > pageProvider->NumAvailPage()){
+    throw std::bad_alloc();
+  }
   DEBUG ('a', "Initializing address space, num pages %d, total size 0x%x\n",
          numPages, size);
   // first, set up the translation
   pageTable = new TranslationEntry[numPages];
+  int pageHolder;
   for (i = 0; i < numPages; i++)
     {
-      pageTable[i].physicalPage = i;	// for now, phys page # = virtual page #
+      //ask page provider for a physical page
+      pageHolder = pageProvider->GetEmptyPage();
+      //check if it got a page
+      ASSERT(pageHolder != -1);
+      //set the physical page
+      pageTable[i].physicalPage = pageHolder;	// for now, phys page # = virtual page #
       pageTable[i].valid = TRUE;
       pageTable[i].use = FALSE;
       pageTable[i].dirty = FALSE;
@@ -106,17 +115,20 @@ AddrSpace::AddrSpace (OpenFile * executable)
     {
       DEBUG ('a', "Initializing code segment, at 0x%x, size 0x%x\n",
              noffH.code.virtualAddr, noffH.code.size);
-      executable->ReadAt (&(machine->mainMemory[noffH.code.virtualAddr]),
-                          noffH.code.size, noffH.code.inFileAddr);
+      // executable->ReadAt (&(machine->mainMemory[noffH.code.virtualAddr]),
+      //                     noffH.code.size, noffH.code.inFileAddr);
+      ReadAtVirtual(executable, noffH.code.virtualAddr , noffH.code.size, noffH.code.inFileAddr,pageTable, numPages);
     }
   if (noffH.initData.size > 0)
     {
       DEBUG ('a', "Initializing data segment, at 0x%x, size 0x%x\n",
              noffH.initData.virtualAddr, noffH.initData.size);
-      executable->ReadAt (&
-                          (machine->mainMemory
-                           [noffH.initData.virtualAddr]),
-                          noffH.initData.size, noffH.initData.inFileAddr);
+      // executable->ReadAt (&
+      //                     (machine->mainMemory
+      //                      [noffH.initData.virtualAddr]),
+      //                     noffH.initData.size, noffH.initData.inFileAddr);
+
+      ReadAtVirtual(executable, noffH.initData.virtualAddr , noffH.initData.size, noffH.initData.inFileAddr,pageTable, numPages);
     }
 
   DEBUG ('a', "Area for stacks at 0x%x, size 0x%x\n",
@@ -132,18 +144,45 @@ AddrSpace::AddrSpace (OpenFile * executable)
 /*
 
  */
+void AddrSpace::ReadAtVirtual(OpenFile *executable, int virtualaddr, int numBytes,
+              int position,TranslationEntry *page, unsigned np){
 
-static void
-ReadAtVirtual(OpenFile *executable, int virtualaddr, int numBytes,
-              int position,TranslationEntry *pageTable, unsigned numpages)
-{
-  int buffer
-  executable->ReadAt(&buffer,numBytes, position);
+  //save old page table
+  TranslationEntry *p = machine->pageTable;
+  unsigned int s = machine->pageTableSize;
+  // intall new page table
+  machine->pageTable = page;
+  machine->pageTableSize = np;
+  //create a buffer
+  char* buffer = new char[numBytes];
+  //copy file in the buffer
+  executable->ReadAt(buffer,numBytes,position);
+
+  //copy buffer to memory using page table
+  int i ;
+  for (i = 0; i<numBytes; i++) {
+    machine->WriteMem(virtualaddr+i, 1, buffer[i]);
+  }
+  //restore old state
+  machine->pageTable = p;
+  machine->pageTableSize = s;
+  delete [] buffer;
+
 }
 AddrSpace::~AddrSpace ()
 {
   // LB: Missing [] for delete
   // delete pageTable;
+
+  //////////////////////////////////////////////////
+  // free the physical pages on the page provider //
+  //////////////////////////////////////////////////
+
+  int x;
+  for (x=0; x<numPages; x++) {
+    pageProvider->ReleasePage(pageTable[x].physicalPage);
+  }
+
   delete [] pageTable;
   // End of modification
 }
@@ -177,7 +216,6 @@ AddrSpace::InitRegisters ()
   // allocated the stack; but subtract off a bit, to make sure we don't
   // accidentally reference off the end!
   machine->WriteRegister (StackReg, numPages * PageSize - 16);
-  threadCounter++;
   DEBUG ('a', "Initializing stack register to 0x%x\n",
          numPages * PageSize - 16);
 }
@@ -188,7 +226,6 @@ AddrSpace::InitRegisters ()
 void
 AddrSpace::InitUserRegisters (int f,int arg)
 {
-  printf("inside\n");
   int threadNumber = currentThread->threadNumber;
   //int i;
 

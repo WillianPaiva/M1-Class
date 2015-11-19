@@ -1,1 +1,30 @@
 main declaration
+root(,
+
+	succ(main(id,
+
+	succ(=(id,nb),
+
+	succ(=(id,nb),
+
+	succ(=(id,nb),
+
+	succ(=(id,nb),
+
+	succ(for(=(id,nb),;(<(id,id),;(++(id),
+
+	succ(=(id,nb))))),
+
+	succ(fun(id,
+
+	succ(param(id,param(id,id)),
+
+	succ(=(id,nb)))),
+
+	succ(=(id,nb),
+
+	succ(=(id,nb),
+
+	succ(=(id,nb),
+
+	succ(=(id,nb))))))))))))))

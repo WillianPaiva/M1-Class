@@ -140,7 +140,7 @@ class Thread:dontcopythis
     void SaveUserState ();	// save user-level register state
     void RestoreUserState ();	// restore user-level register state
     AddrSpace *space;		// User code this thread is running.
-    int threadNumber  ;
+    int threadNumber;
 #endif
 };
 

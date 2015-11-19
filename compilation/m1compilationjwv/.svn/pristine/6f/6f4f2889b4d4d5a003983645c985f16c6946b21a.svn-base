@@ -1,0 +1,205 @@
+// CUP specification for a simple expression evaluator (w/ actions)
+import java_cup.runtime.*;
+import java.util.Vector;
+import java.io.*;
+import enviroment.*;
+import syntaxtree.*;
+import java.util.*;
+
+action code {: public  Env stackEnv = new Env();
+  public HashMap<String,Variable> parametersList;
+  public Env head = stackEnv;
+  public Env pointer = stackEnv;
+  public Stree syntaxtree= new Stree(EnunTag.ROOT,null,null,null);
+  :}
+
+parser code {:
+
+  public boolean do_debug_parse = false;
+
+  public void debug_message(String mess)
+  {
+    System.err.println(mess);
+  }
+
+  public void syntax_error(Symbol cur_token)
+  {
+    report_error("Syntax error at character "+(cur_token.right +1)+" on line "+ (cur_token.left+1), null);
+  }
+
+  public void unrecovered_syntax_error(Symbol cur_token)
+    throws java.lang.Exception{
+    report_fatal_error("Couldn't repair and continue parse at character "
+                       + (cur_token.right + 1)+ " on line " + (cur_token.left+1), null);
+  }
+  :};
+
+/*
+  -----------------------------------------------------------------------
+  -                                types                                -
+  -----------------------------------------------------------------------
+*/
+terminal PROC,STRUCT, MAIN, INT, CHAR, FLOAT,STR , BOOL, LIST, POINTER, CLASS,TP;
+
+/*
+  -----------------------------------------------------------------------
+  -                             opareators                              -
+  -----------------------------------------------------------------------
+*/
+terminal MULT, MOD, MIN, DIV, NOT, AND, TRUE, FALSE, NULL,INF, PLUS, SUP, OR;
+terminal EQ, EQUALS, GEQL, LEQL, DIFF, COLON,INCR,DECR;
+/*
+  -----------------------------------------------------------------------
+  -                             separators                              -
+  -----------------------------------------------------------------------
+*/
+terminal LPAR,RPAR,SEMIC,NEWBLOCK,ENDBLOCK, COMMA;
+terminal IF, ELSE, WHILE, EXIT, RETURN,FOR , SBRKL, SBRKR;
+/*
+  -----------------------------------------------------------------------
+  -                              specials                               -
+  -----------------------------------------------------------------------
+*/
+terminal String STRING;
+terminal String ID;
+terminal Integer NB;
+terminal Float FLOATNB;
+
+
+
+/* The grammar */
+non terminal type, complextype, program,parameterscall,initivalue;
+non terminal declaration, function, codeblock,parameters, instruction, main, class, blockfinish , blockstart;
+
+precedence left OR,AND;
+precedence left PLUS, MIN;
+precedence left MULT, DIV, MOD, LPAR;
+precedence nonassoc EQUALS, DIFF, LEQL , GEQL , INF , SUP ,NOT,RETURN,COMMA;
+precedence left INCR,DECR;
+
+
+start with program;
+
+//declares a program as a suit of declarations
+program::=instruction:t1            {: RESULT = new Stree(EnunTag.ROOT,((Stree)t1),null,null); :}
+|instruction:t1 main:t2 instruction:t3 {: RESULT = new Stree(EnunTag.DIFF,((Stree)t1),new Stree(EnunTag.SUCC,((Stree)t2),((Stree)t3),null),null) ; :}
+;
+
+instruction::= declaration:t1 SEMIC instruction:t2 {: RESULT = new Stree(EnunTag.SUCC,((Stree)t1),((Stree)t2),null);:}
+|declaration:t1 instruction:t2                         {: RESULT = new Stree(EnunTag.SUCC,((Stree)t1),((Stree)t2),null);:}
+  |{:RESULT = null;:}
+  ;
+//a declaration cam be a var declaration or a function
+declaration::= ID:id COLON type:t1                   {: stackEnv.add(id, new Variable((String)t1,0,null));
+                                                      RESULT =new Stree(EnunTag.ID,null,null,id);
+                                                      :}
+|ID:id COLON type:t1 EQ declaration:t2                 {: stackEnv.add(id, new Variable((String)t1,0,t2));
+                                                        RESULT = new Stree(EnunTag.EQ,new Stree(EnunTag.ID,null,null,id),((Stree)t2),null);
+                                                        :}
+// |ID:id COLON complextype:t1                             {: stackEnv.add(id, new Variable((String)t1,0,null));
+//                                                         :}
+// |ID:id COLON complextype:t1 EQ declaration:t2           {: stackEnv.add(id, new Variable((String)t1,0,t2));:}
+// |TP:t1 ID:id EQ complextype:t2                          {: System.out.println("type id -->"+id+"complextype -->"+t2);:}
+// |TP:t1 ID:id EQ type:t2                                 {: System.out.println("type id -->"+id+"type -->"+t2);:}
+| declaration:t1 PLUS declaration:t2                         {: RESULT = new Stree(EnunTag.PLUS,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 MIN declaration:t2                          {: RESULT = new Stree(EnunTag.MIN,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 MULT declaration:t2                         {: RESULT = new Stree(EnunTag.MULT,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 DIV declaration:t2                          {: RESULT = new Stree(EnunTag.DIV,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 MOD declaration:t2                          {: RESULT = new Stree(EnunTag.MOD,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 LEQL declaration:t2                         {: RESULT = new Stree(EnunTag.LEQL,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 INF declaration:t2                          {: RESULT = new Stree(EnunTag.INF,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 GEQL declaration:t2                         {: RESULT = new Stree(EnunTag.GEQL,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 DIFF declaration:t2                         {: RESULT = new Stree(EnunTag.DIFF,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 EQUALS declaration:t2                       {: RESULT = new Stree(EnunTag.EQUALS,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 SUP declaration:t2                          {: RESULT = new Stree(EnunTag.SUP,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 OR declaration:t2                           {: RESULT = new Stree(EnunTag.OR,((Stree)t1),((Stree)t2),null);:}
+| declaration:t1 AND declaration:t2                          {: RESULT = new Stree(EnunTag.AND,((Stree)t1),((Stree)t2),null);:}
+| NOT declaration:t1                                         {: RESULT = new Stree(EnunTag.NOT,((Stree)t1),null,null);:}
+| declaration:t1 INCR                                        {: RESULT = new Stree(EnunTag.INCR,((Stree)t1),null,null);:}
+| declaration:t1 DECR                                        {: RESULT = new Stree(EnunTag.DECR,((Stree)t1),null,null);:}
+| LPAR declaration:t1 RPAR                                   {: System.out.println("("+t1+")");:}
+| TRUE                                                       {: RESULT = new Stree(EnunTag.TRUE,null,null,true);:}
+| FALSE                                                      {: RESULT = new Stree(EnunTag.FALSE,null,null,false);:}
+| NB:t1                                                     {: RESULT = new Stree(EnunTag.NB,null,null,t1);:}
+| FLOATNB:t1                                                 {: RESULT = new Stree(EnunTag.FLOATNB,null,null,t1);:}
+| STRING:t1                                                  {: RESULT = new Stree(EnunTag.STRING,null,null,t1);:}
+| NULL                                                       {: RESULT = new Stree(EnunTag.NULL,null,null,null);:}
+| ID:id                                                      {: RESULT = new Stree(EnunTag.ID,null,null,id);:}
+| ID:id LPAR parameterscall:t1 RPAR                          {: RESULT = new Stree(EnunTag.CALL,new Stree(EnunTag.ID,null,null,id),((Stree)t1),null);:}
+| ID:id EQ declaration:t1                                    {: RESULT = new Stree(EnunTag.EQ,new Stree(EnunTag.ID,null,null,id),((Stree)t1),null) ;:}
+| IF LPAR declaration:t1 RPAR blockstart codeblock:t2                   {: RESULT = new Stree(EnunTag.IF,((Stree) t1),new Stree(EnunTag.THENELSE,((Stree)t2),null,null),null);:}
+| IF LPAR declaration:t1 RPAR blockstart codeblock:t2 ELSE blockstart codeblock:t3 {: RESULT = new Stree(EnunTag.IF,((Stree) t1),new Stree(EnunTag.THENELSE,((Stree)t2),((Stree)t3),null),null);:}
+| WHILE LPAR declaration:t1 RPAR blockstart codeblock:t2                {: RESULT = new Stree(EnunTag.WHILE,((Stree)t1),((Stree)t2),null);:}
+| FOR LPAR declaration:t1 SEMIC declaration:t2 SEMIC declaration:t3 RPAR blockstart codeblock:t4
+{: new Stree(EnunTag.FOR,((Stree)t1),
+             new Stree(EnunTag.SEMIC,((Stree)t2),
+                       new Stree(EnunTag.SEMIC,((Stree)t3),((Stree)t4),null),null),null);:}
+| RETURN  declaration:t1                                     {: RESULT = new Stree(EnunTag.RETURN,((Stree)t1),null,null);:}
+| EXIT                                                       {: RESULT = new Stree(EnunTag.EXIT,null,null,null);:}
+|function:t1                                                 {: RESULT = t1; :}
+| class:t1                                                   {: RESULT = t1;:}
+;
+
+initivalue::= declaration:t
+  | COMMA  initivalue:t
+  ;
+
+
+
+parameterscall::= declaration:t1              {: RESULT = t1;:}
+  |parameterscall:t1 COMMA parameterscall:t2 {:RESULT = new Stree(EnunTag.PARAM,((Stree)t1),((Stree)t2),null);:}
+  |
+  ;
+main::= MAIN LPAR parameters:p1 RPAR blockstart:t1 codeblock:p2 {: System.out.println("main declaration");
+
+                                                ((Env) t1).add("main",new Function("procedure",stackEnv,parametersList,0));
+                                                                 RESULT = new Stree(EnunTag.MAIN,((Stree)p1),((Stree)p2),null);
+                                                :}
+;
+
+class::= CLASS ID:id type:t2 blockstart:t1 codeblock:t3                               {:
+                                                                         ((Env) t1).add(id,new ClassType(0,(String)t2,stackEnv));
+                                                                                       RESULT = new Stree(EnunTag.CLASS,new Stree(EnunTag.ID,null,null,id),((Stree)t3),null);
+                                                                         :}
+;
+//the basis os a function declaration
+function::= type:t1 ID:id LPAR parameters:t3 RPAR  blockstart:t2 codeblock:t4
+{:
+ parametersList = new HashMap<String,Variable>();
+ ((Env) t2).add(id,new Function((String)t1,stackEnv,parametersList,0));
+ RESULT = new Stree(EnunTag.FUN,new Stree(EnunTag.ID,null,null,id),new Stree(EnunTag.SUCC,((Stree)t3),((Stree)t4),null),null);
+ :}
+;
+
+//the codeblock structure
+codeblock::= instruction:t1 blockfinish {:
+                                                 RESULT = t1 ;
+                                            :};
+blockstart::= NEWBLOCK {:
+                        stackEnv.putNext(new Env());
+                        stackEnv.getNext().putPrev(stackEnv);
+                        pointer = stackEnv;
+                        stackEnv = stackEnv.getNext();
+                        RESULT = pointer;
+                        :};
+
+blockfinish::= ENDBLOCK {:
+                         stackEnv = stackEnv.getPrev();
+                         :};
+//function parameters
+parameters::= ID:id COLON type:t                 {: parametersList.put(id,new Variable((String)t,0,null));:}
+|ID:id COLON type:t COMMA parameters         {: parametersList.put(id,new Variable((String)t,0,null));:}
+|                                      {: :}
+;
+type ::= INT:t {: RESULT = "INT"; :}
+| CHAR:t   {: RESULT = "CHAR"; :}
+| FLOAT:t  {: RESULT = "FLOAT"; :}
+| BOOL:t   {: RESULT = "BOOL"; :}
+| STR:t    {: RESULT = "STR"; :}
+| PROC:t   {: RESULT = "PROC"; :}
+;
+
+complextype ::= LIST:t1 type:t2              {: RESULT = "LIST"; :}
+| POINTER:t1 type:t2           {: RESULT = "POINTER"; :}
+//| STRUCT:t1 codeblock :t2      {:  :}
+;

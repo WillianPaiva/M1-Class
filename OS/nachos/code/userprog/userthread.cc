@@ -1,17 +1,20 @@
 #include "userthread.h"
 #include "system.h"
+#include "synch.h"
 #include "addrspace.h"
 
+static Lock *thCounter = new Lock("thread Counter");
 int do_ThreadCreate(int f, int arg){
     int* temp = new int[2];
     temp[0] = f;
     temp[1] = arg;
-    currentThread->space->threadBitMap->Print();
     if(currentThread->space->threadBitMap->NumClear() > 0){
-        Thread *t = new Thread ("new thread");
-        t->threadNumber = currentThread->space->threadBitMap->Find();
-        currentThread->space->threadCounter++;
-        t->Start(StartUserThread,temp);
+      thCounter->Acquire();
+      Thread *t = new Thread ("new thread");
+      t->threadNumber = currentThread->space->threadBitMap->Find();
+      currentThread->space->threadCounter++;
+      t->Start(StartUserThread,temp);
+      thCounter->Release();
         return 0;
     }else{
         return -1;
@@ -21,11 +24,12 @@ int do_ThreadCreate(int f, int arg){
 
 
 int do_ThreadExit(){
-    printf("\nexit thread -------> %d---%d \n",currentThread->threadNumber,currentThread->space->threadCounter);
+  thCounter->Acquire();
     if(currentThread->threadNumber >= 0){
         currentThread->space->threadBitMap->Clear(currentThread->threadNumber);
     }
     currentThread->space->threadCounter--;
+    thCounter->Release();
     currentThread->Finish();
     return 0;
 }
@@ -37,4 +41,3 @@ static void StartUserThread(void *schmurtz){
     currentThread->space->RestoreState();
     machine->Run();
 }
- 

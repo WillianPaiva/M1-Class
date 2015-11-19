@@ -4,7 +4,9 @@
  ../machine/machine.h ../threads/utility.h ../machine/translate.h \
  ../machine/disk.h ../userprog/addrspace.h ../filesys/filesys.h \
  ../filesys/openfile.h ../machine/translate.h ../userprog/bitmap.h \
- ../filesys/openfile.h ../threads/scheduler.h ../threads/list.h \
- ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
- ../machine/timer.h ../threads/../userprog/synchconsole.h \
- ../machine/console.h synchconsole.h ../threads/synch.h
+ ../userprog/../filesys/openfile.h ../threads/scheduler.h \
+ ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+ ../threads/../userprog/pageprovider.h ../threads/../userprog/bitmap.h \
+ ../machine/stats.h ../machine/timer.h \
+ ../threads/../userprog/synchconsole.h ../machine/console.h \
+ synchconsole.h ../threads/synch.h

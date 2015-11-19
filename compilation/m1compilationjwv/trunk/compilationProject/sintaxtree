@@ -1,0 +1,7 @@
+digraph Stree {
+a_37 [shape="ellipse", label="root"];
+a_36 [shape="ellipse", label="succ"];
+a_35 [shape="ellipse", label="main"];
+a_36 -> a_35;
+a_37 -> a_36;
+}

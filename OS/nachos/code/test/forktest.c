@@ -1,0 +1,40 @@
+#include "syscall.h"
+main(){
+  char* first = "create the first fork \n\n\n";
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+  ForkExec("test/putchar");
+}

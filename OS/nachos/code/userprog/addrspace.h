@@ -13,12 +13,12 @@
 #ifndef ADDRSPACE_H
 #define ADDRSPACE_H
 
-#include "copyright.h"
+
 #include "filesys.h"
 #include "translate.h"
 #include "bitmap.h"
 
-#define UserStacksAreaSize		1024	// increase this as necessary!
+#define UserStacksAreaSize		10240	// increase this as necessary!
 
 class AddrSpace:dontcopythis
 {

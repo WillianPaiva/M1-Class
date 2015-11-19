@@ -34,4 +34,24 @@ public class SemiValid implements BasketState {
         basketEntries.clear();
     }
 
+    @Override
+    public boolean isvalid(){
+        return false;
+    }
+
+    @Override
+    public boolean isprevalid(){
+        return true;
+    }
+
+    @Override
+    public BasketState validate(){
+        return new Valid();
+    }
+
+    @Override
+    public BasketState prevalidate(){
+        return this;
+    }
+
 }

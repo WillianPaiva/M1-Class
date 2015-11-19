@@ -2,6 +2,7 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,17 +10,16 @@ import javax.swing.*;
 
 import ecomerce.Basket;
 
-public class EcommerceFrame {
+public class EcommerceFrame extends JFrame{
     public void createAndShowGUI(List<Basket> t){
-        /*create a frame */
-        JFrame frame = new JFrame("CatalogView");
-        frame.setLayout(new GridLayout(0,2));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new SallesPanel(t));
-        frame.add(new CatalogueView());
+        /*create a this */
+        this.setLayout(new GridLayout(0,2));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.add(new SallesPanel(t));
+        this.add(new CatalogueView());
 
-        frame.pack();
-        frame.setVisible(true);
+        this.pack();
+        this.setVisible(true);
     }
 
     protected JComponent makeTextPanel(String text) {
@@ -30,4 +30,5 @@ public class EcommerceFrame {
         panel.add(filler);
         return panel;
     }
+
 }

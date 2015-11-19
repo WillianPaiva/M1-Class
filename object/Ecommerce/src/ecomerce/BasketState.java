@@ -17,7 +17,7 @@ public interface  BasketState {
 
     public boolean isprevalid();
 
-    public void validate();
+    public BasketState validate();
 
-    public void prevalidate();
+    public BasketState prevalidate();
 }

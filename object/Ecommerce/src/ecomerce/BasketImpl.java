@@ -7,7 +7,7 @@ import java.util.Map;
 
 import ecomerce.procducts.CatalogUserItf;
 
-public class BasketImpl implements Basket, basketPrevalid {
+public class BasketImpl implements Basket {
     private static int COUNTER = 1;
     private final int id = COUNTER++;
     private HashMap<Integer,Integer> basketEntries = new HashMap<Integer,Integer>();
@@ -22,12 +22,12 @@ public class BasketImpl implements Basket, basketPrevalid {
     }
     @Override
     public void validate(){
-            this.state = new Valid();
+        this.state = this.state.validate();
     }
 
     @Override
-    public void prevalider(){
-        this.state = new SemiValid();
+    public void prevalidate(){
+        this.state = this.state.prevalidate();
     }
 
 

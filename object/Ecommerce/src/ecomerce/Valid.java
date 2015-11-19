@@ -27,4 +27,24 @@ public class Valid implements BasketState {
         throw new UnsupportedOperationException("not allowed");
     }
 
+    @Override
+    public boolean isvalid(){
+        return true;
+    }
+
+    @Override
+    public boolean isprevalid(){
+        return false;
+    }
+
+    @Override
+    public BasketState validate(){
+        return this;
+    }
+
+    @Override
+    public BasketState prevalidate(){
+        return new SemiValid();
+    }
+
 }

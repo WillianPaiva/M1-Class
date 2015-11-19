@@ -13,5 +13,5 @@ public interface Basket {
     public int getId();
     public List<BasketItem> getBasketEntries();
     public void validate();
-    public void prevalider();
+    public void prevalidate();
 }

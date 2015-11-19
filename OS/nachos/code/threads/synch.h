@@ -88,6 +88,7 @@ class Lock:dontcopythis
   private:
     const char *name;		// for debugging
     Semaphore *locksem;
+  Thread *owner;
 };
 
 // The following class defines a "condition variable".  A condition

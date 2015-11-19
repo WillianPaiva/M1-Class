@@ -105,6 +105,7 @@ Lock::Lock (const char *debugName)
 {
     name = debugName;
     locksem = new Semaphore(debugName,1);
+    owner = NULL;
 }
 
 Lock::~Lock ()
@@ -116,13 +117,16 @@ Lock::Acquire ()
 {
     IntStatus oldLevel = interrupt->SetLevel(IntOff);
     locksem->P();
+    owner = currentThread;
     (void) interrupt->SetLevel(oldLevel);
 }
     void
 Lock::Release ()
 {
     IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    if(owner == currentThread){
     locksem->V();
+    }
     (void) interrupt->SetLevel(oldLevel);
 }
 
